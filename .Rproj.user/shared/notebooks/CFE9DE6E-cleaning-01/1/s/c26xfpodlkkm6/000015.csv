@@ -1,8 +1,0 @@
-"0","other_temps_raw <- other_indoor_temps |> "
-"0","  pivot_longer("
-"0","    cols = ""1"":""31"","
-"0","    names_to = ""day"","
-"0","    values_to = ""temperature"""
-"0","  )"
-"0",""
-"0","other_temps_raw"

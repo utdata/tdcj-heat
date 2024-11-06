@@ -1,7 +1,0 @@
-"0","daily_indoor <- indoor_temps_combined|> "
-"0","  clean_names() |> "
-"0","  mutate("
-"0","    month = str_remove_all(file_name, word_list) "
-"0","  ) "
-"0",""
-"0","daily_indoor"

@@ -1,7 +1,0 @@
-"0","indoor_units_clean <- indoor_units |> "
-"0","  unite(col = ""ramsey"", ramsey, ramsey_2) |> "
-"0","mutate("
-"0","    ramsey = str_remove(ramsey, ""_NA"") "
-"0","  ) "
-"0",""
-"0","indoor_units_clean"

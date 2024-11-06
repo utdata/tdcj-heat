@@ -1,1 +1,0 @@
-"0","indoor_units_clean |> write_rds(""data-processed/01-heat-all.rds"")"

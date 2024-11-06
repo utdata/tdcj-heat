@@ -1,0 +1,8 @@
+"0","indoor_units <- daily_indoor_dated |> "
+"0","  pivot_wider("
+"0","    names_from = unit,"
+"0","    values_from = temperature"
+"0","    ) |> "
+"0","  clean_names()"
+"0",""
+"0","indoor_units"

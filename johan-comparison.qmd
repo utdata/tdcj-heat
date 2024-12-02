@@ -1,0 +1,581 @@
+---
+title: "Analysis"
+---
+
+## Goals of this notebook
+
+Combine cleaned indoor data with the closest national weather station data.
+
+- Import all weather station data
+- Combine each weather station to its corresponding prison
+- Create `difference` column
+
+## Loading Library
+
+```{r}
+#| label: setup
+#| message: false
+
+library(tidyverse)
+library(janitor)
+library(dplyr)
+library(lubridate)
+```
+
+## Importing both data sets
+
+First, I'm importing indoor files.
+
+```{r}
+#| label: indoor
+
+indoor_heat_all <- read_rds("data-processed/01-heat-all.rds")
+
+indoor_heat_all
+```
+
+Secondly, I'm importing all the national weather station data that was cleaned.
+
+```{r}
+#| label: indoor
+#| message: false
+
+station_files_list <- list.files(
+  "data-processed/station-processed",
+  pattern = "\\.csv",
+  full.name = TRUE
+)
+
+# Read the CSV files into a named list of data frames
+station_data <- lapply(station_files_list, read_csv)
+
+# Name the elements of the list based on the file names (without extensions)
+names(station_data) <- tools::file_path_sans_ext(basename(station_files_list))
+
+# Use list2env to create variables in the global environment
+list2env(station_data, envir = .GlobalEnv)
+
+cat("The following objects have been created in the global environment:\n")
+print(ls())
+```
+
+## Jordan & KPPA Join
+
+Now, I will join the prison with the corresponding weather station data and create a difference column.
+
+```{r}
+#| label: jordan indoor
+
+jordan <- indoor_heat_all |> 
+  filter(unit == "Jordan") |> 
+  arrange(date) |> 
+  rename(indoor_temp = temperature, unit_name = unit)
+
+jordan
+```
+
+```{r}
+#| label: join kppa
+
+KPPA_JORDAN <- jordan |> 
+  left_join(KPPA, by = "date") |> 
+  select(date, unit_name, indoor_temp, kppa) |> 
+  mutate(difference = abs(indoor_temp - kppa))
+
+name = toupper(colnames(KPPA_JORDAN)[4])
+KPPA_JORDAN <- KPPA_JORDAN |> mutate(station_code = name) |> 
+  rename(station_temp = kppa) |> 
+  select(date, unit_name, indoor_temp, station_code, station_temp, difference)
+
+KPPA_JORDAN
+
+```
+
+## Formby & KPVW Join
+
+Now, I will join the prison with the corresponding weather station data and create a difference column.
+
+```{r}
+#| label: formby indoor
+
+formby <- indoor_heat_all |> 
+  filter(unit == "Formby") |> 
+  arrange(date) |> 
+  rename(indoor_temp = temperature, unit_name = unit)
+
+formby
+```
+
+
+```{r}
+#| label: join kpvw
+
+KPVW_FORMBY <- formby  |> 
+  left_join(KPVW, by = "date") |> 
+  select(date, unit_name, indoor_temp, kpvw) |> 
+  mutate(difference = abs(indoor_temp - kpvw))
+
+name = toupper(colnames(KPVW_FORMBY)[4])
+KPVW_FORMBY <- KPVW_FORMBY |> mutate(station_code = name) |> 
+  rename(station_temp = kpvw) |> 
+  select(date, unit_name, indoor_temp, station_code, station_temp, difference)
+
+KPVW_FORMBY
+```
+
+## Wheeler & KPVW Join
+
+Now, I will join the prison with the corresponding weather station data and create a difference column.
+
+```{r}
+#| label: wheeler indoor
+
+wheeler <- indoor_heat_all |> 
+  filter(unit == "Wheeler") |> 
+  arrange(date) |> 
+  rename(indoor_temp = temperature, unit_name = unit)
+
+wheeler
+```
+
+```{r}
+#| label: join kpvw
+
+KPVW_WHEELER <- wheeler |> 
+  left_join(KPVW, by = "date") |> 
+  select(date, unit_name, indoor_temp, kpvw) |> 
+  mutate(difference = abs(indoor_temp - kpvw))
+
+name = toupper(colnames(KPVW_WHEELER)[4])
+KPVW_WHEELER <- KPVW_WHEELER |> mutate(station_code = name) |> 
+  rename(station_temp = kpvw) |> 
+  select(date, unit_name, indoor_temp, station_code, station_temp, difference)
+
+KPVW_WHEELER
+```
+
+## Memorial & KLVJ Join
+
+Now, I will join the prison with the corresponding weather station data and create a difference column.
+
+```{r}
+#| label: memorial indoor
+
+memorial <- indoor_heat_all |> 
+  filter(unit == "Memorial") |> 
+  arrange(date) |> 
+  rename(indoor_temp = temperature, unit_name = unit)
+
+memorial
+```
+
+```{r}
+#| label: join klvj
+
+KLVJ_MEMORIAL <- memorial |> 
+  left_join(KLVJ, by = "date") |> 
+  select(date, unit_name, indoor_temp, klvj) |> 
+  mutate(difference = abs(indoor_temp - klvj))
+
+name = toupper(colnames(KLVJ_MEMORIAL)[4])
+KLVJ_MEMORIAL <- KLVJ_MEMORIAL |> mutate(station_code = name) |> 
+  rename(station_temp = klvj) |> 
+  select(date, unit_name, indoor_temp, station_code, station_temp, difference)
+
+KLVJ_MEMORIAL
+```
+
+## Ramsey & KLVJ Join
+
+Now, I will join the prison with the corresponding weather station data and create a difference column.
+
+```{r}
+#| label: ramsey indoor
+
+ramsey <- indoor_heat_all |> 
+  filter(unit == "Ramsey") |> 
+  arrange(date) |> 
+  rename(indoor_temp = temperature, unit_name = unit)
+
+ramsey
+```
+
+```{r}
+#| label: join klvj
+
+KLVJ_RAMSEY <- ramsey |> 
+  left_join(KLVJ, by = "date") |> 
+  select(date, unit_name, indoor_temp, klvj) |> 
+  mutate(difference = abs(indoor_temp - klvj))
+
+name = toupper(colnames(KLVJ_RAMSEY)[4])
+KLVJ_RAMSEY <- KLVJ_RAMSEY |> mutate(station_code = name) |> 
+  rename(station_temp = klvj) |> 
+  select(date, unit_name, indoor_temp, station_code, station_temp, difference)
+
+KLVJ_RAMSEY
+```
+
+## Stringfellow & KLVJ Join
+
+Now, I will join the prison with the corresponding weather station data and create a difference column.
+
+```{r}
+#| label: stringfellow indoor
+
+stringfellow <- indoor_heat_all |> 
+  filter(unit == "Stringfellow") |> 
+  arrange(date) |> 
+  rename(indoor_temp = temperature, unit_name = unit)
+
+stringfellow
+```
+
+```{r}
+#| label: join klvj
+
+KLVJ_STRINGFELLOW <- stringfellow |> 
+  left_join(KLVJ, by = "date") |> 
+  select(date, unit_name, indoor_temp, klvj) |> 
+  mutate(difference = abs(indoor_temp - klvj))
+
+name = toupper(colnames(KLVJ_STRINGFELLOW)[4])
+KLVJ_STRINGFELLOW <- KLVJ_STRINGFELLOW |> mutate(station_code = name) |> 
+  rename(station_temp = klvj) |> 
+  select(date, unit_name, indoor_temp, station_code, station_temp, difference)
+
+KLVJ_STRINGFELLOW
+```
+
+## Terrell & KLVJ Join
+
+Now, I will join the prison with the corresponding weather station data and create a difference column.
+
+```{r}
+#| label: terrell indoor
+
+terrell <- indoor_heat_all |> 
+  filter(unit == "Terrell") |> 
+  arrange(date) |> 
+  rename(indoor_temp = temperature, unit_name = unit)
+
+terrell
+```
+
+```{r}
+#| label: join klvj
+
+KLVJ_TERRELL <- terrell |> 
+  left_join(KLVJ, by = "date") |> 
+  select(date, unit_name, indoor_temp, klvj) |> 
+  mutate(difference = abs(indoor_temp - klvj))
+
+name = toupper(colnames(KLVJ_TERRELL)[4])
+KLVJ_TERRELL <- KLVJ_TERRELL |> mutate(station_code = name) |> 
+  rename(station_temp = klvj) |> 
+  select(date, unit_name, indoor_temp, station_code, station_temp, difference)
+
+KLVJ_TERRELL
+```
+
+## Dominguez & KSKF Join
+
+Now, I will join the prison with the corresponding weather station data and create a difference column.
+
+```{r}
+#| label: dominguez indoor
+
+dominguez <- indoor_heat_all |> 
+  filter(unit == "Dominguez") |> 
+  arrange(date) |> 
+  rename(indoor_temp = temperature, unit_name = unit)
+
+dominguez
+```
+
+```{r}
+#| label: join kskf
+
+KSKF_DOMINGUEZ <- dominguez |> 
+  left_join(KSKF, by = "date") |> 
+  select(date, unit_name, indoor_temp, kskf) |> 
+  mutate(difference = abs(indoor_temp - kskf))
+
+name = toupper(colnames(KSKF_DOMINGUEZ)[4])
+KSKF_DOMINGUEZ <- KSKF_DOMINGUEZ |> mutate(station_code = name) |> 
+  rename(station_temp = kskf) |> 
+  select(date, unit_name, indoor_temp, station_code, station_temp, difference)
+
+KSKF_DOMINGUEZ
+```
+
+## Daniel & KSNK Join
+
+Now, I will join the prison with the corresponding weather station data and create a difference column.
+
+```{r}
+#| label: daniel indoor
+
+daniel <- indoor_heat_all |> 
+  filter(unit == "Daniel") |> 
+  arrange(date) |> 
+  rename(indoor_temp = temperature, unit_name = unit)
+
+daniel
+```
+
+```{r}
+#| label: join ksnk
+
+KSNK_DANIEL <- daniel |> 
+  left_join(KSNK, by = "date") |> 
+  select(date, unit_name, indoor_temp, ksnk) |> 
+  mutate(difference = abs(indoor_temp - ksnk))
+
+name = toupper(colnames(KSNK_DANIEL)[4])
+KSNK_DANIEL <- KSNK_DANIEL |> mutate(station_code = name) |> 
+  rename(station_temp = ksnk) |> 
+  select(date, unit_name, indoor_temp, station_code, station_temp, difference)
+
+KSNK_DANIEL
+```
+
+## Boyd & KLXY Join
+
+Now, I will join the prison with the corresponding weather station data and create a difference column.
+
+```{r}
+#| label: boyd indoor
+
+boyd <- indoor_heat_all |> 
+  filter(unit == "Boyd") |> 
+  arrange(date) |> 
+  rename(indoor_temp = temperature, unit_name = unit)
+
+boyd
+```
+
+```{r}
+#| label: join klxy
+
+KLXY_BOYD <- boyd |> 
+  left_join(KLXY, by = "date") |> 
+  select(date, unit_name, indoor_temp, klxy) |> 
+  mutate(difference = abs(indoor_temp - klxy))
+
+name = toupper(colnames(KLXY_BOYD)[4])
+KLXY_BOYD <- KLXY_BOYD |> mutate(station_code = name) |> 
+  rename(station_temp = klxy) |> 
+  select(date, unit_name, indoor_temp, station_code, station_temp, difference)
+
+KLXY_BOYD
+```
+
+## Beto & KPSN Join
+
+Now, I will join the prison with the corresponding weather station data and create a difference column.
+
+```{r}
+#| label: beto indoor
+
+beto <- indoor_heat_all |> 
+  filter(unit == "Beto") |> 
+  arrange(date) |> 
+  rename(indoor_temp = temperature, unit_name = unit)
+
+beto
+```
+
+```{r}
+#| label: join kpsn
+
+KPSN_BETO <- beto |> 
+  left_join(KPSN, by = "date") |> 
+  select(date, unit_name, indoor_temp, kpsn) |> 
+  mutate(difference = abs(indoor_temp - kpsn))
+
+name = toupper(colnames(KPSN_BETO)[4])
+KPSN_BETO <- KPSN_BETO |> mutate(station_code = name) |> 
+  rename(station_temp = kpsn) |> 
+  select(date, unit_name, indoor_temp, station_code, station_temp, difference)
+
+KPSN_BETO
+```
+
+## Coffield & KPSN Join
+
+Now, I will join the prison with the corresponding weather station data and create a difference column.
+
+```{r}
+#| label: coffield indoor
+
+coffield <- indoor_heat_all |> 
+  filter(unit == "Coffield") |> 
+  arrange(date) |> 
+  rename(indoor_temp = temperature, unit_name = unit)
+
+coffield
+```
+
+```{r}
+#| label: join kpsn
+
+KPSN_COFFIELD <- coffield |> 
+  left_join(KPSN, by = "date") |> 
+  select(date, unit_name, indoor_temp, kpsn) |> 
+  mutate(difference = abs(indoor_temp - kpsn))
+
+name = toupper(colnames(KPSN_COFFIELD)[4])
+KPSN_COFFIELD <- KPSN_COFFIELD |> mutate(station_code = name) |> 
+  rename(station_temp = kpsn) |> 
+  select(date, unit_name, indoor_temp, station_code, station_temp, difference)
+
+KPSN_COFFIELD
+```
+
+## Michael & KPSN Join
+
+Now, I will join the prison with the corresponding weather station data and create a difference column.
+
+```{r}
+#| label: michael indoor
+
+michael <- indoor_heat_all |> 
+  filter(unit == "Michael") |> 
+  arrange(date) |> 
+  rename(indoor_temp = temperature, unit_name = unit)
+
+michael
+```
+
+```{r}
+#| label: join kpsn
+
+KPSN_MICHAEL <- coffield |> 
+  left_join(KPSN, by = "date") |> 
+  select(date, unit_name, indoor_temp, kpsn) |> 
+  mutate(difference = abs(indoor_temp - kpsn))
+
+name = toupper(colnames(KPSN_MICHAEL)[4])
+KPSN_MICHAEL <- KPSN_MICHAEL |> mutate(station_code = name) |> 
+  rename(station_temp = kpsn) |> 
+  select(date, unit_name, indoor_temp, station_code, station_temp, difference)
+
+KPSN_MICHAEL
+```
+
+## Johnston & KJDD Join
+
+Now, I will join the prison with the corresponding weather station data and create a difference column.
+
+```{r}
+#| label: johnston indoor
+
+johnston <- indoor_heat_all |> 
+  filter(unit == "Johnston") |> 
+  arrange(date) |> 
+  rename(indoor_temp = temperature, unit_name = unit)
+
+johnston
+```
+
+```{r}
+#| label: join kjdd
+
+KJDD_JOHNSTON <- johnston |> 
+  left_join(KJDD, by = "date") |> 
+  select(date, unit_name, indoor_temp, kjdd) |> 
+  mutate(difference = abs(indoor_temp - kjdd))
+
+name = toupper(colnames(KJDD_JOHNSTON)[4])
+KJDD_JOHNSTON <- KJDD_JOHNSTON |> mutate(station_code = name) |> 
+  rename(station_temp = kjdd) |> 
+  select(date, unit_name, indoor_temp, station_code, station_temp, difference)
+
+KJDD_JOHNSTON
+```
+
+## Lewis & KJAS Join
+
+Now, I will join the prison with the corresponding weather station data and create a difference column.
+
+```{r}
+#| label: lewis
+
+lewis <- indoor_heat_all |> 
+  filter(unit == "Lewis") |> 
+  arrange(date) |> 
+  rename(indoor_temp = temperature, unit_name = unit)
+
+lewis
+```
+
+```{r}
+#| label: join kjas
+
+KJAS_LEWIS <- lewis |> 
+  left_join(KJAS, by = "date") |> 
+  select(date, unit_name, indoor_temp, kjas) |> 
+  mutate(difference = abs(indoor_temp - kjas))
+
+name = toupper(colnames(KJAS_LEWIS)[4])
+KJAS_LEWIS <- KJAS_LEWIS |> mutate(station_code = name) |> 
+  rename(station_temp = kjas) |> 
+  select(date, unit_name, indoor_temp, station_code, station_temp, difference)
+
+KJAS_LEWIS
+```
+
+## Export
+
+Nice Job! We are done doing them individually. Now, we want to join them all to create one long pivot.
+
+```{r}
+#| label: export
+
+KPPA_JORDAN |> write_csv("data-processed/stations_join/KPPA_JORDAN.csv")
+KPVW_FORMBY |> write_csv("data-processed/stations_join/KPVW_FORMBY.csv")
+KPVW_WHEELER |> write_csv("data-processed/stations_join/KPVW_WHEELER.csv")
+KLVJ_MEMORIAL |> write_csv("data-processed/stations_join/KLVJ_MEMORIAL.csv")
+KLVJ_RAMSEY |> write_csv("data-processed/stations_join/KLVJ_RAMSEY.csv")
+KLVJ_STRINGFELLOW |> write_csv("data-processed/stations_join/KLVJ_STRINGFELLOW.csv")
+KLVJ_TERRELL |> write_csv("data-processed/stations_join/KLVJ_TERRELL.csv")
+KSKF_DOMINGUEZ |> write_csv("data-processed/stations_join/KSKF_DOMINGUEZ.csv")
+KSNK_DANIEL |> write_csv("data-processed/stations_join/KSNK_DANIEL.csv")
+KLXY_BOYD |> write_csv("data-processed/stations_join/KLXY_BOYD.csv")
+KPSN_BETO |> write_csv("data-processed/stations_join/KPSN_BETO.csv")
+KPSN_COFFIELD |> write_csv("data-processed/stations_join/KPSN_COFFIELD.csv")
+KPSN_MICHAEL |> write_csv("data-processed/stations_join/KPSN_MICHAEL.csv")
+KJDD_JOHNSTON |> write_csv("data-processed/stations_join/KJDD_JOHNSTON.csv")
+KJAS_LEWIS |> write_csv("data-processed/stations_join/KJAS_LEWIS.csv")
+```
+
+## Full Join
+
+Now, we want to join them all to create one long pivot.
+
+```{r}
+#| label: full join
+
+combined_units <- bind_rows(KPPA_JORDAN, KPVW_FORMBY, KPVW_WHEELER, KLVJ_MEMORIAL, KLVJ_RAMSEY, KLVJ_STRINGFELLOW, KLVJ_TERRELL, KSKF_DOMINGUEZ, KSNK_DANIEL, KLXY_BOYD, KPSN_BETO, KPSN_COFFIELD, KPSN_MICHAEL, KJDD_JOHNSTON, KJAS_LEWIS)
+
+combined_units
+``` 
+
+# Export Cleaning
+
+```{r}
+#| label: final cleaning
+
+unit_final <- combined_units |> 
+  rename(unit = unit_name, unit_temp = indoor_temp, temp_diff = difference)
+
+unit_final
+```
+
+```{r}
+#| label: final export
+
+unit_final |> write_rds("data-processed/johan-final-comparison.rds")
+```
+

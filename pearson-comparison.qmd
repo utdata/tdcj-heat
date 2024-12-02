@@ -1,0 +1,245 @@
+---
+title: "Comparison"
+---
+
+```{r}
+#| label: setup
+#| message: false
+
+library(tidyverse)
+library(janitor)
+library(lubridate)
+```
+
+## Importing the cleaned data
+
+This code chunk will import the data for comparison
+
+```{r}
+#| label: importing
+
+indoor_temps <- read_rds("data-processed/01-heat-all.rds")
+KABI_temps <- read_rds("data-processed/KABI.rds")
+KAMA_temps <- read_rds("data-processed/KAMA.rds")
+KBEA_temps <- read_rds("data-processed/KBEA.rds")
+KBKD_temps <- read_rds("data-processed/KBKD.rds")
+KBMQ_temps <- read_rds("data-processed/KBMQ.rds")
+KBPT_temps <- read_rds("data-processed/KBPT.rds")
+KBWD_temps <- read_rds("data-processed/KBWD.rds")
+KCDS_temps <- read_rds("data-processed/KCDS.rds")
+KCLL_temps <- read_rds("data-processed/KCLL.rds")
+KEDC_temps <- read_rds("data-processed/KEDC.rds")
+KXBP_temps <- read_rds("data-processed/KXBP.rds")
+KLBX_temps <- read_rds("data-processed/KLBX.rds")
+KVCT_temps <- read_rds("data-processed/KVCT.rds")
+KSNK_temps <- read_rds("data-processed/KSNK.rds")
+KRBD_temps <- read_rds("data-processed/KRBD.rds")
+KDHT_temps <- read_rds("data-processed/KDHT.rds")
+
+indoor_temps |> glimpse()
+```
+
+## Filtering for unit
+
+This code chunk will create dataframes for each unit.
+
+```{r}
+#| label: units
+
+Middleton <- indoor_temps |> 
+  filter(unit == "Middleton")
+
+Robertson <- indoor_temps |> 
+  filter(unit == "Robertson")
+
+Clements <- indoor_temps |> 
+  filter(unit == "Clements")
+
+Gist <- indoor_temps |> 
+  filter(unit == "Gist")
+
+Stiles <- indoor_temps |> 
+  filter(unit == "Stiles")
+
+Garza_West <- indoor_temps |> 
+  filter(unit == "Garza West")
+
+McConnell <- indoor_temps |> 
+  filter(unit == "Mcconnell")
+
+#cole and moore if station is found
+
+Clemens <- indoor_temps |> 
+  filter(unit == "Clemens")
+
+Roach <- indoor_temps |> 
+  filter(unit == "Roach")
+
+Wallace <- indoor_temps |> 
+  filter(unit == "Wallace")
+
+Stevenson <- indoor_temps |> 
+  filter(unit == "Stevenson")
+
+Dalhart <- indoor_temps |> 
+  filter(unit == "Dalhart")
+
+Hutchins <- indoor_temps |> 
+  filter(unit == "Hutchins")
+```
+
+## Joining the data
+
+This set of code chunks will combine each unit with the corresponding station and find the difference in temperature between the two.
+
+```{r}
+#| label: Middleton
+
+Middleton_comp <- left_join(Middleton, KABI_temps, by = "date") |> 
+  mutate(difference = abs(temperature - hourly_temp)) |> 
+  select(date, unit, temperature, station, hourly_temp, difference)
+
+Middleton_comp
+```
+
+```{r}
+#| label: Robertson
+
+Robertson_comp <- left_join(Robertson, KABI_temps, by = "date") |> 
+  mutate(difference = abs(temperature - hourly_temp)) |> 
+  select(date, unit, temperature, station, hourly_temp, difference)
+
+Robertson_comp
+```
+
+```{r}
+#| label: Clements
+
+Clements_comp <- left_join(Clements, KAMA_temps, by = "date") |> 
+    mutate(difference = abs(temperature - hourly_temp)) |> 
+  select(date, unit, temperature, station, hourly_temp, difference)
+
+Clements_comp
+```
+
+```{r}
+#| label: Gist
+
+Gist_comp <- left_join(Gist, KBPT_temps, by = "date") |> 
+    mutate(difference = abs(temperature - hourly_temp)) |> 
+  select(date, unit, temperature, station, hourly_temp, difference)
+
+Gist_comp
+```
+
+```{r}
+#| label: Stiles
+
+Stiles_comp <- left_join(Stiles, KBPT_temps, by = "date") |> 
+    mutate(difference = abs(temperature - hourly_temp)) |> 
+  select(date, unit, temperature, station, hourly_temp, difference)
+
+Stiles_comp
+```
+
+```{r}
+#| label: Garza West
+
+Garza_West_comp <- left_join(Garza_West, KBEA_temps, by = "date") |> 
+  mutate(difference = abs(temperature - hourly_temp)) |> 
+  select(date, unit, temperature, station, hourly_temp, difference)
+
+Garza_West_comp
+```
+
+```{r}
+#| label: McConnell
+
+McConnell_comp <- left_join(McConnell, KBEA_temps, by = "date") |> 
+  mutate(difference = abs(temperature - hourly_temp)) |> 
+  select(date, unit, temperature, station, hourly_temp, difference)
+
+McConnell_comp
+```
+
+```{r}
+#| label: Clemens
+
+Clemens_comp <- left_join(Clemens, KLBX_temps, by = "date") |> 
+  mutate(difference = abs(temperature - hourly_temp)) |> 
+  select(date, unit, temperature, station, hourly_temp, difference)
+
+Clemens_comp
+```
+
+
+```{r}
+#| label: Roach
+
+Roach_comp <- left_join(Roach, KCDS_temps, by = "date") |> 
+  mutate(difference = abs(temperature - hourly_temp)) |> 
+  select(date, unit, temperature, station, hourly_temp, difference)
+
+Roach_comp
+```
+
+```{r}
+#| label: Wallace
+
+Wallace_comp <- left_join(Wallace, KSNK_temps, by = "date") |> 
+  mutate(difference = abs(temperature - hourly_temp)) |> 
+  select(date, unit, temperature, station, hourly_temp, difference)
+
+Wallace_comp
+```
+
+```{r}
+#| label: Stevenson
+
+Stevenson_comp <- left_join(Stevenson, KVCT_temps, by = "date") |> 
+  mutate(difference = abs(temperature - hourly_temp)) |> 
+  select(date, unit, temperature, station, hourly_temp, difference)
+
+Stevenson_comp
+```
+
+```{r}
+#| label: Dalhart
+
+Dalhart_comp <- left_join(Dalhart, KDHT_temps, by = "date") |>
+  mutate(difference = abs(temperature - hourly_temp)) |> 
+  select(date, unit, temperature, station, hourly_temp, difference)
+
+Dalhart_comp
+```
+
+```{r}
+#| label: Hutchins
+
+Hutchins_comp <- left_join(Hutchins, KRBD_temps, by = "date") |>
+  mutate(difference = abs(temperature - hourly_temp)) |> 
+  select(date, unit, temperature, station, hourly_temp, difference)
+
+Hutchins_comp
+```
+
+```{r}
+#|label: joining all frames
+
+all_comps <- bind_rows(Middleton_comp, Robertson_comp, Clements_comp, Gist_comp, Stiles_comp, Garza_West_comp, McConnell_comp, Clemens_comp, Roach_comp, Wallace_comp, Stevenson_comp, Dalhart_comp, Hutchins_comp) |> 
+  rename(unit_temp = temperature, station_code = station, station_temp = hourly_temp, temp_diff = difference)
+
+all_comps
+```
+
+## Exporting comparison
+
+This code chunk will export the data
+
+```{r}
+#| label: exporting
+
+all_comps |> 
+  write_rds("data-processed/pearson-final-comparison.rds")
+```
+

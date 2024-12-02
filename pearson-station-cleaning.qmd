@@ -1,0 +1,219 @@
+---
+title: "Outdoor Cleaning"
+---
+
+```{r}
+#| label: setup
+#| message: false
+
+library(tidyverse)
+library(janitor)
+```
+
+This code chunk will create a list of the specific columns that we need for later.
+
+```{r}
+#| label: columns
+
+col_list <- c(
+  "NAME",
+  "DATE",
+  "HourlyDryBulbTemperature"
+)
+```
+
+This code chunk will list all of the files that will be used. This link https://r-journalism.github.io/chjr23/lesson-monthly3-iteration.html#importing-multiple-files will help you understand the way the code works to read multiple files at once.
+
+```{r}
+#| label: files list
+
+station_files_list <- list.files(
+  "data-raw/NWS-Data",
+  pattern = "\\.csv",
+  full.names = TRUE
+)
+```
+
+This code chunk will create a data frame that be used to look for specific data. This link https://r4ds.hadley.nz/iteration#many-simple-iterations will help you understand how the files are processed to output specific rows of information. The data frame lays out the process for reading in the files and then selects the columns that we want. Filter pulls rows that have a specific time, in this case when the hour value is 14. Group_by arranges all of the rows in chronological order. Slice_max is used to make it where there is only the row with the latest time during the 2 p.m. hour for each day.Map uses the process we created to work through the list of files we created earlier.
+
+```{r}
+#| label: mass import
+
+process_file <- function(path) {
+  df <- read_csv(path, col_select = col_list)
+  
+  df |>
+    filter(hour(DATE) == 14) |>
+    group_by(date(DATE)) |>
+    slice_max(minute(DATE))
+}
+
+outdoor_temps <- station_files_list |>
+  map(process_file)
+  
+
+#needed = KF00, KBKD, KCXO
+
+KABI <- outdoor_temps[[1]]
+KAMA <- outdoor_temps[[2]]
+KBEA <- outdoor_temps[[3]]
+KBKD <- outdoor_temps[[4]]
+KBMQ <- outdoor_temps[[5]]
+KBPT <- outdoor_temps[[6]]
+KBWD <- outdoor_temps[[7]]
+KCDS <- outdoor_temps[[8]]
+KCLL <- outdoor_temps[[9]]
+KCOT <- outdoor_temps[[10]]
+KEDC <- outdoor_temps[[12]]
+KXBP <- outdoor_temps[[17]]
+KLBX <- outdoor_temps[[13]]
+KVCT <- outdoor_temps[[16]]
+KSNK <- outdoor_temps[[15]]
+KRBD <- outdoor_temps[[14]]
+KDHT <- outdoor_temps[[11]]
+
+KABI_cleaned <- KABI |> 
+  clean_names() |> 
+   rename(hourly_temp = hourly_dry_bulb_temperature, date = date_date, date_time = date, station = name) |> 
+  mutate(station = "KABI")
+
+KAMA_cleaned <- KAMA |> 
+  clean_names() |> 
+   rename(hourly_temp = hourly_dry_bulb_temperature, date = date_date, date_time = date, station = name) |> 
+  mutate(station = "KAMA")
+
+KBEA_cleaned <- KBEA |> 
+  clean_names() |> 
+   rename(hourly_temp = hourly_dry_bulb_temperature, date = date_date, date_time = date, station = name) |> 
+  mutate(station = "KBEA")
+
+KBKD_cleaned <- KBKD |> 
+  clean_names() |> 
+   rename(hourly_temp = hourly_dry_bulb_temperature, date = date_date, date_time = date, station = name) |> 
+  mutate(station = "KBKD")
+
+KBMQ_cleaned <- KBMQ |> 
+  clean_names() |> 
+   rename(hourly_temp = hourly_dry_bulb_temperature, date = date_date, date_time = date, station = name) |> 
+  mutate(station = "KBMQ")
+
+KBPT_cleaned <- KBPT |> 
+  clean_names() |> 
+   rename(hourly_temp = hourly_dry_bulb_temperature, date = date_date, date_time = date, station = name) |> 
+  mutate(station = "KBPT")
+
+KBWD_cleaned <- KBWD |> 
+  clean_names() |> 
+   rename(hourly_temp = hourly_dry_bulb_temperature, date = date_date, date_time = date, station = name) |> 
+  mutate(station = "KBWD")
+
+KCDS_cleaned <- KCDS |> 
+  clean_names() |> 
+   rename(hourly_temp = hourly_dry_bulb_temperature, date = date_date, date_time = date, station = name) |> 
+  mutate(station = "KCDS")
+
+KCLL_cleaned <- KCLL |> 
+  clean_names() |> 
+   rename(hourly_temp = hourly_dry_bulb_temperature, date = date_date, date_time = date, station = name) |> 
+  mutate(station = "KCLL")
+
+KCOT_cleaned <- KCOT |> 
+  clean_names() |> 
+   rename(hourly_temp = hourly_dry_bulb_temperature, date = date_date, date_time = date, station = name) |> 
+  mutate(station = "KCOT")
+
+KEDC_cleaned <- KEDC |> 
+  clean_names() |> 
+   rename(hourly_temp = hourly_dry_bulb_temperature, date = date_date, date_time = date, station = name) |> 
+  mutate(station = "KEDC")
+
+KXBP_cleaned <- KXBP |> 
+  clean_names() |> 
+   rename(hourly_temp = hourly_dry_bulb_temperature, date = date_date, date_time = date, station = name) |> 
+  mutate(station = "KXBP")
+
+KLBX_cleaned <- KLBX |> 
+  clean_names() |> 
+   rename(hourly_temp = hourly_dry_bulb_temperature, date = date_date, date_time = date, station = name) |> 
+  mutate(station = "KLBX")
+
+KVCT_cleaned <- KVCT |> 
+  clean_names() |> 
+   rename(hourly_temp = hourly_dry_bulb_temperature, date = date_date, date_time = date, station = name) |> 
+  mutate(station = "KVCT")
+
+KSNK_cleaned <- KSNK |> 
+  clean_names() |> 
+    rename(hourly_temp = hourly_dry_bulb_temperature, date = date_date, date_time = date, station = name) |> 
+  mutate(station = "KSNK")
+
+KRBD_cleaned <- KRBD |> 
+  clean_names() |> 
+    rename(hourly_temp = hourly_dry_bulb_temperature, date = date_date, date_time = date, station = name) |> 
+  mutate(station = "KRBD")
+
+KDHT_cleaned <- KDHT |> 
+  clean_names() |> 
+    rename(hourly_temp = hourly_dry_bulb_temperature, date = date_date, date_time = date, station = name) |> 
+  mutate(station = "KDHT")
+```
+
+## Exporting the data
+
+This code chunk will export the data.
+
+```{r}
+#| label: exporting
+
+KABI_cleaned |> 
+  write_rds("data-processed/KABI.rds")
+
+KAMA_cleaned |> 
+  write_rds("data-processed/KAMA.rds")
+
+KBEA_cleaned |> 
+  write_rds("data-processed/KBEA.rds")
+
+KBKD_cleaned |> 
+  write_rds("data-processed/KBKD.rds")
+
+KBMQ_cleaned |> 
+  write_rds("data-processed/KBMQ.rds")
+
+KBPT_cleaned |> 
+  write_rds("data-processed/KBPT.rds")
+
+KBWD_cleaned |> 
+  write_rds("data-processed/KBWD.rds")
+
+KCDS_cleaned |> 
+  write_rds("data-processed/KCDS.rds")
+
+KCLL_cleaned |> 
+  write_rds("data-processed/KCLL.rds")
+
+KCOT_cleaned |> 
+  write_rds("data-processed/KCOT.rds")
+
+KEDC_cleaned |> 
+  write_rds("data-processed/KEDC.rds")
+
+KXBP_cleaned |> 
+  write_rds("data-processed/KXBP.rds")
+
+KLBX_cleaned |> 
+  write_rds("data-processed/KLBX.rds")
+
+KVCT_cleaned |> 
+  write_rds("data-processed/KVCT.rds")
+
+KSNK_cleaned |> 
+  write_rds("data-processed/KSNK.rds")
+
+KRBD_cleaned |> 
+  write_rds("data-processed/KRBD.rds")
+
+KDHT_cleaned |> 
+  write_rds("data-processed/KDHT.rds")
+```
+

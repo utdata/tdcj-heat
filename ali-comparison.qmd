@@ -1,0 +1,352 @@
+---
+title: "analysis"
+---
+
+## Goals for this notebook
+
+Here's what we want to get done in this notebook:
+
+- Separate each weather stations and unit into their own data frame
+- Determine temperature differences
+- Recombine all stations/units into one data frame
+
+## Import data
+
+```{r}
+units <- read_rds("data-processed/ali-01-heat-all.rds")
+
+stations <- read_rds("data-processed/01-stations.rds")
+```
+
+## Separate Stations
+
+Let's make each of our stations their own data frame.
+
+```{r}
+KRFI <- stations |> 
+  filter(station_code == "KRFI")
+
+KGOP <- stations |> 
+  filter(station_code == "KGOP")
+
+KGLS <- stations |> 
+  filter(station_code == "KGLS")
+
+KIAH <- stations |> 
+  filter(station_code == "KIAH")
+
+KEFD <- stations |> 
+  filter(station_code == "KEFD")
+
+KHOU <- stations |> 
+  filter(station_code == "KHOU")
+
+KLFK <- stations |> 
+  filter(station_code == "KLFK")
+
+KUTS <- stations |> 
+  filter(station_code == "KUTS")
+
+KMFE <- stations |> 
+  filter(station_code == "KMFE")
+
+KCOT <- stations |> 
+  filter(station_code == "KCOT")
+
+KHDO <- stations |> 
+  filter(station_code == "KHDO")
+
+KFST <- stations |> 
+  filter(station_code == "KFST")
+
+KELP <- stations |> 
+  filter(station_code == "KELP")
+```
+
+## Separate Units
+
+```{r}
+units
+```
+
+
+Now let's separate units.
+
+```{r}
+hightower <- units |> 
+  filter(unit == "Hightower")
+
+plane <- units |> 
+  filter(unit == "Plane")
+
+# diboll <- units |> 
+#   filter(unit == "Diboll")
+# No unit data
+
+# duncan <- units |> 
+#   filter(unit == "Duncan")
+# No unit data 
+
+young <- units |> 
+  filter(unit == "Young")
+
+briscoe <- units |> 
+  filter(unit == "Briscoe")
+
+lopez <- units |> 
+  filter(unit == "Lopez")
+
+segovia <- units |> 
+  filter(unit == "Segovia")
+
+sanchez <- units |> 
+  filter(unit == "Sanchez")
+
+lynaugh <- units |> 
+  filter(unit == "Lynaugh")
+
+# fort_stockton <- units |> 
+#   filter(unit == "Fort Stockton")
+# No unit data
+
+# galveston <- units |> 
+#   filter(unit == "Galveston")
+# No unit data
+
+crain <- units |> 
+  filter(unit == "Crain")
+
+hilltop <- units |> 
+  filter(unit == "Hilltop")
+
+hughes <- units |> 
+  filter(unit == "Hughes")
+
+murray <- units |> 
+  filter(unit == "Murray")
+
+o_daniel <- units |> 
+  filter(unit == "Mountain View")
+
+woodman <- units |> 
+  filter(unit == "Woodman")
+
+bradshaw <- units |> 
+  filter(unit == "Bradshaw")
+
+# east_texas <- units |> 
+#   filter(unit == "East Texas")
+# No unit data
+
+# ney <- units |> 
+#   filter(unit == "Ney")
+# No unit data
+
+torres <- units |> 
+  filter(unit == "Torres")
+
+lychner <- units |> 
+  filter(unit == "Lychner")
+
+# kegans <- units |> 
+#   filter(unit == "Kegans")
+# No unit data
+
+byrd <- units |> 
+  filter(unit == "Byrd")
+```
+
+## Join dataframes
+
+Let's put together the right station data with the right unit data.
+
+```{r}
+byrd_combined <- byrd |> 
+  left_join(KUTS) |> 
+  arrange(date)
+
+byrd_combined
+```
+
+```{r}
+lychner_combined <- lychner |> 
+  left_join(KIAH) |> 
+  arrange(date)
+
+lychner_combined
+```
+
+```{r}
+torres_combined <- torres |> 
+  left_join(KIAH) |> 
+  arrange(date)
+
+torres_combined
+```
+
+```{r}
+bradshaw_combined <- bradshaw |> 
+  left_join(KRFI) |> 
+  arrange(date)
+
+bradshaw_combined
+```
+
+```{r}
+woodman_combined <- woodman |> 
+  left_join(KGOP) |> 
+  arrange(date)
+
+woodman_combined
+```
+
+```{r}
+o_daniel_combined <- o_daniel |> 
+  left_join(KGOP) |> 
+  arrange(date)
+
+o_daniel_combined
+```
+
+```{r}
+murray_combined <- murray |> 
+  left_join(KGOP) |> 
+  arrange(date)
+
+murray_combined
+```
+
+```{r}
+hughes_combined <- hughes |> 
+  left_join(KGOP) |> 
+  arrange(date)
+
+hughes_combined
+```
+
+```{r}
+hilltop_combined <- hilltop |> 
+  left_join(KGOP) |> 
+  arrange(date)
+
+hilltop_combined
+```
+
+```{r}
+crain_combined <- crain |> 
+  left_join(KGOP) |> 
+  arrange(date)
+
+crain_combined
+```
+
+```{r}
+lynaugh_combined <- lynaugh |> 
+  left_join(KFST) |> 
+  arrange(date)
+
+lynaugh_combined
+```
+
+```{r}
+sanchez_combined <- sanchez |> 
+  left_join(KELP) |> 
+  arrange(date)
+
+sanchez_combined
+```
+
+```{r}
+segovia_combined <- segovia |> 
+  left_join(KMFE) |> 
+  arrange(date)
+
+segovia_combined
+```
+
+```{r}
+lopez_combined <- lopez |> 
+  left_join(KMFE) |> 
+  arrange(date)
+
+lopez_combined
+```
+
+```{r}
+briscoe_combined <- briscoe |> 
+  left_join(KCOT) |> 
+  arrange(date)
+
+briscoe_combined
+```
+
+```{r}
+young_combined <- young |> 
+  left_join(KEFD) |> 
+  arrange(date)
+
+young_combined
+```
+
+```{r}
+# plane |> 
+#   left_join(KT41) |> 
+#   arrange(date)
+# Station data unavailable
+```
+
+```{r}
+# hightower |> 
+#   left_join(KT41) |> 
+#   arrange(date)
+# Station data unavailable
+```
+
+## Combine all comparable data
+
+Now let's add all of our comparable data together. First, we have to make a list of all our units.
+
+```{r}
+all <- list(bradshaw_combined, briscoe_combined, byrd_combined, crain_combined, hilltop_combined, hughes_combined, lopez_combined, lychner_combined, lynaugh_combined, murray_combined, o_daniel_combined, sanchez_combined, segovia_combined, torres_combined, woodman_combined, young_combined)
+```
+
+Now we can join them together.
+
+```{r}
+jails_combined <- all |> 
+  list_rbind()
+
+jails_combined
+```
+
+## Make the temperature difference column
+
+Time to get to the whole point of this project! Let's create a column that is the difference between the unit temperature and the station temperature.
+
+```{r}
+jails_diff <- jails_combined |> 
+  mutate(temp_diff = unit_temp - station_temp)
+
+jails_diff
+```
+
+## Rearrange columns
+
+Nice! Now we just need to switch the order of our date and unit columns. 
+
+```{r}
+ali_final_comparison <- jails_diff |> 
+  relocate(unit, .after = date)
+
+ali_final_comparison
+```
+
+## Export data
+
+Time for the final step: let's export.
+
+```{r}
+ali_final_comparison |> 
+  write_rds("data-processed/ali-final-comparison.rds")
+```
+

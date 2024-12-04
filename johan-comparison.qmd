@@ -29,7 +29,7 @@ First, I'm importing indoor files.
 ```{r}
 #| label: indoor
 
-indoor_heat_all <- read_rds("data-processed/01-heat-all.rds")
+indoor_heat_all <- read_rds("data-processed/johan-01-heat-all.rds")
 
 indoor_heat_all
 ```

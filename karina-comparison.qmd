@@ -1,0 +1,211 @@
+
+```{r}
+library(tidyverse)
+library(lubridate)
+```
+
+
+
+```{r}
+all_stations <- read_rds("data-processed/02-all-stations.rds")
+all_units <- read_rds("data-processed/01-heat-all.rds")
+
+all_stations 
+all_units <- all_units |> rename(unit_temp = temperature )
+
+all_units
+```
+
+```{r}
+stations_list <- all_stations$name |> unique()
+stations_list
+```
+
+```{r}
+single_station <- function(path) {
+  df <- all_stations |> filter(name == path) |> as.data.frame() |> rename(station_id = station, date_time = date, station_name = name, station_temp = hourly_dry_bulb_temperature, date = date_date) |> mutate(station_code = case_when(
+    station_name == "BRIDGEPORT MUNICIPAL AIRPORT, TX US" ~ "KXBP",
+    station_name == "JASPER CO BELL FIELD AIRPORT, TX US" ~ "KJAS",
+    station_name == "PERRY LEFORS FIELD AIRPORT, TX US" ~ "KPPA",
+    station_name == "PALESTINE MUNICIPAL AIRPORT, TX US" ~ "KPSN",
+    station_name == "RUSK CO AIRPORT, TX US" ~ "KRFI" , 
+    station_name == "CONROE MONTGOMERY CO AIRPORT, TX US" ~ "KCXO",
+    station_name == "HUNTSVILLE MUNICIPAL AIRPORT, TX US" ~ "KUTS",
+    station_name == "SAN MARCOS MUNICIPAL AIRPORT, TX US" ~ "KHYI",
+    station_name == "WACO MCGREGOR EXECUTIVE AIRPORT, TX US" ~ "KPWG",
+    station_name == "LUBBOCK INTERNATIONAL AIRPORT, TX US" ~ "KLBB",
+    station_name == "TEXARKANA WEBB FIELD, AR US" ~ "KTXK",
+    station_name == "CROCKETT HOUSTON CO AIRPORT, TX US" ~ "KDKR"
+    )) |> select(
+      station_code, station_temp, date
+    ) |> as.data.frame()
+  
+}
+
+sep_stations <- stations_list |> map(single_station)
+
+sep_stations
+```
+
+
+```{r}
+KXBP <- sep_stations[1]|> as.data.frame()
+KJAS <- sep_stations[2]|> as.data.frame()
+KPPA <- sep_stations[3]|> as.data.frame()
+KPSN <- sep_stations[4]|> as.data.frame()
+KRFI <- sep_stations[5]|> as.data.frame()
+KCXO <- sep_stations[6]|> as.data.frame()
+KUTS <- sep_stations[7] |> as.data.frame()
+KHYI <- sep_stations[8]|> as.data.frame()
+KPWG <- sep_stations[9]|> as.data.frame()
+KLBB <- sep_stations[10]|> as.data.frame()
+KTXK <- sep_stations[11]|> as.data.frame()
+KDKR <- sep_stations[12]|> as.data.frame()
+
+KXBP
+```
+
+
+```{r}
+Ellis <- all_units |> filter(unit == "Ellis")
+Estelle <- all_units |> filter(unit == "Estelle")
+Goree <- all_units |> filter(unit == "Goree")
+Holliday <- all_units |> filter(unit == "Holliday")
+Huntsville <- all_units |> filter(unit == "Huntsville")
+Wynne <- all_units |> filter(unit == "Wynne")
+Allred <- all_units |> filter(unit == "Allred")
+Lindsey <- all_units |> filter(unit == "Lindsey") # no data
+Goodman <- all_units |> filter(unit == "Goodman")
+Connally <- all_units |> filter(unit == "Connally")
+Kyle <- all_units |> filter(unit == "Kyle") # no data
+Smith <- all_units |> filter(unit == "Smith")
+Polunsky<- all_units |> filter(unit == "Polunsky")
+Coleman<- all_units |> filter(unit == "Coleman") # no data
+Yellow<- all_units |> filter(unit == "Yellow") #no data
+Montford<- all_units |> filter(unit == "Montford")
+Hobby <- all_units |> filter(unit == "Hobby")
+Marlin <- all_units |> filter(unit == "Marlin") #no data
+Ferguson<- all_units |> filter(unit == "Ferguson")
+Luther<- all_units |> filter(unit == "Luther")
+Pack<- all_units |> filter(unit == "Pack") # no data
+Telford<- all_units |> filter(unit == "Telford")
+Moore<- all_units |> filter(unit == "Moore") # no data
+Powledge<- all_units |> filter(unit == "Powledge")
+Baten<- all_units |> filter(unit == "Baten") # no data
+
+
+
+```
+
+```{r}
+ellis_merge <- left_join(Ellis, KUTS, by = "date") |> select(date, unit, unit_temp, station_code, station_temp)
+
+ellis_merge
+```
+
+
+```{r}
+estelle_merge <- left_join(Estelle, KUTS, by = "date") |> select(date, unit, unit_temp, station_code, station_temp)
+
+estelle_merge
+```
+
+```{r}
+goree_merge <- left_join(Goree, KUTS, by = "date") |> select(date, unit, unit_temp, station_code, station_temp)
+
+goree_merge
+```
+
+
+```{r}
+holliday_merge <- left_join(Holliday, KUTS, by = "date") |> select(date, unit, unit_temp, station_code, station_temp)
+
+holliday_merge
+```
+
+```{r}
+
+huntsville_merge <- left_join(Huntsville, KUTS, by = "date") |> select(date, unit, unit_temp, station_code, station_temp)
+
+huntsville_merge
+```
+
+```{r}
+wynne_merge <- left_join(Wynne, KUTS, by = "date") |> select(date, unit, unit_temp, station_code, station_temp)
+
+wynne_merge
+```
+
+```{r}
+ferguson_merge <- left_join(Ferguson, KUTS, by = "date") |> select(date, unit, unit_temp, station_code, station_temp)
+
+ferguson_merge
+
+```
+
+```{r}
+
+goodman_merge <- left_join(Goodman, KJAS, by = "date") |> select(date, unit, unit_temp, station_code, station_temp)
+
+goodman_merge
+```
+
+```{r}
+polunksy_merge <- left_join(Polunsky, KCXO, by = "date") |> select(date, unit, unit_temp, station_code, station_temp)
+
+polunksy_merge
+```
+
+```{r}
+montford_merge <- left_join(Montford, KLBB, by = "date") |> select(date, unit, unit_temp, station_code, station_temp)
+
+montford_merge
+```
+
+```{r}
+hobby_merge <- left_join(Hobby, KPWG, by = "date") |> select(date, unit, unit_temp, station_code, station_temp)
+
+hobby_merge
+```
+
+```{r}
+telford_merge <- left_join(Telford, KTXK, by = "date") |> select(date, unit, unit_temp, station_code, station_temp)
+
+telford_merge
+```
+
+```{r}
+powledge_merge <- left_join(Powledge, KPSN, by = "date") |> select(date, unit, unit_temp, station_code, station_temp)
+
+powledge_merge
+```
+
+```{r}
+all_comparison <- bind_rows(ellis_merge, estelle_merge, goree_merge, holliday_merge, huntsville_merge, wynne_merge, goodman_merge, polunksy_merge, montford_merge, telford_merge, hobby_merge, ferguson_merge, powledge_merge)
+
+all_comparison
+
+```
+
+```{r}
+all_comp_diff <- all_comparison |> mutate(
+  temp_diff = abs(station_temp - unit_temp)
+)
+
+all_comp_diff |> arrange(temp_diff |> desc())
+```
+How to fill a column with an old column name:
+name = colnames(Ellis)[1]
+df <- Ellis |> mutate(new_column = name)
+
+df
+
+
+```{r}
+all_comp_diff |> write_rds("data-processed/karina-final-comparison.rds")                      
+```
+
+
+
+
+

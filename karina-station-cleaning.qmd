@@ -1,0 +1,48 @@
+
+```{r}
+library(tidyverse)
+library(lubridate)
+library(janitor)
+```
+
+
+```{r}
+file_list <- list.files(
+    "data-raw/stations",
+    pattern = ".csv",
+    full.names = T
+  )
+
+file_list
+```
+
+```{r}
+import_stations <- function(x) {
+  df <- read_csv(x, col_select = c(STATION, DATE, NAME, HourlyDryBulbTemperature))
+  df |> filter(hour(DATE) == 14) |> 
+   group_by(date(DATE)) |> 
+    slice_max(minute(DATE))
+}
+
+
+all_stations <- file_list |> map(import_stations) |> list_rbind() |> clean_names()
+```
+
+```{r}
+apr_sep <- all_stations |> filter(month(date_date) >= 4 & month(date_date) <= 9)
+
+apr_sep
+```
+
+```{r}
+jasper <- apr_sep |> filter(name == "JASPER CO BELL FIELD AIRPORT, TX US")
+
+jasper
+```
+
+
+```{r}
+apr_sep |> write_rds("data-processed/02-all-stations.rds")
+```
+
+

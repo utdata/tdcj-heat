@@ -8,7 +8,7 @@ library(lubridate)
 
 ```{r}
 all_stations <- read_rds("data-processed/02-all-stations.rds")
-all_units <- read_rds("data-processed/01-heat-all.rds")
+all_units <- read_rds("data-processed/karina-heat-all.rds")
 
 all_stations 
 all_units <- all_units |> rename(unit_temp = temperature )

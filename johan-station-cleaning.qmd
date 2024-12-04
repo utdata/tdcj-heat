@@ -1,0 +1,133 @@
+---
+title: "johan-02-cleaning"
+format: html
+---
+
+## Goals of this notebook
+
+What we'll do to prepare the data:
+
+- Download the data
+- Import it into our notebook
+- Clean up data types and columns 
+- Export data into our next notebook
+
+## Loading in library
+
+```{r}
+#| label: setup
+#| message: false
+
+library(tidyverse)
+library(janitor)
+library(dplyr)
+library(lubridate)
+```
+
+## Importing NWS Data
+
+We only need name, date and temperature from the NWS csv's
+
+```{r}
+#| label: columns
+col_list <- c(
+  "NAME",
+  "DATE",
+  "HourlyDryBulbTemperature"
+  )
+```
+
+This will create a file list to be able to import all of our data from my `station_data` folder
+
+```{r}
+#| label: files
+
+## Create a list of files in the station_data folder
+station_files_list <- list.files(
+  "data-raw/johan_stations",
+  pattern = "\\.csv",
+  full.name = TRUE
+)
+```
+
+Using Pearson's function to create the data table. This will change the names of the columns to something more appropriate. I want to do this to be able to delete the `datetime` column. Since the indoor data we have is only for april and sept, we will filter to those months. Also, we need to note that some prisons might not have data and we might have data for prison that we dont have indoor data for.
+
+```{r}
+#| label: function
+
+## Define the function to process each file and rename the column
+process_file <- function(path, station_name) {
+  # Read the CSV file and select specific columns
+  df <- read_csv(path, col_select = col_list)
+  
+  # Process the data and rename the HourlyDryBulbTemperature column
+  df |> 
+    filter(hour(DATE) == 14) |> 
+    group_by(date(DATE)) |> 
+    slice_max(minute(DATE)) |> 
+    rename(!!station_name := HourlyDryBulbTemperature) |> # Rename the temperature column to station name
+    clean_names() |> 
+    rename(date = date_date, datetime = date, station_location = name) |> 
+    filter(month(date) %in% 4:9) |> 
+    mutate(hour_temp_taken = format(datetime, "%H:%M:%S")) |> 
+    select(-datetime)
+}
+
+## Create an empty list to store the dataframes
+station_dataframes <- list()
+
+## Process each file and rename the column dynamically
+for (file_path in station_files_list) {
+  # Extract the station name from the file name
+  station_name <- tools:: file_path_sans_ext(basename(file_path))
+  
+  # Process the file and add it to the list
+  station_dataframes[[station_name]] <- process_file(file_path, station_name = station_name)
+}
+
+## Assign each dataframe to the global environment
+list2env(station_dataframes, envir = .GlobalEnv)
+
+## Print the names of the created dataframes
+print(names(station_dataframes))
+```
+
+## Export
+
+We are done with this lets do some analysis!
+
+```{r}
+#| label: export
+
+output_folder <- "data-processed/station-processed" # Specify the output folder
+
+for (station_name in names(station_dataframes)) {
+  output_path <- file.path(output_folder, paste0(station_name, ".csv")) # File path
+  write_csv(station_dataframes[[station_name]], output_path)           # Write the dataframe
+}
+
+cat("All dataframes have been exported to the 'data-processed/' folder.\n")
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

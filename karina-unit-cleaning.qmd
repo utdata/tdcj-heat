@@ -1,0 +1,137 @@
+---
+title: "cleaning"
+---
+
+## Goals of this notebook
+
+What we'll do to prepare the data:
+
+- Download the data
+- Import it into our notebook
+- Clean up data types and columns 
+- Export data into our next notebook
+
+## Setup
+
+```{r}
+#| label: setup
+#| message: false
+
+library(tidyverse)
+library(janitor)
+```
+
+## Downloading data
+
+This data comes from a public information request to the Texas Department of Criminal Justice.
+
+```{r}
+indoor_temps <- read_csv("data-raw/Indoor-30days-edited.csv")
+
+indoor_temps |> glimpse()
+```
+
+```{r}
+other_indoor_temps <- read_csv("data-raw/Indoor-31days-edited.csv")
+
+other_indoor_temps |> glimpse()
+```
+
+## Pivot Longer
+
+Right now each day is a column, let's change it so days are all under one column and clean up the names of our columns.
+
+We'll do this individually before we join the columns so we don't have to remove the 31st rows for months with only 30 days.
+
+```{r}
+other_temps_raw <- other_indoor_temps |> 
+  pivot_longer(
+    cols = "1":"31",
+    names_to = "day",
+    values_to = "temperature"
+  )
+
+other_temps_raw
+```
+
+```{r}
+indoor_temps_raw <- indoor_temps |> 
+  pivot_longer(
+    cols = "1":"30",
+    names_to = "day",
+    values_to = "temperature"
+  )
+
+indoor_temps_raw
+```
+
+## Combine data frames
+
+Let's combine both of our datasets to make a single table.
+
+```{r}
+indoor_temps_combined <- bind_rows(other_temps_raw, indoor_temps_raw)
+
+indoor_temps_combined
+```
+
+## Clean names
+
+One column we'll have to convert is our file_name column into a month/year column. In order to do that, we first have to create a value with all of the characters we want to remove.
+
+```{r}
+word_list <- c("SB1R56 - |_1.pdf|_2.pdf")
+```
+
+Now that we've done that, let's clean names and make our new column.
+
+```{r}
+daily_indoor <- indoor_temps_combined|> 
+  clean_names() |> 
+  mutate(
+    month = str_remove_all(file_name, word_list) 
+  ) 
+
+daily_indoor
+```
+
+## Add date column
+
+We'll need to clean up the dates so they're standardized and readable. We'll combine our month/year column with the day column to put through the lubridate function and, while we're at it, remove unnecessary columns.
+
+```{r}
+daily_indoor_dated <- daily_indoor |> 
+    unite(
+    col = "temp_date", 
+    day, month,
+    sep = " "
+    ) |> 
+  mutate(
+    date = dmy(temp_date)
+  ) |> 
+  select(!c(file_name, validation_link, temp_date))
+
+daily_indoor_dated
+```
+
+It looks like the Ramsey unit was recorded with slightly different names in each csv. Let's combine both of those columns so all of the data is together and then remove any leftover NA's.
+
+```{r}
+
+indoor_units_clean <- daily_indoor_dated |> mutate(unit = case_when(
+  grepl('ram', unit, ignore.case = TRUE) == TRUE ~ "Ramsey",
+  TRUE ~ unit
+  ))
+
+indoor_units_clean
+
+```
+
+## Export the data
+
+We did it! Now let's export our data and place it in our processed data folder.
+
+```{r}
+indoor_units_clean |> write_rds("data-processed/01-heat-all.rds")
+```
+

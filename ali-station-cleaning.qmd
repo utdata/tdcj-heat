@@ -1,0 +1,128 @@
+---
+title: "Station Cleaning"
+---
+
+In order to compare our prison unit temperatures to the actual temperatures, we need to pull data from the National Weather Service website. Let's work on importing and cleaning that data.
+
+## Goals for this notebook
+
+Steps we'll take to prepare our data:
+
+- Download the data
+- Import it into our notebook
+- Clean up the data types and columns
+- Export the data for the next notebook
+
+## Set up
+
+Let's load our libraries to start.
+
+```{r}
+#| label: setup
+#| message: false
+
+library(tidyverse)
+library(janitor)
+```
+
+## Import data
+
+Now let's download our data. To start that process, we'll create a vector for all of our weather station files.
+
+```{r}
+files <-
+list.files(
+  "data-raw/weather_stations",
+  pattern = ".csv",
+  full.names = TRUE
+) 
+
+files
+```
+
+## Read in our files
+
+Let's read the csv's and bind them together into one data frame.
+
+```{r}
+stations <- files |> 
+  set_names(basename) |> 
+map(
+    read_csv,
+    col_select = c(STATION, DATE, HourlyDryBulbTemperature)
+  ) |> 
+  list_rbind() |> 
+  clean_names() |> 
+  mutate(
+    station = as.character(station)
+  )
+
+stations
+```
+
+## Add station names
+
+Let's code a function so we can know the station names
+
+```{r}
+named_stations <- stations |> 
+  mutate( 
+    station_code = case_match(station, 
+                             "72057700175" ~ "KRFI",
+                             "72232300362" ~ "KGOP",
+                             "72242012923" ~ "KGLS",
+                             "72243012960" ~ "KIAH",
+                             "72243612906" ~ "KEFD",
+                             "72244012918" ~ "KHOU",
+                             "72244693987" ~ "KLFK",
+                             "72244753903" ~ "KUTS",
+                             "72250612959" ~ "KMFE",
+                             "72252612947" ~ "KCOT",
+                             "72253312962" ~ "KHDO",
+                             "72261823091" ~ "KFST",
+                             "72270023044" ~ "KELP"
+                            )
+  ) |>
+  select(!station) |> 
+  mutate(station_date = date(date))
+
+named_stations
+```
+
+## Remove unnecessary values
+
+We only need temperature reads near 15:00 and dates from April to September, so let's get rid of all other values.
+
+```{r}
+filtered_stations <- named_stations |> 
+    filter(
+      date >= "2023-04-01",
+      date < "2023-10-01"
+    ) |> 
+  filter(hour(date) == 14) |> 
+  group_by(station_code, station_date) |> 
+  slice_max(minute(date)) |> 
+  select(!date)
+  
+filtered_stations
+```
+
+```{r}
+stations_clean <- filtered_stations |> 
+  mutate(station_temp = hourly_dry_bulb_temperature) |> 
+  mutate(date = station_date) |> 
+  group_by(date, station_code) |> 
+  select(!c(hourly_dry_bulb_temperature, station_date))
+
+stations_clean
+```
+
+## Export the data
+
+Now let's export.
+
+```{r}
+stations_clean |> 
+  write_rds("data-processed/01-stations.rds")
+```
+

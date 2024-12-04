@@ -18,7 +18,7 @@ This code chunk will import the data for comparison
 ```{r}
 #| label: importing
 
-indoor_temps <- read_rds("data-processed/01-heat-all.rds")
+indoor_temps <- read_rds("data-processed/pearson-01-heat-all.rds")
 KABI_temps <- read_rds("data-processed/KABI.rds")
 KAMA_temps <- read_rds("data-processed/KAMA.rds")
 KBEA_temps <- read_rds("data-processed/KBEA.rds")

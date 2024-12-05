@@ -325,7 +325,7 @@ Time to get to the whole point of this project! Let's create a column that is th
 
 ```{r}
 jails_diff <- jails_combined |> 
-  mutate(temp_diff = unit_temp - station_temp)
+  mutate(temp_diff = abs(unit_temp - station_temp))
 
 jails_diff
 ```

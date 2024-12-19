@@ -1,0 +1,99 @@
+---
+title: "final-comparison-all"
+---
+
+```{r}
+library(tidyverse)
+```
+
+
+```{r}
+ali <- read_rds("data-processed/ali-final-comparison.rds")
+johan <- read_rds("data-processed/johan-final-comparison.rds")
+karina <- read_rds("data-processed/karina-final-comparison.rds")
+pearson <- read_rds("data-processed/pearson-final-comparison.rds")
+
+
+```
+
+```{r}
+final <- rbind(ali, johan, karina, pearson)
+
+final |> arrange(temp_diff |> desc())
+
+final |> filter(temp_diff >= 15 | temp_diff == 0)
+```
+
+After looking at the original csv, there is a comma where it seems Sanchez on Sept. 9th, 2023 should be 88.7, not 887. 
+
+
+```{r}
+#| label: more info import
+
+additional_info <- read_csv("data-raw/MIG-TDCJ-Status - Unit Info for Upload.csv")
+
+filtered_info <- additional_info |> 
+  select("Unit Name", "Type", "Region", "Established", "Capacity", "AC", "Prototype") |> 
+  rename("unit" = "Unit Name")
+
+filtered_info
+```
+
+```{r}
+all_info <- left_join(final, filtered_info, by = "unit") |> 
+  arrange(temp_diff |> desc()) |> 
+  filter(between(temp_diff, 15, 40)| temp_diff == 0) |> 
+  na.omit()
+
+all_info
+```
+
+```{r}
+type <- all_info |> 
+  group_by(Type) |> 
+  arrange(Type)
+
+type
+```
+
+
+```{r}
+region <- all_info |> 
+  group_by(Region) |> 
+  arrange(Region)
+
+region
+```
+
+```{r}
+established <- all_info |> 
+  group_by(Established) |> 
+  arrange(Established)
+
+established
+```
+
+```{r}
+capacity <- all_info |> 
+  group_by(Capacity) |> 
+  arrange(Capacity)
+
+capacity
+```
+
+```{r}
+ac <- all_info |> 
+  group_by(AC) |> 
+  arrange(AC)
+
+ac
+```
+
+```{r}
+prototype_grouping <- all_info |> 
+  group_by(Prototype) |> 
+  arrange(Prototype)
+  
+prototype_grouping
+```
+

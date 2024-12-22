@@ -1,0 +1,102 @@
+---
+title: "ali-break"
+---
+
+Let's add in some more info on each of our prisons.
+
+## Set up
+
+Time to load libraries.
+
+```{r}
+library(tidyverse)
+library(janitor)
+
+#| label: setup
+#| message: false
+```
+
+## Import data
+
+Let's add in our latest comparison csv and our new data file.
+
+```{r}
+final_comparison <- read_rds("data-processed/final-comparison-all.rds")
+
+new_info <- read_csv("data-raw/new_unit_info.csv")
+```
+
+
+## Clean up new dataframe
+
+```{r}
+new_info_clean <- new_info |> 
+clean_names() |> 
+remove_empty("cols") |> 
+select(!x22) |> 
+rename(unit = unit_name)
+
+```
+
+
+## Join the dataframes
+
+Let's put both of them together.
+
+```{r}
+combined_frame <- final_comparison |> 
+left_join(new_info_clean, by = "unit") |> 
+    select(!data_fellow)
+
+combined_frame
+```
+
+## Group data
+
+Let's group by our new variables. First we'll do region, then prison type, and then prison age. After, we'll group by all three. 
+
+```{r}
+units_by_region <- combined_frame |> 
+  group_by(region) 
+
+units_by_region
+
+units_by_region |> 
+filter(temp_diff >= 15 | temp_diff == 0) |> 
+count()
+```
+
+```{r}
+units_by_type <- combined_frame |> 
+  group_by(type) 
+
+units_by_type
+
+units_by_type |> 
+filter(temp_diff >= 15 | temp_diff == 0) |> 
+count()
+``` 
+
+```{r}
+units_by_age <- combined_frame |> 
+  arrange(unit) |> 
+  group_by(established)
+
+units_by_age
+
+units_by_age |> 
+filter(temp_diff >= 15 | temp_diff == 0) |> 
+count()
+```
+
+```{r}
+units_by_all <- combined_frame |> 
+group_by(region, type, established)
+
+units_by_all
+
+units_by_all |> 
+filter(temp_diff >= 15 | temp_diff == 0) |> 
+count()
+```
+

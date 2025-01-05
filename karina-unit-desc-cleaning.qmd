@@ -1,0 +1,31 @@
+---
+title: "karina-unit-desc-cleaning"
+format: html
+---
+
+```{r}
+library(tidyverse)
+library(lubridate)
+library(janitor)
+```
+
+```{r}
+unit_desc <- read_csv("data-raw/unit-desc.csv")
+
+unit_desc
+```
+
+I'm going to remove the data fellow column, rename the unit name column to match what I need to merge on later and then export the dataframe.
+
+```{r}
+unit_desc_final <- unit_desc |> select(-"Data Fellow")
+
+colnames(unit_desc_final)[1] = "unit"
+
+unit_desc_final
+```
+
+```{r}
+unit_desc_final |> write_rds("data-processed/karina-unit-desc.rds")
+```
+

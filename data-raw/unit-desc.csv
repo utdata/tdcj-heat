@@ -1,0 +1,102 @@
+Unit Name,Data Fellow,Type,Region,Established,Capacity,AC,Prototype
+Middleton,Johan,Prison,VI,1994,"2,128",Partial,2000 BED XFR PROTO
+Robertson,Johan,Prison,VI,1992,"2,978",Partial,2250 BED MAX PROTO
+Clements,Johan,Prison,V,1990,"2,932",Partial,2250 BED MAX PROTO
+Travis County,Johan,State Jail,VI,1997,"1,161",All,MISCELLANEOUS
+Gist,Johan,State Jail,III,1994,"2,276",Partial,2144 BED SJ PROTO
+LeBlanc,Johan,Pre-Release,III,1995,1224,All,1000 BED SATF PROTO
+Stiles,Johan,Prison,III,1993,"2,887",Partial,2250 BED MAX PROTO
+Garza East,Johan,Prison,IV,1994,912,Partial,2000 BED XFR PROTO
+Garza West,Johan,Prison,IV,1994,"2,278",Partial,2000 BED XFR PROTO
+McConnell,Johan,Prison,IV,1992,"2,956",Partial,2250 BED MAX PROTO
+Cole,Johan,State Jail,II,1995,900,Partial,900 BED SJ PROTO
+"Moore, C.",Johan,Prison,II,1995,"1,224",Partial,1000 BED SATF PROTO
+Clemens,Johan,Prison,III,1893,1446,None,SYSTEM 1
+Sayle,Johan,SAFPF,VI,1994,632,All,500 BED SATF PROTO
+Bridgeport,Johan,Private Prison,Private,1989,520,All,PRIVATE FACILITIES
+Havins,Johan,Pre-Release,VI,1994,596,All,500 BED SATF PROTO
+Hamilton,Johan,Pre-Release,VI,1996,"1,166",All,1000 BED SATF PROTO
+Halbert,Johan,SAFPF,VI,1995,612,All,500 BED SATF PROTO
+Roach,Johan,Prison,V,1991,"1,384",Partial,1000 BED MEDIUM PROTO
+Bell,Johan,Pre-Release,I,1989,520,All,MISCELLANEOUS
+Wallace/San Angelo Work Camp,Johan,Prison,V,1994,1448,Partial,1000 BED MEDIUM PROTO
+Cotulla,Johan,Prison,IV,1992,606,All,500 BED N-GROUP
+Stevenson,Johan,Prison,IV,1994,"1,384",Partial,1000 BED MEDIUM PROTO
+Dalhart,Johan,Prison,V,1995,780,Partial,1000 BED MEDIUM PROTO
+Hutchins,Johan,State Jail,II,1995,"2,276",Partial,2144 BED SJ PROTO
+Henley,Johan,State Jail,III,1995,448,All,500 BED SATF PROTO
+Hightower,Pearson,Prison,III,1990,"1,384",None,1000 BED MEDIUM PROTO
+Plane/Santa Maria Baby Bonding,Pearson,State Jail,III,1995,2084,Partial,2144 BED SJ PROTO
+Diboll,Pearson,Pre-Release,I,1995,518,All,MISCELLANEOUS
+Duncan,Pearson,Geriatric Facility,I,1992,530,All,500 BED N-GROUP
+Young,Pearson,Medical,III,1996,455,Partial,MISCELLANEOUS
+Briscoe,Pearson,Prison,IV,1992,"1,132",Partial,1000 BED MEDIUM PROTO
+Lopez,Pearson,State Jail,IV,1997,"1,100",Partial,1100 BED STATE JAIL PROTO
+Segovia,Pearson,Pre-Release,IV,1995,"1,224",Partial,1000 BED SATF PROTO
+Sanchez,Pearson,State Jail,IV,1996,"1,100",Partial,1100 BED STATE JAIL PROTO
+Fort Stockton,Pearson,Prison,IV,1992,606,All,500 BED N-GROUP
+Lynaugh,Pearson,Prison,IV,1994,"1,156",Partial,1000 BED MEDIUM PROTO
+Hospital Galveston,Pearson,Medical,III,1983,365,All,MISCELLANEOUS
+Crain,Pearson,Prison,VI,1980,2115,Partial,SYSTEM 1
+Hilltop,Pearson,Prison,VI,1981,553,Partial,SYSTEM 1
+Hughes,Pearson,Prison,VI,1990,"2,984",Partial,2250 BED MAX PROTO
+Murray,Pearson,Prison,VI,1995,"1,264",Partial,1000 BED MEDIUM PROTO
+O'Daniel,Pearson,Prison,VI,1975,644,Partial,SYSTEM 1
+Woodman,Pearson,State Jail,VI,1997,900,Partial,900 BED SJ PROTO
+Bradshaw,Pearson,Private State Jail,Private,1995,1798,Partial,PRIVATE FACILITIES
+East Texas,Pearson,Private Multi-Use,Private,2004,"1,060",All,PRIVATE FACILITIES
+Ney,Pearson,Prison,IV,1995,576,All,500 BED SATF PROTO
+Torres,Pearson,Prison,IV,1993,"1,384",Partial,1000 BED MEDIUM PROTO
+Kegans,Pearson,ISF,III,1997,657,All,667 BED SJ PROTO
+Lychner,Pearson,State Jail,III,1995,"2,276",Partial,2144 BED SJ PROTO
+Byrd,Pearson,Prison,I,1964,"1,341",None,SYSTEM 1
+Ellis,Ali,Prison,I,1965,"2,073",None,SYSTEM 1
+Estelle,Ali,Prison,I,1984,3480,Partial,SYSTEM 1
+Goree,Ali,Prison,I,1907,1321,None,SYSTEM 1
+Holliday,Ali,Prison,I,1994,"2,120",Partial,200 BED XFR PROTO
+Huntsville,Ali,Prison,I,1849,"1,705",None,SYSTEM 1
+Wynne,Ali,Prison,I,1883,2621,None,SYSTEM 1
+Allred,Ali,Prison,V,1995,"3,708",Partial,2250 BED MAX PROTO
+Lindsey,Ali,Private State Jail,Private,1995,1031,All,PRIVATE FACILITIES
+Goodman,Ali,Prison/ISF,I,1995,68,Partial,500 BED SATF PROTO
+Connally,Ali,Prison,IV,1995,2092,Partial,2250 BED MAX PROTO
+Kyle,Ali,Private Prison,Private,1989,520,All,PRIVATE FACILITIES
+Smith,Ali,Prison,V,1992,"1,596",Partial,1000 BED MEDIUM PROTO
+Polunsky,Ali,Prison,I,1993,"2,984",Partial,2250 BED MAX PROTO
+Coleman,Ali,Private Prison,Private,1993,1000,All,PRIVATE FACILITIES
+Yellow/Wainwright,Ali,Prison,I,1917,"2,143",None,SYSTEM 1
+Montford/West Texas Hospital,Ali,Psychiatric,V,1994,1044,Partial,550 BED PSYCHIATRIC PROTO
+Hobby,Ali,Prison,VI,1989,"1,384",Partial,1000 BED MEDIUM PROTO
+Marlin,Ali,Prison,VI,1992,606,All,500 BED N-GROUP
+Ferguson,Ali,Prison,I,1962,2096,None,SYSTEM 1
+Luther,Ali,Prison,VI,1982,1318,Partial,FAST TRACK
+Pack,Ali,Prison,VI,1983,1478,All,FAST TRACK
+Telford,Ali,Prison,II,1995,"2,019",Partial,2250 BED MAX PROTO
+"Moore, B.",Ali,Private Prison,Private,1995,500,All,PRIVATE FACILITIES
+Powledge,Ali,Prison,II,1982,1137,Partial,FAST TRACK
+Baten,Ali,ISF,V,1995,188,Partial,N/A
+Jordan,Karina,Prison,V,1992,"1,008",Partial,1000 BED MEDIUM PROTO
+Formby,Karina,State Jail,V,1995,1100,Partial,1100 BED STATE JAIL PROTO
+Wheeler,Karina,State Jail,V,1995,576,Partial,500 BED SATF PROTO
+Willacy County,Karina,Private State Jail,Private,1995,"1,069",All,PRIVATE FACILITIES
+Jester III,Karina,Prison,III,1982,1131,Partial,FAST TRACK
+Scott,Karina,Psychiatric,III,1993,550,All,N/A
+Vance,Karina,Prison,III,1885,378,None,SYSTEM 1
+Memorial,Karina,Prison,III,1917,"1,610",None,SYSTEM 1
+Ramsey,Karina,Prison,III,1908,1891,None,SYSTEM 1
+Stringfellow,Karina,Prison,III,1908,1531,None,SYSTEM 1
+Terrell,Karina,Prison,III,1983,1603,Partial,FAST TRACK
+Hodge,Karina,DDP,II,1995,989,All,1000 BED MEDIUM PROTO
+Skyview,Karina,Psychiatric,II,1988,562,All,SYSTEM 1
+Dominguez,Karina,State Jail,IV,1995,"2,276",Partial,2144 BED SJ PROTO
+Glossbrenner,Karina,SAFPF,IV,1994,612,All,500 BED SATF PROTO
+San Saba,Karina,Prison,VI,1992,606,All,500 BED N-GROUP
+Daniel,Karina,Prison,V,1989,504,Partial,1000 BED MEDIUM PROTO
+Boyd,Karina,Prison,II,1992,"1,372",Partial,1000 BED MEDIUM PROTO
+Beto,Karina,Prison,II,1980,3471,Partial,SYSTEM 1
+Coffield,Karina,Prison,II,1965,4139,None,SYSTEM 1
+Michael,Karina,Prison,II,1987,"2,552",Partial,2250 BED MAX PROTO
+Mechler,Karina,Prison,V,1992,606,All,500 BED N-GROUP
+Estes,Karina,Pre-Release,II,1989,"1,040",All,MISCELLANEOUS
+Johnston,Karina,SAFPF,II,1995,612,All,500 BED SATF PROTO
+Lewis,Karina,Prison,I,1990,"2,130",Partial,1000 BED MEDIUM PROTO

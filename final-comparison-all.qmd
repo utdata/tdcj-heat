@@ -3,6 +3,12 @@ title: "final-comparison-all"
 ---
 
 ```{r}
+library(tidyverse)
+library(lubridate)
+```
+
+
+```{r}
 ali <- read_rds("data-processed/ali-final-comparison.rds")
 johan <- read_rds("data-processed/johan-final-comparison.rds")
 karina <- read_rds("data-processed/karina-final-comparison.rds")
@@ -16,7 +22,117 @@ final <- rbind(ali, johan, karina, pearson)
 
 final |> arrange(temp_diff |> desc())
 
-final |> filter(temp_diff >= 15 | temp_diff == 0)
 ```
 
 After looking at the original csv, there is a comma where it seems Sanchez on Sept. 9th, 2023 should be 88.7, not 887. 
+Let's fix that first.
+
+```{r}
+final$unit_temp[final$unit_temp == 887] <- 88.7
+
+
+final |> arrange(temp_diff |> desc())
+```
+
+Now we need to recalculate the temp_diff for that row.
+
+```{r}
+special_case <- abs(88.7 - 98)
+
+final$temp_diff[final$temp_diff == 789] <- special_case
+
+final |> arrange(temp_diff |> desc())
+
+```
+
+Now we will import the unit desc file for merging. 
+
+```{r}
+desc_unit <- read_rds("data-processed/karina-unit-desc.rds")
+
+desc_unit
+
+```
+
+Now I am going to merge the two dataframes on the unit name. 
+
+```{r}
+merged_df <- merge(final, desc_unit, by = "unit", all.x = TRUE)
+
+merged_df
+```
+
+Now I am going to add a flag column that indicates temp_diff >= 15 and == 0 to show weird differences. 
+
+```{r}
+df <- merged_df |> mutate(flag = case_when(
+  temp_diff >= 15 ~ TRUE,
+  temp_diff == 0 ~ TRUE,
+  TRUE ~ FALSE
+)
+             )
+
+df
+
+df |> arrange(temp_diff |> desc())
+
+df |> filter(temp_diff == 0)
+```
+
+
+Now I will do analysis for units that have a 15 degree or larger difference from the station temperature. I will group by region, prison type, age, and prototype. 
+
+First group by region.
+
+```{r}
+region_group <- df |> filter(flag == TRUE) |> group_by(Region) |> summarize(total_w_flag = n()) |> arrange(total_w_flag |> desc())
+
+region_group
+```
+
+Now by prison type
+
+```{r}
+prison_type <- df |> filter(flag == TRUE) |> group_by(Type) |> summarize(total_w_flag = n()) |> arrange(total_w_flag |> desc())
+
+prison_type
+```
+
+Now by age.
+
+```{r}
+age <- df |> filter(flag == TRUE) |> group_by(Established) |> summarize(total_w_flag = n()) |> arrange(total_w_flag |> desc())
+
+age 
+```
+
+Now by prototype,
+
+```{r}
+prototype_group  <- df |> filter(flag == TRUE) |> group_by(Prototype) |> summarize(total_w_flag = n())
+
+prototype_group |> arrange(total_w_flag |> desc())
+```
+
+Now I am going to group by prototype, age and region at once. 
+
+```{r}
+multiple_groups <- df |> filter(flag == TRUE) |> group_by(Prototype, Established, Region) |> summarize(total_w_flag = n())
+
+multiple_groups |> arrange(total_w_flag |> desc())
+```
+
+Now I am going to group by unit to see which has the most with flags
+
+```{r}
+unit_group <- df |> filter(flag == TRUE) |> group_by(unit) |> summarize(total_w_flag = n()) |> arrange(total_w_flag |> desc())
+
+unit_group
+``` 
+
+Now I want to see these specific units with the greatest differences.
+
+```{r}
+df |> arrange(temp_diff |> desc()) |> head(50)
+```
+

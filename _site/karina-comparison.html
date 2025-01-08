@@ -1,0 +1,3233 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>heat_test – karina-comparison</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">heat_test</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html" rel="" target="">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./about.html" rel="" target="">
+ <span class="menu-text">About</span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools ms-auto">
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.2     ✔ readr     2.1.4
+✔ forcats   1.0.0     ✔ stringr   1.5.0
+✔ ggplot2   3.4.3     ✔ tibble    3.2.1
+✔ lubridate 1.9.2     ✔ tidyr     1.3.0
+✔ purrr     1.0.2     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>all_stations <span class="ot">&lt;-</span> <span class="fu">read_rds</span>(<span class="st">"data-processed/02-all-stations.rds"</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>all_units <span class="ot">&lt;-</span> <span class="fu">read_rds</span>(<span class="st">"data-processed/karina-heat-all.rds"</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>all_stations </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2,170 × 5
+# Groups:   date_date [533]
+       station date                name        hourly_dry_bulb_temp…¹ date_date 
+         &lt;dbl&gt; &lt;dttm&gt;              &lt;chr&gt;                        &lt;dbl&gt; &lt;date&gt;    
+ 1 72026153976 2013-04-01 14:55:00 BRIDGEPORT…                     77 2013-04-01
+ 2 72026153976 2013-04-02 14:55:00 BRIDGEPORT…                     59 2013-04-02
+ 3 72026153976 2013-04-03 14:15:00 BRIDGEPORT…                     46 2013-04-03
+ 4 72026153976 2013-04-04 14:55:00 BRIDGEPORT…                     46 2013-04-04
+ 5 72026153976 2013-04-05 14:55:00 BRIDGEPORT…                     66 2013-04-05
+ 6 72026153976 2013-04-06 14:55:00 BRIDGEPORT…                     77 2013-04-06
+ 7 72026153976 2013-04-07 14:55:00 BRIDGEPORT…                     72 2013-04-07
+ 8 72026153976 2013-04-08 14:55:00 BRIDGEPORT…                     73 2013-04-08
+ 9 72026153976 2013-04-09 14:35:00 BRIDGEPORT…                     73 2013-04-09
+10 72026153976 2013-04-10 14:55:00 BRIDGEPORT…                     43 2013-04-10
+# ℹ 2,160 more rows
+# ℹ abbreviated name: ¹​hourly_dry_bulb_temperature</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>all_units <span class="ot">&lt;-</span> all_units <span class="sc">|&gt;</span> <span class="fu">rename</span>(<span class="at">unit_temp =</span> temperature )</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>all_units</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 12,323 × 3
+   unit   unit_temp date      
+   &lt;chr&gt;      &lt;dbl&gt; &lt;date&gt;    
+ 1 Allred      97.7 2023-08-01
+ 2 Allred      99.7 2023-08-02
+ 3 Allred      95.6 2023-08-03
+ 4 Allred      97.6 2023-08-04
+ 5 Allred     100.  2023-08-05
+ 6 Allred      97.1 2023-08-06
+ 7 Allred      93.8 2023-08-07
+ 8 Allred      92.3 2023-08-08
+ 9 Allred      95.8 2023-08-09
+10 Allred      93   2023-08-10
+# ℹ 12,313 more rows</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>stations_list <span class="ot">&lt;-</span> all_stations<span class="sc">$</span>name <span class="sc">|&gt;</span> <span class="fu">unique</span>()</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>stations_list</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "BRIDGEPORT MUNICIPAL AIRPORT, TX US"   
+ [2] "JASPER CO BELL FIELD AIRPORT, TX US"   
+ [3] "PERRY LEFORS FIELD AIRPORT, TX US"     
+ [4] "PALESTINE MUNICIPAL AIRPORT, TX US"    
+ [5] "RUSK CO AIRPORT, TX US"                
+ [6] "CONROE MONTGOMERY CO AIRPORT, TX US"   
+ [7] "HUNTSVILLE MUNICIPAL AIRPORT, TX US"   
+ [8] "SAN MARCOS MUNICIPAL AIRPORT, TX US"   
+ [9] "WACO MCGREGOR EXECUTIVE AIRPORT, TX US"
+[10] "LUBBOCK INTERNATIONAL AIRPORT, TX US"  
+[11] "TEXARKANA WEBB FIELD, AR US"           
+[12] "CROCKETT HOUSTON CO AIRPORT, TX US"    </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>single_station <span class="ot">&lt;-</span> <span class="cf">function</span>(path) {</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  df <span class="ot">&lt;-</span> all_stations <span class="sc">|&gt;</span> <span class="fu">filter</span>(name <span class="sc">==</span> path) <span class="sc">|&gt;</span> <span class="fu">as.data.frame</span>() <span class="sc">|&gt;</span> <span class="fu">rename</span>(<span class="at">station_id =</span> station, <span class="at">date_time =</span> date, <span class="at">station_name =</span> name, <span class="at">station_temp =</span> hourly_dry_bulb_temperature, <span class="at">date =</span> date_date) <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">station_code =</span> <span class="fu">case_when</span>(</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    station_name <span class="sc">==</span> <span class="st">"BRIDGEPORT MUNICIPAL AIRPORT, TX US"</span> <span class="sc">~</span> <span class="st">"KXBP"</span>,</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    station_name <span class="sc">==</span> <span class="st">"JASPER CO BELL FIELD AIRPORT, TX US"</span> <span class="sc">~</span> <span class="st">"KJAS"</span>,</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    station_name <span class="sc">==</span> <span class="st">"PERRY LEFORS FIELD AIRPORT, TX US"</span> <span class="sc">~</span> <span class="st">"KPPA"</span>,</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    station_name <span class="sc">==</span> <span class="st">"PALESTINE MUNICIPAL AIRPORT, TX US"</span> <span class="sc">~</span> <span class="st">"KPSN"</span>,</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    station_name <span class="sc">==</span> <span class="st">"RUSK CO AIRPORT, TX US"</span> <span class="sc">~</span> <span class="st">"KRFI"</span> , </span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    station_name <span class="sc">==</span> <span class="st">"CONROE MONTGOMERY CO AIRPORT, TX US"</span> <span class="sc">~</span> <span class="st">"KCXO"</span>,</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    station_name <span class="sc">==</span> <span class="st">"HUNTSVILLE MUNICIPAL AIRPORT, TX US"</span> <span class="sc">~</span> <span class="st">"KUTS"</span>,</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    station_name <span class="sc">==</span> <span class="st">"SAN MARCOS MUNICIPAL AIRPORT, TX US"</span> <span class="sc">~</span> <span class="st">"KHYI"</span>,</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    station_name <span class="sc">==</span> <span class="st">"WACO MCGREGOR EXECUTIVE AIRPORT, TX US"</span> <span class="sc">~</span> <span class="st">"KPWG"</span>,</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>    station_name <span class="sc">==</span> <span class="st">"LUBBOCK INTERNATIONAL AIRPORT, TX US"</span> <span class="sc">~</span> <span class="st">"KLBB"</span>,</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>    station_name <span class="sc">==</span> <span class="st">"TEXARKANA WEBB FIELD, AR US"</span> <span class="sc">~</span> <span class="st">"KTXK"</span>,</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>    station_name <span class="sc">==</span> <span class="st">"CROCKETT HOUSTON CO AIRPORT, TX US"</span> <span class="sc">~</span> <span class="st">"KDKR"</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>    )) <span class="sc">|&gt;</span> <span class="fu">select</span>(</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>      station_code, station_temp, date</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">|&gt;</span> <span class="fu">as.data.frame</span>()</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>sep_stations <span class="ot">&lt;-</span> stations_list <span class="sc">|&gt;</span> <span class="fu">map</span>(single_station)</span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>sep_stations</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1]]
+    station_code station_temp       date
+1           KXBP           77 2013-04-01
+2           KXBP           59 2013-04-02
+3           KXBP           46 2013-04-03
+4           KXBP           46 2013-04-04
+5           KXBP           66 2013-04-05
+6           KXBP           77 2013-04-06
+7           KXBP           72 2013-04-07
+8           KXBP           73 2013-04-08
+9           KXBP           73 2013-04-09
+10          KXBP           43 2013-04-10
+11          KXBP           59 2013-04-11
+12          KXBP           72 2013-04-12
+13          KXBP           73 2013-04-13
+14          KXBP           84 2013-04-14
+15          KXBP           88 2013-04-15
+16          KXBP           82 2013-04-16
+17          KXBP           81 2013-04-17
+18          KXBP           55 2013-04-18
+19          KXBP           63 2013-04-19
+20          KXBP           68 2013-04-20
+21          KXBP           68 2013-04-21
+22          KXBP           79 2013-04-22
+23          KXBP           45 2013-04-23
+24          KXBP           59 2013-04-24
+25          KXBP           72 2013-04-25
+26          KXBP           70 2013-04-26
+27          KXBP           73 2013-04-27
+28          KXBP           81 2013-04-28
+29          KXBP           87 2013-04-29
+30          KXBP           81 2013-04-30
+31          KXBP           81 2013-05-01
+32          KXBP           43 2013-05-02
+33          KXBP           66 2013-05-03
+34          KXBP           73 2013-05-04
+35          KXBP           69 2013-05-05
+36          KXBP           76 2013-05-06
+37          KXBP           85 2013-05-07
+38          KXBP           83 2013-05-08
+39          KXBP           71 2013-05-09
+40          KXBP           82 2013-05-10
+41          KXBP           83 2013-05-11
+42          KXBP           79 2013-05-12
+43          KXBP           90 2013-05-13
+44          KXBP           89 2013-05-14
+45          KXBP           82 2013-05-15
+46          KXBP           85 2013-05-16
+47          KXBP           91 2013-05-17
+48          KXBP           92 2013-05-18
+49          KXBP           93 2013-05-19
+50          KXBP           94 2013-05-20
+51          KXBP           68 2013-05-21
+52          KXBP           88 2013-05-22
+53          KXBP           85 2013-05-23
+54          KXBP           79 2013-05-24
+55          KXBP           78 2013-05-25
+56          KXBP           88 2013-05-26
+57          KXBP           82 2013-05-27
+58          KXBP           81 2013-05-28
+59          KXBP           84 2013-05-29
+60          KXBP           90 2013-05-30
+61          KXBP           96 2013-05-31
+62          KXBP           82 2013-06-01
+63          KXBP           83 2013-06-02
+64          KXBP           90 2013-06-03
+65          KXBP           93 2013-06-04
+66          KXBP           92 2013-06-05
+67          KXBP           79 2013-06-06
+68          KXBP           83 2013-06-07
+69          KXBP           90 2013-06-08
+70          KXBP           88 2013-06-09
+71          KXBP           98 2013-06-10
+72          KXBP           95 2013-06-11
+73          KXBP           96 2013-06-12
+74          KXBP           98 2013-06-13
+75          KXBP           94 2013-06-14
+76          KXBP           77 2013-06-15
+77          KXBP           96 2013-06-16
+78          KXBP           86 2013-06-17
+79          KXBP           84 2013-06-18
+80          KXBP           93 2013-06-20
+81          KXBP           94 2013-06-21
+82          KXBP           95 2013-06-22
+83          KXBP           94 2013-06-23
+84          KXBP           93 2013-06-24
+85          KXBP           98 2013-06-25
+86          KXBP           98 2013-06-26
+87          KXBP          103 2013-06-27
+88          KXBP          103 2013-06-28
+89          KXBP           98 2013-06-29
+90          KXBP           92 2013-06-30
+91          KXBP           86 2013-07-01
+92          KXBP           88 2013-07-02
+93          KXBP           91 2013-07-03
+94          KXBP           94 2013-07-04
+95          KXBP           99 2013-07-05
+96          KXBP           97 2013-07-06
+97          KXBP           98 2013-07-07
+98          KXBP           98 2013-07-08
+99          KXBP          101 2013-07-09
+100         KXBP          102 2013-07-10
+101         KXBP          101 2013-07-11
+102         KXBP          103 2013-07-12
+103         KXBP          104 2013-07-13
+104         KXBP           69 2013-07-14
+105         KXBP           69 2013-07-15
+106         KXBP           85 2013-07-16
+107         KXBP           88 2013-07-17
+108         KXBP           91 2013-07-18
+109         KXBP           94 2013-07-19
+110         KXBP           95 2013-07-20
+111         KXBP           89 2013-07-25
+112         KXBP           91 2013-07-26
+113         KXBP           89 2013-07-27
+114         KXBP           90 2013-07-28
+115         KXBP           94 2013-07-29
+116         KXBP           99 2013-07-30
+117         KXBP           98 2013-07-31
+118         KXBP           99 2013-08-01
+119         KXBP          103 2013-08-02
+120         KXBP          102 2013-08-03
+121         KXBP           99 2013-08-04
+122         KXBP          103 2013-08-05
+123         KXBP          105 2013-08-06
+124         KXBP          106 2013-08-07
+125         KXBP           98 2013-08-08
+126         KXBP           94 2013-08-10
+127         KXBP          100 2013-08-11
+128         KXBP           95 2013-08-13
+129         KXBP           86 2013-08-14
+130         KXBP           86 2013-08-15
+131         KXBP           88 2013-08-16
+132         KXBP           89 2013-08-18
+133         KXBP           93 2013-08-19
+134         KXBP           93 2013-08-20
+135         KXBP           94 2013-08-22
+136         KXBP           96 2013-08-23
+137         KXBP           76 2013-08-24
+138         KXBP           94 2013-08-26
+139         KXBP           87 2013-08-27
+140         KXBP          100 2013-08-29
+141         KXBP          102 2013-08-30
+142         KXBP          104 2013-08-31
+143         KXBP          104 2013-09-01
+144         KXBP           94 2013-09-02
+145         KXBP           97 2013-09-03
+146         KXBP           97 2013-09-05
+147         KXBP           98 2013-09-06
+148         KXBP           93 2013-09-07
+149         KXBP           96 2013-09-08
+150         KXBP           92 2013-09-09
+151         KXBP           91 2013-09-10
+152         KXBP           94 2013-09-11
+153         KXBP           97 2013-09-12
+154         KXBP           92 2013-09-13
+155         KXBP           93 2013-09-14
+156         KXBP           94 2013-09-15
+157         KXBP           87 2013-09-16
+158         KXBP           89 2013-09-17
+159         KXBP           96 2013-09-18
+160         KXBP           72 2013-09-20
+161         KXBP           82 2013-09-21
+162         KXBP           82 2013-09-22
+163         KXBP           86 2013-09-23
+164         KXBP           91 2013-09-24
+165         KXBP           93 2013-09-25
+166         KXBP           93 2013-09-26
+167         KXBP           88 2013-09-27
+168         KXBP           70 2013-09-28
+169         KXBP           78 2013-09-29
+170         KXBP           87 2013-09-30
+
+[[2]]
+    station_code station_temp       date
+1           KJAS           84 2023-04-01
+2           KJAS           81 2023-04-02
+3           KJAS           84 2023-04-03
+4           KJAS           81 2023-04-04
+5           KJAS           64 2023-04-05
+6           KJAS           59 2023-04-06
+7           KJAS           54 2023-04-07
+8           KJAS           72 2023-04-08
+9           KJAS           66 2023-04-09
+10          KJAS           68 2023-04-10
+11          KJAS           75 2023-04-11
+12          KJAS           73 2023-04-12
+13          KJAS           73 2023-04-13
+14          KJAS           81 2023-04-14
+15          KJAS           88 2023-04-15
+16          KJAS           72 2023-04-16
+17          KJAS           79 2023-04-17
+18          KJAS           70 2023-04-18
+19          KJAS           81 2023-04-19
+20          KJAS           77 2023-04-20
+21          KJAS           72 2023-04-21
+22          KJAS           79 2023-04-22
+23          KJAS           59 2023-04-23
+24          KJAS           68 2023-04-24
+25          KJAS           70 2023-04-25
+26          KJAS           77 2023-04-26
+27          KJAS           73 2023-04-27
+28          KJAS           81 2023-04-28
+29          KJAS           59 2023-04-29
+30          KJAS           82 2023-04-30
+31          KJAS           81 2023-05-01
+32          KJAS           82 2023-05-02
+33          KJAS           84 2023-05-03
+34          KJAS           82 2023-05-04
+35          KJAS           88 2023-05-05
+36          KJAS           86 2023-05-06
+37          KJAS           77 2023-05-07
+38          KJAS           73 2023-05-08
+39          KJAS           68 2023-05-09
+40          KJAS           70 2023-05-10
+41          KJAS           86 2023-05-11
+42          KJAS           88 2023-05-12
+43          KJAS           88 2023-05-13
+44          KJAS           73 2023-05-14
+45          KJAS           86 2023-05-15
+46          KJAS           86 2023-05-16
+47          KJAS           81 2023-05-17
+48          KJAS           88 2023-05-18
+49          KJAS           90 2023-05-19
+50          KJAS           82 2023-05-20
+51          KJAS           75 2023-05-21
+52          KJAS           81 2023-05-22
+53          KJAS           81 2023-05-23
+54          KJAS           84 2023-05-24
+55          KJAS           84 2023-05-25
+56          KJAS           86 2023-05-26
+57          KJAS           86 2023-05-27
+58          KJAS           88 2023-05-28
+59          KJAS           82 2023-05-29
+60          KJAS           77 2023-05-30
+61          KJAS           79 2023-05-31
+62          KJAS           88 2023-06-01
+63          KJAS           90 2023-06-02
+64          KJAS           73 2023-06-03
+65          KJAS           72 2023-06-04
+66          KJAS           84 2023-06-05
+67          KJAS           86 2023-06-06
+68          KJAS           88 2023-06-07
+69          KJAS           91 2023-06-08
+70          KJAS           91 2023-06-09
+71          KJAS           90 2023-06-10
+72          KJAS           90 2023-06-11
+73          KJAS           91 2023-06-12
+74          KJAS           91 2023-06-13
+75          KJAS           93 2023-06-14
+76          KJAS           93 2023-06-15
+77          KJAS           95 2023-06-16
+78          KJAS           93 2023-06-17
+79          KJAS           95 2023-06-18
+80          KJAS           97 2023-06-19
+81          KJAS           91 2023-06-20
+82          KJAS           95 2023-06-21
+83          KJAS           88 2023-06-22
+84          KJAS           91 2023-06-23
+85          KJAS           95 2023-06-24
+86          KJAS           93 2023-06-25
+87          KJAS           97 2023-06-26
+88          KJAS           97 2023-06-27
+89          KJAS           97 2023-06-28
+90          KJAS           97 2023-06-29
+91          KJAS           95 2023-06-30
+92          KJAS           97 2023-07-01
+93          KJAS           93 2023-07-02
+94          KJAS           93 2023-07-03
+95          KJAS           86 2023-07-04
+96          KJAS           82 2023-07-05
+97          KJAS           84 2023-07-06
+98          KJAS           90 2023-07-07
+99          KJAS           95 2023-07-08
+100         KJAS           95 2023-07-09
+101         KJAS           97 2023-07-10
+102         KJAS           95 2023-07-11
+103         KJAS           93 2023-07-12
+104         KJAS           99 2023-07-13
+105         KJAS           99 2023-07-14
+106         KJAS           99 2023-07-15
+107         KJAS           95 2023-07-16
+108         KJAS          100 2023-07-17
+109         KJAS           99 2023-07-18
+110         KJAS           97 2023-07-19
+111         KJAS           99 2023-07-20
+112         KJAS           99 2023-07-21
+113         KJAS           99 2023-07-22
+114         KJAS           97 2023-07-23
+115         KJAS           99 2023-07-24
+116         KJAS           99 2023-07-25
+117         KJAS           99 2023-07-26
+118         KJAS           97 2023-07-27
+119         KJAS           95 2023-07-28
+120         KJAS           99 2023-07-29
+121         KJAS           99 2023-07-30
+122         KJAS          100 2023-07-31
+123         KJAS          102 2023-08-01
+124         KJAS          102 2023-08-02
+125         KJAS           99 2023-08-03
+126         KJAS          102 2023-08-04
+127         KJAS          102 2023-08-05
+128         KJAS          100 2023-08-06
+129         KJAS          102 2023-08-07
+130         KJAS          100 2023-08-08
+131         KJAS          100 2023-08-09
+132         KJAS          102 2023-08-10
+133         KJAS          102 2023-08-11
+134         KJAS          104 2023-08-12
+135         KJAS          102 2023-08-13
+136         KJAS          104 2023-08-14
+137         KJAS           99 2023-08-15
+138         KJAS           97 2023-08-16
+139         KJAS          102 2023-08-17
+140         KJAS          102 2023-08-18
+141         KJAS          104 2023-08-19
+142         KJAS          108 2023-08-20
+143         KJAS          102 2023-08-21
+144         KJAS          102 2023-08-22
+145         KJAS          102 2023-08-23
+146         KJAS          108 2023-08-24
+147         KJAS          102 2023-08-25
+148         KJAS          102 2023-08-26
+149         KJAS          106 2023-08-27
+150         KJAS           90 2023-08-28
+151         KJAS           93 2023-08-29
+152         KJAS           95 2023-08-30
+153         KJAS           95 2023-08-31
+154         KJAS           97 2023-09-01
+155         KJAS          100 2023-09-02
+156         KJAS           95 2023-09-03
+157         KJAS           93 2023-09-04
+158         KJAS           95 2023-09-05
+159         KJAS           99 2023-09-06
+160         KJAS          102 2023-09-07
+161         KJAS           90 2023-09-08
+162         KJAS           91 2023-09-09
+163         KJAS           91 2023-09-10
+164         KJAS           91 2023-09-11
+165         KJAS           91 2023-09-12
+166         KJAS           86 2023-09-13
+167         KJAS           77 2023-09-14
+168         KJAS           81 2023-09-15
+169         KJAS           90 2023-09-16
+170         KJAS           90 2023-09-17
+171         KJAS           93 2023-09-18
+172         KJAS           93 2023-09-19
+173         KJAS           91 2023-09-20
+174         KJAS           93 2023-09-21
+175         KJAS           95 2023-09-22
+176         KJAS           97 2023-09-23
+177         KJAS           91 2023-09-24
+178         KJAS           86 2023-09-25
+179         KJAS           93 2023-09-26
+180         KJAS           84 2023-09-27
+181         KJAS           93 2023-09-28
+182         KJAS           95 2023-09-29
+183         KJAS           93 2023-09-30
+
+[[3]]
+    station_code station_temp       date
+1           KPPA           55 2008-04-01
+2           KPPA           59 2008-04-02
+3           KPPA           72 2008-04-03
+4           KPPA           61 2008-04-04
+5           KPPA           79 2008-04-05
+6           KPPA           68 2008-04-06
+7           KPPA           75 2008-04-07
+8           KPPA           61 2008-04-08
+9           KPPA           46 2008-04-09
+10          KPPA           57 2008-04-10
+11          KPPA           57 2008-04-11
+12          KPPA           59 2008-04-12
+13          KPPA           59 2008-04-13
+14          KPPA           75 2008-04-14
+15          KPPA           84 2008-04-16
+16          KPPA           45 2008-04-17
+17          KPPA           72 2008-04-18
+18          KPPA           88 2008-04-19
+19          KPPA           84 2008-04-20
+20          KPPA           79 2008-04-21
+21          KPPA           75 2008-04-22
+22          KPPA           70 2008-04-23
+23          KPPA           88 2008-04-24
+24          KPPA           66 2008-04-25
+25          KPPA           68 2008-04-26
+26          KPPA           61 2008-04-27
+27          KPPA           79 2008-04-28
+28          KPPA           86 2008-04-29
+29          KPPA           91 2008-04-30
+30          KPPA           84 2008-05-01
+31          KPPA           68 2008-05-02
+32          KPPA           63 2008-05-03
+33          KPPA           79 2008-05-04
+34          KPPA           79 2008-05-05
+35          KPPA           79 2008-05-06
+36          KPPA           57 2008-05-07
+37          KPPA           81 2008-05-08
+38          KPPA           75 2008-05-09
+39          KPPA           77 2008-05-10
+40          KPPA           70 2008-05-11
+41          KPPA           82 2008-05-12
+42          KPPA           73 2008-05-13
+43          KPPA           59 2008-05-14
+44          KPPA           66 2008-05-15
+45          KPPA           72 2008-05-16
+46          KPPA           81 2008-05-17
+47          KPPA           88 2008-05-18
+48          KPPA           93 2008-05-19
+49          KPPA           82 2008-05-20
+50          KPPA           82 2008-05-21
+51          KPPA           91 2008-05-22
+52          KPPA           91 2008-05-23
+53          KPPA           88 2008-05-24
+54          KPPA           90 2008-05-25
+55          KPPA           88 2008-05-26
+56          KPPA           72 2008-05-27
+57          KPPA           75 2008-05-28
+58          KPPA           90 2008-05-29
+59          KPPA           90 2008-05-30
+60          KPPA           88 2008-05-31
+61          KPPA           86 2008-06-01
+62          KPPA          104 2008-06-02
+63          KPPA           95 2008-06-03
+64          KPPA           99 2008-06-04
+65          KPPA           88 2008-06-05
+66          KPPA           91 2008-06-06
+67          KPPA           97 2008-06-07
+68          KPPA           91 2008-06-08
+69          KPPA           77 2008-06-09
+70          KPPA           90 2008-06-10
+71          KPPA          100 2008-06-11
+72          KPPA           86 2008-06-12
+73          KPPA           86 2008-06-13
+74          KPPA           90 2008-06-14
+75          KPPA           97 2008-06-15
+76          KPPA           91 2008-06-16
+77          KPPA           82 2008-06-17
+78          KPPA           90 2008-06-18
+79          KPPA           72 2008-06-19
+80          KPPA           86 2008-06-20
+81          KPPA           82 2008-06-21
+82          KPPA           91 2008-06-22
+83          KPPA           91 2008-06-23
+84          KPPA           90 2008-06-24
+85          KPPA           91 2008-06-25
+86          KPPA           97 2008-06-26
+87          KPPA          100 2008-06-27
+88          KPPA           82 2008-06-28
+89          KPPA           82 2008-06-29
+90          KPPA           90 2008-06-30
+91          KPPA           91 2008-07-01
+92          KPPA           93 2008-07-02
+93          KPPA           81 2008-07-03
+94          KPPA           90 2008-07-04
+95          KPPA           93 2008-07-05
+96          KPPA           91 2008-07-06
+97          KPPA           90 2008-07-07
+98          KPPA           77 2008-07-08
+99          KPPA           70 2008-07-09
+100         KPPA           84 2008-07-10
+101         KPPA           93 2008-07-11
+102         KPPA           72 2008-07-12
+103         KPPA           77 2008-07-13
+104         KPPA           88 2008-07-14
+105         KPPA           84 2008-07-15
+106         KPPA           90 2008-07-16
+107         KPPA           90 2008-07-17
+108         KPPA           82 2008-07-18
+109         KPPA           95 2008-07-19
+110         KPPA           93 2008-07-20
+111         KPPA           97 2008-07-21
+112         KPPA           97 2008-07-22
+113         KPPA           97 2008-07-23
+114         KPPA           95 2008-07-24
+115         KPPA           95 2008-07-25
+116         KPPA           95 2008-07-26
+117         KPPA           NA 2008-07-27
+118         KPPA           97 2008-07-28
+119         KPPA           86 2008-07-29
+120         KPPA           88 2008-07-30
+121         KPPA           97 2008-07-31
+122         KPPA           95 2008-08-01
+123         KPPA           97 2008-08-02
+124         KPPA           99 2008-08-03
+125         KPPA          100 2008-08-04
+126         KPPA           99 2008-08-05
+127         KPPA           95 2008-08-06
+128         KPPA           88 2008-08-07
+129         KPPA           88 2008-08-08
+130         KPPA           97 2008-08-09
+131         KPPA           77 2008-08-10
+132         KPPA           86 2008-08-11
+133         KPPA           90 2008-08-12
+134         KPPA           86 2008-08-13
+135         KPPA           90 2008-08-14
+136         KPPA           77 2008-08-15
+137         KPPA           64 2008-08-16
+138         KPPA           64 2008-08-17
+139         KPPA           63 2008-08-18
+140         KPPA           68 2008-08-19
+141         KPPA           75 2008-08-20
+142         KPPA           86 2008-08-21
+143         KPPA           95 2008-08-22
+144         KPPA           91 2008-08-23
+145         KPPA           88 2008-08-24
+146         KPPA           82 2008-08-25
+147         KPPA           88 2008-08-26
+148         KPPA           90 2008-08-27
+149         KPPA           88 2008-08-28
+150         KPPA           79 2008-08-29
+151         KPPA           79 2008-08-30
+152         KPPA           81 2008-08-31
+153         KPPA           82 2008-09-01
+154         KPPA           70 2008-09-02
+155         KPPA           59 2008-09-03
+156         KPPA           73 2008-09-04
+157         KPPA           82 2008-09-05
+158         KPPA           73 2008-09-06
+159         KPPA           82 2008-09-07
+160         KPPA           70 2008-09-08
+161         KPPA           72 2008-09-09
+162         KPPA           77 2008-09-10
+163         KPPA           73 2008-09-11
+164         KPPA           73 2008-09-12
+165         KPPA           79 2008-09-13
+166         KPPA           68 2008-09-14
+167         KPPA           72 2008-09-15
+168         KPPA           79 2008-09-16
+169         KPPA           81 2008-09-17
+170         KPPA           77 2008-09-18
+171         KPPA           81 2008-09-19
+172         KPPA           81 2008-09-20
+173         KPPA           81 2008-09-21
+174         KPPA           82 2008-09-22
+175         KPPA           82 2008-09-23
+176         KPPA           82 2008-09-24
+177         KPPA           82 2008-09-25
+178         KPPA           82 2008-09-28
+179         KPPA           75 2008-09-29
+180         KPPA           81 2008-09-30
+
+[[4]]
+    station_code station_temp       date
+1           KPSN           77 2023-04-01
+2           KPSN           77 2023-04-02
+3           KPSN           86 2023-04-03
+4           KPSN           81 2023-04-04
+5           KPSN           66 2023-04-05
+6           KPSN           52 2023-04-06
+7           KPSN           52 2023-04-07
+8           KPSN           70 2023-04-08
+9           KPSN           72 2023-04-09
+10          KPSN           72 2023-04-10
+11          KPSN           75 2023-04-11
+12          KPSN           73 2023-04-12
+13          KPSN           77 2023-04-13
+14          KPSN           79 2023-04-14
+15          KPSN           84 2023-04-15
+16          KPSN           70 2023-04-16
+17          KPSN           77 2023-04-17
+18          KPSN           68 2023-04-18
+19          KPSN           81 2023-04-19
+20          KPSN           79 2023-04-20
+21          KPSN           73 2023-04-21
+22          KPSN           75 2023-04-22
+23          KPSN           57 2023-04-23
+24          KPSN           70 2023-04-24
+25          KPSN           70 2023-04-25
+26          KPSN           73 2023-04-26
+27          KPSN           70 2023-04-27
+28          KPSN           77 2023-04-28
+29          KPSN           66 2023-04-29
+30          KPSN           84 2023-04-30
+31          KPSN           79 2023-05-01
+32          KPSN           82 2023-05-02
+33          KPSN           84 2023-05-03
+34          KPSN           77 2023-05-04
+35          KPSN           90 2023-05-05
+36          KPSN           86 2023-05-06
+37          KPSN           84 2023-05-07
+38          KPSN           84 2023-05-08
+39          KPSN           82 2023-05-09
+40          KPSN           70 2023-05-10
+41          KPSN           84 2023-05-11
+42          KPSN           84 2023-05-12
+43          KPSN           86 2023-05-13
+44          KPSN           70 2023-05-14
+45          KPSN           81 2023-05-15
+46          KPSN           79 2023-05-16
+47          KPSN           81 2023-05-17
+48          KPSN           86 2023-05-18
+49          KPSN           90 2023-05-19
+50          KPSN           75 2023-05-20
+51          KPSN           75 2023-05-21
+52          KPSN           81 2023-05-22
+53          KPSN           81 2023-05-23
+54          KPSN           81 2023-05-24
+55          KPSN           82 2023-05-25
+56          KPSN           86 2023-05-26
+57          KPSN           86 2023-05-27
+58          KPSN           90 2023-05-28
+59          KPSN           88 2023-05-29
+60          KPSN           84 2023-05-30
+61          KPSN           88 2023-05-31
+62          KPSN           86 2023-06-01
+63          KPSN           88 2023-06-02
+64          KPSN           90 2023-06-03
+65          KPSN           88 2023-06-04
+66          KPSN           88 2023-06-05
+67          KPSN           88 2023-06-06
+68          KPSN           88 2023-06-07
+69          KPSN           79 2023-06-08
+70          KPSN           93 2023-06-09
+71          KPSN           91 2023-06-10
+72          KPSN           91 2023-06-11
+73          KPSN           91 2023-06-12
+74          KPSN           86 2023-06-13
+75          KPSN           88 2023-06-14
+76          KPSN           95 2023-06-15
+77          KPSN           93 2023-06-16
+78          KPSN           91 2023-06-17
+79          KPSN           93 2023-06-18
+80          KPSN           97 2023-06-19
+81          KPSN           97 2023-06-20
+82          KPSN           95 2023-06-21
+83          KPSN           91 2023-06-22
+84          KPSN           91 2023-06-23
+85          KPSN           95 2023-06-25
+86          KPSN           95 2023-06-26
+87          KPSN           99 2023-06-27
+88          KPSN           95 2023-06-28
+89          KPSN           97 2023-06-29
+90          KPSN           95 2023-06-30
+91          KPSN           93 2023-07-01
+92          KPSN           90 2023-07-02
+93          KPSN           91 2023-07-03
+94          KPSN           95 2023-07-04
+95          KPSN           93 2023-07-05
+96          KPSN           88 2023-07-06
+97          KPSN           90 2023-07-07
+98          KPSN           95 2023-07-08
+99          KPSN           95 2023-07-09
+100         KPSN           97 2023-07-10
+101         KPSN           93 2023-07-11
+102         KPSN          100 2023-07-12
+103         KPSN           99 2023-07-13
+104         KPSN           99 2023-07-14
+105         KPSN          100 2023-07-15
+106         KPSN           91 2023-07-16
+107         KPSN          102 2023-07-17
+108         KPSN          102 2023-07-18
+109         KPSN          102 2023-07-19
+110         KPSN          100 2023-07-20
+111         KPSN          100 2023-07-21
+112         KPSN           97 2023-07-22
+113         KPSN           97 2023-07-23
+114         KPSN          100 2023-07-24
+115         KPSN          100 2023-07-25
+116         KPSN           99 2023-07-26
+117         KPSN           99 2023-07-27
+118         KPSN           99 2023-07-28
+119         KPSN          100 2023-07-29
+120         KPSN          102 2023-07-30
+121         KPSN          102 2023-07-31
+122         KPSN          104 2023-08-01
+123         KPSN          106 2023-08-02
+124         KPSN          104 2023-08-03
+125         KPSN          102 2023-08-04
+126         KPSN          102 2023-08-05
+127         KPSN          102 2023-08-06
+128         KPSN          102 2023-08-07
+129         KPSN          100 2023-08-08
+130         KPSN          104 2023-08-09
+131         KPSN          104 2023-08-10
+132         KPSN          104 2023-08-11
+133         KPSN          104 2023-08-12
+134         KPSN          102 2023-08-13
+135         KPSN          102 2023-08-14
+136         KPSN           95 2023-08-15
+137         KPSN           95 2023-08-16
+138         KPSN          106 2023-08-17
+139         KPSN          106 2023-08-18
+140         KPSN          104 2023-08-19
+141         KPSN          108 2023-08-20
+142         KPSN          104 2023-08-21
+143         KPSN          104 2023-08-22
+144         KPSN          102 2023-08-23
+145         KPSN          106 2023-08-24
+146         KPSN          106 2023-08-25
+147         KPSN          106 2023-08-26
+148         KPSN          106 2023-08-27
+149         KPSN           93 2023-08-28
+150         KPSN           95 2023-08-29
+151         KPSN           97 2023-08-30
+152         KPSN           97 2023-08-31
+153         KPSN           95 2023-09-01
+154         KPSN           99 2023-09-02
+155         KPSN          100 2023-09-03
+156         KPSN           90 2023-09-04
+157         KPSN          100 2023-09-05
+158         KPSN          100 2023-09-06
+159         KPSN          104 2023-09-07
+160         KPSN          106 2023-09-08
+161         KPSN           93 2023-09-09
+162         KPSN           91 2023-09-10
+163         KPSN           88 2023-09-11
+164         KPSN           91 2023-09-12
+165         KPSN           81 2023-09-13
+166         KPSN           75 2023-09-14
+167         KPSN           77 2023-09-15
+168         KPSN           77 2023-09-16
+169         KPSN           90 2023-09-17
+170         KPSN           90 2023-09-18
+171         KPSN           93 2023-09-19
+172         KPSN           93 2023-09-20
+173         KPSN           95 2023-09-21
+174         KPSN           95 2023-09-22
+175         KPSN           95 2023-09-23
+176         KPSN           95 2023-09-24
+177         KPSN           88 2023-09-25
+178         KPSN           91 2023-09-26
+179         KPSN           93 2023-09-27
+180         KPSN           93 2023-09-28
+181         KPSN           91 2023-09-29
+182         KPSN           91 2023-09-30
+
+[[5]]
+    station_code station_temp       date
+1           KRFI           80 2023-04-01
+2           KRFI           81 2023-04-02
+3           KRFI           90 2023-04-03
+4           KRFI           83 2023-04-04
+5           KRFI           68 2023-04-05
+6           KRFI           52 2023-04-06
+7           KRFI           54 2023-04-07
+8           KRFI           72 2023-04-08
+9           KRFI           69 2023-04-09
+10          KRFI           72 2023-04-10
+11          KRFI           77 2023-04-11
+12          KRFI           66 2023-04-12
+13          KRFI           76 2023-04-13
+14          KRFI           80 2023-04-14
+15          KRFI           90 2023-04-15
+16          KRFI           72 2023-04-16
+17          KRFI           80 2023-04-17
+18          KRFI           66 2023-04-18
+19          KRFI           85 2023-04-19
+20          KRFI           79 2023-04-20
+21          KRFI           76 2023-04-21
+22          KRFI           78 2023-04-22
+23          KRFI           56 2023-04-23
+24          KRFI           72 2023-04-24
+25          KRFI           72 2023-04-25
+26          KRFI           65 2023-04-26
+27          KRFI           73 2023-04-27
+28          KRFI           80 2023-04-28
+29          KRFI           66 2023-04-29
+30          KRFI           83 2023-04-30
+31          KRFI           80 2023-05-01
+32          KRFI           83 2023-05-02
+33          KRFI           81 2023-05-03
+34          KRFI           83 2023-05-04
+35          KRFI           88 2023-05-05
+36          KRFI           90 2023-05-06
+37          KRFI           85 2023-05-07
+38          KRFI           85 2023-05-08
+39          KRFI           81 2023-05-09
+40          KRFI           72 2023-05-10
+41          KRFI           85 2023-05-11
+42          KRFI           90 2023-05-12
+43          KRFI           86 2023-05-13
+44          KRFI           72 2023-05-14
+45          KRFI           88 2023-05-15
+46          KRFI           79 2023-05-17
+47          KRFI           92 2023-05-19
+48          KRFI           73 2023-05-20
+49          KRFI           75 2023-05-21
+50          KRFI           83 2023-05-22
+51          KRFI           81 2023-05-23
+52          KRFI           84 2023-05-24
+53          KRFI           87 2023-05-25
+54          KRFI           87 2023-05-26
+55          KRFI           88 2023-05-28
+56          KRFI           77 2023-05-29
+57          KRFI           90 2023-06-01
+58          KRFI           90 2023-06-02
+59          KRFI           72 2023-06-03
+60          KRFI           87 2023-06-04
+61          KRFI           86 2023-06-05
+62          KRFI           88 2023-06-06
+63          KRFI           73 2023-06-07
+64          KRFI           92 2023-06-08
+65          KRFI           92 2023-06-09
+66          KRFI           75 2023-06-10
+67          KRFI           90 2023-06-11
+68          KRFI           89 2023-06-12
+69          KRFI           89 2023-06-13
+70          KRFI           88 2023-06-14
+71          KRFI           95 2023-06-15
+72          KRFI           95 2023-06-16
+73          KRFI           97 2023-06-17
+74          KRFI           94 2023-06-18
+75          KRFI           98 2023-06-19
+76          KRFI           97 2023-06-20
+77          KRFI           94 2023-06-21
+78          KRFI           95 2023-06-22
+79          KRFI           94 2023-06-23
+80          KRFI           NA 2023-06-24
+81          KRFI           96 2023-06-25
+82          KRFI           95 2023-06-26
+83          KRFI           98 2023-06-27
+84          KRFI           97 2023-06-28
+85          KRFI           98 2023-06-29
+86          KRFI           96 2023-06-30
+87          KRFI           95 2023-07-01
+88          KRFI           90 2023-07-02
+89          KRFI           94 2023-07-03
+90          KRFI           97 2023-07-04
+91          KRFI           96 2023-07-05
+92          KRFI           96 2023-07-06
+93          KRFI           94 2023-07-07
+94          KRFI           95 2023-07-08
+95          KRFI           90 2023-07-09
+96          KRFI           94 2023-07-10
+97          KRFI           91 2023-07-11
+98          KRFI           98 2023-07-12
+99          KRFI           93 2023-07-13
+100         KRFI           97 2023-07-14
+101         KRFI           99 2023-07-15
+102         KRFI           83 2023-07-16
+103         KRFI          100 2023-07-17
+104         KRFI          103 2023-07-18
+105         KRFI          100 2023-07-19
+106         KRFI          101 2023-07-20
+107         KRFI           97 2023-07-21
+108         KRFI           93 2023-07-22
+109         KRFI           96 2023-07-23
+110         KRFI          100 2023-07-24
+111         KRFI          101 2023-07-25
+112         KRFI          100 2023-07-26
+113         KRFI          101 2023-07-27
+114         KRFI          101 2023-07-28
+115         KRFI          101 2023-07-29
+116         KRFI          104 2023-07-30
+117         KRFI          101 2023-07-31
+118         KRFI          105 2023-08-01
+119         KRFI          106 2023-08-02
+120         KRFI          105 2023-08-03
+121         KRFI          104 2023-08-04
+122         KRFI          104 2023-08-05
+123         KRFI          102 2023-08-06
+124         KRFI          102 2023-08-07
+125         KRFI           99 2023-08-08
+126         KRFI          106 2023-08-09
+127         KRFI          106 2023-08-10
+128         KRFI          105 2023-08-11
+129         KRFI          105 2023-08-12
+130         KRFI          105 2023-08-13
+131         KRFI          104 2023-08-14
+132         KRFI           96 2023-08-15
+133         KRFI           95 2023-08-16
+134         KRFI          105 2023-08-17
+135         KRFI          107 2023-08-18
+136         KRFI          107 2023-08-19
+137         KRFI          108 2023-08-20
+138         KRFI          106 2023-08-21
+139         KRFI          106 2023-08-22
+140         KRFI          104 2023-08-23
+141         KRFI          107 2023-08-24
+142         KRFI          106 2023-08-25
+143         KRFI          108 2023-08-26
+144         KRFI          101 2023-08-27
+145         KRFI           93 2023-08-28
+146         KRFI           96 2023-08-29
+147         KRFI           96 2023-08-30
+148         KRFI           97 2023-08-31
+149         KRFI           96 2023-09-01
+150         KRFI          100 2023-09-02
+151         KRFI          101 2023-09-03
+152         KRFI           92 2023-09-04
+153         KRFI          101 2023-09-05
+154         KRFI          100 2023-09-06
+155         KRFI          106 2023-09-07
+156         KRFI           99 2023-09-08
+157         KRFI           92 2023-09-09
+158         KRFI           90 2023-09-10
+159         KRFI           92 2023-09-11
+160         KRFI           88 2023-09-12
+161         KRFI           76 2023-09-13
+162         KRFI           76 2023-09-14
+163         KRFI           83 2023-09-15
+164         KRFI           87 2023-09-16
+165         KRFI           91 2023-09-17
+166         KRFI           93 2023-09-18
+167         KRFI           94 2023-09-19
+168         KRFI           93 2023-09-20
+169         KRFI           95 2023-09-21
+170         KRFI           95 2023-09-22
+171         KRFI           97 2023-09-23
+172         KRFI           91 2023-09-24
+173         KRFI           91 2023-09-25
+174         KRFI           93 2023-09-26
+175         KRFI           95 2023-09-27
+176         KRFI           94 2023-09-28
+177         KRFI           94 2023-09-29
+178         KRFI           94 2023-09-30
+
+[[6]]
+    station_code station_temp       date
+1           KCXO           84 2023-04-01
+2           KCXO           81 2023-04-02
+3           KCXO           87 2023-04-03
+4           KCXO           81 2023-04-04
+5           KCXO           63 2023-04-05
+6           KCXO           57 2023-04-06
+7           KCXO           54 2023-04-07
+8           KCXO           69 2023-04-08
+9           KCXO           69 2023-04-09
+10          KCXO           63 2023-04-10
+11          KCXO           74 2023-04-11
+12          KCXO           63 2023-04-12
+13          KCXO           76 2023-04-13
+14          KCXO           78 2023-04-14
+15          KCXO           87 2023-04-15
+16          KCXO           72 2023-04-16
+17          KCXO           77 2023-04-17
+18          KCXO           76 2023-04-18
+19          KCXO           84 2023-04-19
+20          KCXO           71 2023-04-20
+21          KCXO           74 2023-04-21
+22          KCXO           77 2023-04-22
+23          KCXO           60 2023-04-23
+24          KCXO           71 2023-04-24
+25          KCXO           71 2023-04-25
+26          KCXO           81 2023-04-26
+27          KCXO           71 2023-04-27
+28          KCXO           83 2023-04-28
+29          KCXO           67 2023-04-29
+30          KCXO           84 2023-04-30
+31          KCXO           82 2023-05-01
+32          KCXO           79 2023-05-02
+33          KCXO           83 2023-05-03
+34          KCXO           80 2023-05-04
+35          KCXO           91 2023-05-05
+36          KCXO           86 2023-05-06
+37          KCXO           78 2023-05-07
+38          KCXO           80 2023-05-08
+39          KCXO           70 2023-05-09
+40          KCXO           69 2023-05-10
+41          KCXO           85 2023-05-11
+42          KCXO           88 2023-05-12
+43          KCXO           79 2023-05-13
+44          KCXO           81 2023-05-14
+45          KCXO           76 2023-05-15
+46          KCXO           86 2023-05-16
+47          KCXO           85 2023-05-17
+48          KCXO           88 2023-05-18
+49          KCXO           91 2023-05-19
+50          KCXO           86 2023-05-20
+51          KCXO           77 2023-05-21
+52          KCXO           84 2023-05-22
+53          KCXO           70 2023-05-23
+54          KCXO           78 2023-05-24
+55          KCXO           84 2023-05-25
+56          KCXO           86 2023-05-26
+57          KCXO           86 2023-05-27
+58          KCXO           88 2023-05-28
+59          KCXO           87 2023-05-29
+60          KCXO           88 2023-05-30
+61          KCXO           87 2023-05-31
+62          KCXO           89 2023-06-01
+63          KCXO           89 2023-06-02
+64          KCXO           90 2023-06-03
+65          KCXO           77 2023-06-04
+66          KCXO           86 2023-06-05
+67          KCXO           85 2023-06-06
+68          KCXO           83 2023-06-07
+69          KCXO           82 2023-06-08
+70          KCXO           93 2023-06-09
+71          KCXO           93 2023-06-10
+72          KCXO           92 2023-06-11
+73          KCXO           92 2023-06-12
+74          KCXO           94 2023-06-13
+75          KCXO           93 2023-06-14
+76          KCXO           97 2023-06-15
+77          KCXO           98 2023-06-16
+78          KCXO           91 2023-06-17
+79          KCXO           99 2023-06-18
+80          KCXO          100 2023-06-19
+81          KCXO          100 2023-06-20
+82          KCXO           98 2023-06-21
+83          KCXO           93 2023-06-22
+84          KCXO           95 2023-06-23
+85          KCXO           96 2023-06-24
+86          KCXO           97 2023-06-25
+87          KCXO           97 2023-06-26
+88          KCXO           98 2023-06-27
+89          KCXO           96 2023-06-28
+90          KCXO           97 2023-06-29
+91          KCXO           98 2023-06-30
+92          KCXO           97 2023-07-01
+93          KCXO           91 2023-07-02
+94          KCXO           95 2023-07-03
+95          KCXO           81 2023-07-04
+96          KCXO           94 2023-07-05
+97          KCXO           79 2023-07-06
+98          KCXO           91 2023-07-07
+99          KCXO           96 2023-07-08
+100         KCXO           97 2023-07-09
+101         KCXO           98 2023-07-10
+102         KCXO           96 2023-07-11
+103         KCXO          100 2023-07-12
+104         KCXO          101 2023-07-13
+105         KCXO          100 2023-07-14
+106         KCXO          100 2023-07-15
+107         KCXO          100 2023-07-16
+108         KCXO           99 2023-07-17
+109         KCXO          100 2023-07-18
+110         KCXO           99 2023-07-19
+111         KCXO           99 2023-07-20
+112         KCXO           99 2023-07-21
+113         KCXO          101 2023-07-22
+114         KCXO           96 2023-07-23
+115         KCXO           98 2023-07-24
+116         KCXO           99 2023-07-25
+117         KCXO           98 2023-07-26
+118         KCXO           96 2023-07-27
+119         KCXO           98 2023-07-28
+120         KCXO           95 2023-07-29
+121         KCXO           99 2023-07-30
+122         KCXO          102 2023-07-31
+123         KCXO          101 2023-08-01
+124         KCXO          103 2023-08-02
+125         KCXO          102 2023-08-03
+126         KCXO           99 2023-08-04
+127         KCXO          101 2023-08-05
+128         KCXO          100 2023-08-06
+129         KCXO          102 2023-08-07
+130         KCXO          102 2023-08-08
+131         KCXO          101 2023-08-09
+132         KCXO          103 2023-08-10
+133         KCXO          103 2023-08-11
+134         KCXO          103 2023-08-12
+135         KCXO          102 2023-08-13
+136         KCXO          102 2023-08-14
+137         KCXO          101 2023-08-15
+138         KCXO           99 2023-08-16
+139         KCXO          104 2023-08-17
+140         KCXO          104 2023-08-18
+141         KCXO          102 2023-08-19
+142         KCXO          107 2023-08-20
+143         KCXO          100 2023-08-21
+144         KCXO           87 2023-08-22
+145         KCXO          103 2023-08-23
+146         KCXO          105 2023-08-24
+147         KCXO          101 2023-08-25
+148         KCXO          103 2023-08-26
+149         KCXO          107 2023-08-27
+150         KCXO           92 2023-08-28
+151         KCXO           95 2023-08-29
+152         KCXO           99 2023-08-30
+153         KCXO           94 2023-08-31
+154         KCXO           95 2023-09-01
+155         KCXO           99 2023-09-02
+156         KCXO          100 2023-09-03
+157         KCXO           96 2023-09-04
+158         KCXO           98 2023-09-05
+159         KCXO          102 2023-09-06
+160         KCXO          100 2023-09-07
+161         KCXO          106 2023-09-08
+162         KCXO           97 2023-09-09
+163         KCXO           95 2023-09-10
+164         KCXO           94 2023-09-11
+165         KCXO           95 2023-09-12
+166         KCXO           90 2023-09-13
+167         KCXO           77 2023-09-14
+168         KCXO           74 2023-09-15
+169         KCXO           78 2023-09-16
+170         KCXO           90 2023-09-17
+171         KCXO           92 2023-09-18
+172         KCXO           92 2023-09-19
+173         KCXO           93 2023-09-20
+174         KCXO           97 2023-09-21
+175         KCXO           94 2023-09-22
+176         KCXO           96 2023-09-23
+177         KCXO           95 2023-09-24
+178         KCXO           90 2023-09-25
+179         KCXO           89 2023-09-26
+180         KCXO           93 2023-09-27
+181         KCXO           91 2023-09-28
+182         KCXO           93 2023-09-29
+183         KCXO           93 2023-09-30
+
+[[7]]
+    station_code station_temp       date
+1           KUTS           82 2023-04-01
+2           KUTS           81 2023-04-02
+3           KUTS           88 2023-04-03
+4           KUTS           83 2023-04-04
+5           KUTS           65 2023-04-05
+6           KUTS           57 2023-04-06
+7           KUTS           54 2023-04-07
+8           KUTS           69 2023-04-08
+9           KUTS           70 2023-04-09
+10          KUTS           67 2023-04-10
+11          KUTS           77 2023-04-11
+12          KUTS           67 2023-04-12
+13          KUTS           77 2023-04-13
+14          KUTS           78 2023-04-14
+15          KUTS           89 2023-04-15
+16          KUTS           73 2023-04-16
+17          KUTS           79 2023-04-17
+18          KUTS           77 2023-04-18
+19          KUTS           86 2023-04-19
+20          KUTS           79 2023-04-20
+21          KUTS           70 2023-04-21
+22          KUTS           79 2023-04-22
+23          KUTS           59 2023-04-23
+24          KUTS           69 2023-04-24
+25          KUTS           74 2023-04-25
+26          KUTS           81 2023-04-26
+27          KUTS           75 2023-04-27
+28          KUTS           84 2023-04-28
+29          KUTS           67 2023-04-29
+30          KUTS           85 2023-04-30
+31          KUTS           82 2023-05-01
+32          KUTS           81 2023-05-02
+33          KUTS           85 2023-05-03
+34          KUTS           82 2023-05-04
+35          KUTS           93 2023-05-05
+36          KUTS           90 2023-05-06
+37          KUTS           85 2023-05-07
+38          KUTS           82 2023-05-08
+39          KUTS           72 2023-05-09
+40          KUTS           72 2023-05-10
+41          KUTS           88 2023-05-11
+42          KUTS           90 2023-05-12
+43          KUTS           83 2023-05-13
+44          KUTS           80 2023-05-14
+45          KUTS           78 2023-05-15
+46          KUTS           85 2023-05-16
+47          KUTS           84 2023-05-17
+48          KUTS           88 2023-05-18
+49          KUTS           92 2023-05-19
+50          KUTS           85 2023-05-20
+51          KUTS           79 2023-05-21
+52          KUTS           85 2023-05-22
+53          KUTS           77 2023-05-23
+54          KUTS           79 2023-05-24
+55          KUTS           85 2023-05-25
+56          KUTS           87 2023-05-26
+57          KUTS           88 2023-05-27
+58          KUTS           91 2023-05-28
+59          KUTS           88 2023-05-29
+60          KUTS           90 2023-05-30
+61          KUTS           90 2023-05-31
+62          KUTS           90 2023-06-01
+63          KUTS           92 2023-06-02
+64          KUTS           93 2023-06-03
+65          KUTS           83 2023-06-04
+66          KUTS           88 2023-06-05
+67          KUTS           89 2023-06-06
+68          KUTS           91 2023-06-07
+69          KUTS           86 2023-06-08
+70          KUTS           95 2023-06-09
+71          KUTS           95 2023-06-10
+72          KUTS           92 2023-06-11
+73          KUTS           94 2023-06-12
+74          KUTS           95 2023-06-13
+75          KUTS           95 2023-06-14
+76          KUTS           98 2023-06-15
+77          KUTS           98 2023-06-16
+78          KUTS           96 2023-06-17
+79          KUTS           99 2023-06-18
+80          KUTS          100 2023-06-19
+81          KUTS           99 2023-06-20
+82          KUTS           96 2023-06-21
+83          KUTS           91 2023-06-22
+84          KUTS           97 2023-06-23
+85          KUTS           97 2023-06-24
+86          KUTS           99 2023-06-25
+87          KUTS           98 2023-06-26
+88          KUTS           99 2023-06-27
+89          KUTS           97 2023-06-28
+90          KUTS           98 2023-06-29
+91          KUTS           97 2023-06-30
+92          KUTS           97 2023-07-01
+93          KUTS           96 2023-07-02
+94          KUTS           91 2023-07-04
+95          KUTS           95 2023-07-05
+96          KUTS           80 2023-07-06
+97          KUTS           92 2023-07-07
+98          KUTS           98 2023-07-08
+99          KUTS           97 2023-07-09
+100         KUTS           99 2023-07-10
+101         KUTS           99 2023-07-11
+102         KUTS          101 2023-07-12
+103         KUTS          101 2023-07-13
+104         KUTS          101 2023-07-14
+105         KUTS          102 2023-07-15
+106         KUTS          100 2023-07-16
+107         KUTS          101 2023-07-17
+108         KUTS          101 2023-07-18
+109         KUTS          101 2023-07-19
+110         KUTS          101 2023-07-20
+111         KUTS          101 2023-07-21
+112         KUTS          103 2023-07-22
+113         KUTS           99 2023-07-23
+114         KUTS          101 2023-07-24
+115         KUTS          101 2023-07-25
+116         KUTS          100 2023-07-26
+117         KUTS          100 2023-07-27
+118         KUTS          100 2023-07-28
+119         KUTS           99 2023-07-29
+120         KUTS          102 2023-07-30
+121         KUTS          106 2023-07-31
+122         KUTS          105 2023-08-01
+123         KUTS          105 2023-08-02
+124         KUTS          102 2023-08-03
+125         KUTS          102 2023-08-04
+126         KUTS          103 2023-08-05
+127         KUTS          102 2023-08-06
+128         KUTS          102 2023-08-07
+129         KUTS          102 2023-08-08
+130         KUTS          104 2023-08-09
+131         KUTS          105 2023-08-10
+132         KUTS          105 2023-08-11
+133         KUTS          105 2023-08-12
+134         KUTS          104 2023-08-13
+135         KUTS          104 2023-08-14
+136         KUTS          100 2023-08-15
+137         KUTS          101 2023-08-16
+138         KUTS          108 2023-08-17
+139         KUTS          106 2023-08-18
+140         KUTS          106 2023-08-19
+141         KUTS          112 2023-08-20
+142         KUTS          104 2023-08-21
+143         KUTS          103 2023-08-22
+144         KUTS          104 2023-08-23
+145         KUTS          109 2023-08-24
+146         KUTS          108 2023-08-25
+147         KUTS          108 2023-08-26
+148         KUTS          109 2023-08-27
+149         KUTS           92 2023-08-28
+150         KUTS           98 2023-08-29
+151         KUTS          100 2023-08-30
+152         KUTS           99 2023-08-31
+153         KUTS           99 2023-09-01
+154         KUTS          101 2023-09-02
+155         KUTS          100 2023-09-03
+156         KUTS           96 2023-09-04
+157         KUTS          102 2023-09-05
+158         KUTS          103 2023-09-06
+159         KUTS          106 2023-09-07
+160         KUTS          108 2023-09-08
+161         KUTS           95 2023-09-09
+162         KUTS           96 2023-09-10
+163         KUTS           93 2023-09-11
+164         KUTS           NA 2023-09-12
+165         KUTS           89 2023-09-13
+166         KUTS           74 2023-09-14
+167         KUTS           76 2023-09-15
+168         KUTS           85 2023-09-16
+169         KUTS           90 2023-09-17
+170         KUTS           92 2023-09-18
+171         KUTS           92 2023-09-19
+172         KUTS           92 2023-09-20
+173         KUTS           97 2023-09-21
+174         KUTS           95 2023-09-22
+175         KUTS           95 2023-09-23
+176         KUTS           96 2023-09-24
+177         KUTS           77 2023-09-25
+178         KUTS           91 2023-09-26
+179         KUTS           93 2023-09-27
+180         KUTS           93 2023-09-28
+181         KUTS           91 2023-09-29
+182         KUTS           94 2023-09-30
+
+[[8]]
+    station_code station_temp       date
+1           KHYI           82 2023-04-01
+2           KHYI           84 2023-04-02
+3           KHYI           88 2023-04-03
+4           KHYI           85 2023-04-04
+5           KHYI           73 2023-04-05
+6           KHYI           50 2023-04-06
+7           KHYI           52 2023-04-07
+8           KHYI           64 2023-04-08
+9           KHYI           NA 2023-04-09
+10          KHYI           72 2023-04-10
+11          KHYI           79 2023-04-11
+12          KHYI           82 2023-04-12
+13          KHYI           78 2023-04-13
+14          KHYI           77 2023-04-14
+15          KHYI           86 2023-04-15
+16          KHYI           75 2023-04-16
+17          KHYI           76 2023-04-17
+18          KHYI           77 2023-04-18
+19          KHYI           80 2023-04-19
+20          KHYI           84 2023-04-20
+21          KHYI           79 2023-04-21
+22          KHYI           75 2023-04-22
+23          KHYI           60 2023-04-23
+24          KHYI           70 2023-04-24
+25          KHYI           76 2023-04-25
+26          KHYI           84 2023-04-26
+27          KHYI           81 2023-04-27
+28          KHYI           85 2023-04-28
+29          KHYI           75 2023-04-29
+30          KHYI           87 2023-04-30
+31          KHYI           84 2023-05-01
+32          KHYI           77 2023-05-02
+33          KHYI           84 2023-05-03
+34          KHYI           83 2023-05-04
+35          KHYI           91 2023-05-05
+36          KHYI           86 2023-05-06
+37          KHYI           79 2023-05-07
+38          KHYI           89 2023-05-08
+39          KHYI           73 2023-05-09
+40          KHYI           80 2023-05-10
+41          KHYI           88 2023-05-11
+42          KHYI           86 2023-05-12
+43          KHYI           74 2023-05-13
+44          KHYI           82 2023-05-14
+45          KHYI           77 2023-05-15
+46          KHYI           83 2023-05-16
+47          KHYI           85 2023-05-17
+48          KHYI           87 2023-05-18
+49          KHYI           90 2023-05-19
+50          KHYI           82 2023-05-20
+51          KHYI           69 2023-05-21
+52          KHYI           85 2023-05-22
+53          KHYI           89 2023-05-23
+54          KHYI           78 2023-05-24
+55          KHYI           84 2023-05-25
+56          KHYI           84 2023-05-26
+57          KHYI           86 2023-05-27
+58          KHYI           81 2023-05-28
+59          KHYI           84 2023-05-29
+60          KHYI           88 2023-05-30
+61          KHYI           88 2023-05-31
+62          KHYI           90 2023-06-01
+63          KHYI           89 2023-06-02
+64          KHYI           90 2023-06-03
+65          KHYI           81 2023-06-04
+66          KHYI           89 2023-06-05
+67          KHYI           85 2023-06-06
+68          KHYI           87 2023-06-07
+69          KHYI           78 2023-06-08
+70          KHYI           96 2023-06-09
+71          KHYI           96 2023-06-10
+72          KHYI           95 2023-06-11
+73          KHYI           95 2023-06-12
+74          KHYI           94 2023-06-13
+75          KHYI           93 2023-06-14
+76          KHYI           98 2023-06-15
+77          KHYI          100 2023-06-16
+78          KHYI           94 2023-06-17
+79          KHYI          102 2023-06-18
+80          KHYI          101 2023-06-19
+81          KHYI          102 2023-06-20
+82          KHYI          101 2023-06-21
+83          KHYI           93 2023-06-22
+84          KHYI           97 2023-06-23
+85          KHYI           99 2023-06-24
+86          KHYI           99 2023-06-25
+87          KHYI          100 2023-06-26
+88          KHYI          100 2023-06-27
+89          KHYI           99 2023-06-28
+90          KHYI           97 2023-06-29
+91          KHYI           96 2023-06-30
+92          KHYI           96 2023-07-01
+93          KHYI           95 2023-07-02
+94          KHYI           94 2023-07-03
+95          KHYI           93 2023-07-04
+96          KHYI           95 2023-07-05
+97          KHYI           89 2023-07-06
+98          KHYI           89 2023-07-07
+99          KHYI           97 2023-07-08
+100         KHYI           99 2023-07-09
+101         KHYI          101 2023-07-10
+102         KHYI          101 2023-07-11
+103         KHYI          104 2023-07-12
+104         KHYI          104 2023-07-13
+105         KHYI          104 2023-07-14
+106         KHYI          103 2023-07-15
+107         KHYI          100 2023-07-16
+108         KHYI          102 2023-07-17
+109         KHYI          104 2023-07-18
+110         KHYI          102 2023-07-19
+111         KHYI          100 2023-07-20
+112         KHYI          100 2023-07-21
+113         KHYI          102 2023-07-22
+114         KHYI           89 2023-07-23
+115         KHYI          100 2023-07-24
+116         KHYI          100 2023-07-25
+117         KHYI           99 2023-07-26
+118         KHYI           99 2023-07-27
+119         KHYI           99 2023-07-28
+120         KHYI          100 2023-07-29
+121         KHYI          100 2023-07-30
+122         KHYI          101 2023-07-31
+123         KHYI          102 2023-08-01
+124         KHYI          102 2023-08-02
+125         KHYI          102 2023-08-03
+126         KHYI          103 2023-08-04
+127         KHYI          104 2023-08-05
+128         KHYI          104 2023-08-06
+129         KHYI          105 2023-08-07
+130         KHYI          104 2023-08-08
+131         KHYI          106 2023-08-09
+132         KHYI          105 2023-08-10
+133         KHYI          105 2023-08-11
+134         KHYI          104 2023-08-12
+135         KHYI          104 2023-08-13
+136         KHYI          103 2023-08-14
+137         KHYI          100 2023-08-15
+138         KHYI          103 2023-08-16
+139         KHYI          106 2023-08-17
+140         KHYI          104 2023-08-18
+141         KHYI          103 2023-08-20
+142         KHYI          103 2023-08-21
+143         KHYI           80 2023-08-22
+144         KHYI          100 2023-08-23
+145         KHYI          103 2023-08-24
+146         KHYI          106 2023-08-25
+147         KHYI          104 2023-08-26
+148         KHYI          107 2023-08-27
+149         KHYI          100 2023-08-28
+150         KHYI           99 2023-08-29
+151         KHYI           99 2023-08-30
+152         KHYI          101 2023-08-31
+153         KHYI           99 2023-09-01
+154         KHYI          100 2023-09-02
+155         KHYI          101 2023-09-03
+156         KHYI          102 2023-09-04
+157         KHYI          100 2023-09-05
+158         KHYI          102 2023-09-06
+159         KHYI          103 2023-09-07
+160         KHYI          105 2023-09-08
+161         KHYI          102 2023-09-09
+162         KHYI           99 2023-09-10
+163         KHYI           95 2023-09-11
+164         KHYI           95 2023-09-12
+165         KHYI           90 2023-09-13
+166         KHYI           96 2023-09-14
+167         KHYI           90 2023-09-15
+168         KHYI           87 2023-09-16
+169         KHYI           93 2023-09-17
+170         KHYI           95 2023-09-18
+171         KHYI           95 2023-09-19
+172         KHYI           97 2023-09-20
+173         KHYI           97 2023-09-21
+174         KHYI           98 2023-09-22
+175         KHYI          100 2023-09-23
+176         KHYI          102 2023-09-24
+177         KHYI           98 2023-09-25
+178         KHYI           94 2023-09-26
+179         KHYI           91 2023-09-27
+180         KHYI           95 2023-09-28
+181         KHYI           95 2023-09-29
+182         KHYI           94 2023-09-30
+
+[[9]]
+    station_code station_temp       date
+1           KPWG           76 2023-04-01
+2           KPWG           73 2023-04-02
+3           KPWG           93 2023-04-03
+4           KPWG           85 2023-04-04
+5           KPWG           68 2023-04-05
+6           KPWG           52 2023-04-06
+7           KPWG           56 2023-04-07
+8           KPWG           64 2023-04-08
+9           KPWG           71 2023-04-09
+10          KPWG           72 2023-04-10
+11          KPWG           74 2023-04-11
+12          KPWG           77 2023-04-12
+13          KPWG           78 2023-04-13
+14          KPWG           72 2023-04-14
+15          KPWG           83 2023-04-15
+16          KPWG           72 2023-04-16
+17          KPWG           80 2023-04-17
+18          KPWG           76 2023-04-18
+19          KPWG           83 2023-04-19
+20          KPWG           82 2023-04-20
+21          KPWG           75 2023-04-21
+22          KPWG           75 2023-04-22
+23          KPWG           54 2023-04-23
+24          KPWG           66 2023-04-24
+25          KPWG           71 2023-04-25
+26          KPWG           76 2023-04-26
+27          KPWG           72 2023-04-27
+28          KPWG           71 2023-04-28
+29          KPWG           72 2023-04-29
+30          KPWG           90 2023-04-30
+31          KPWG           78 2023-05-01
+32          KPWG           81 2023-05-02
+33          KPWG           83 2023-05-03
+34          KPWG           80 2023-05-04
+35          KPWG           90 2023-05-05
+36          KPWG           85 2023-05-06
+37          KPWG           84 2023-05-07
+38          KPWG           90 2023-05-08
+39          KPWG           79 2023-05-09
+40          KPWG           70 2023-05-10
+41          KPWG           86 2023-05-11
+42          KPWG           85 2023-05-12
+43          KPWG           74 2023-05-13
+44          KPWG           77 2023-05-14
+45          KPWG           84 2023-05-15
+46          KPWG           77 2023-05-16
+47          KPWG           83 2023-05-17
+48          KPWG           88 2023-05-18
+49          KPWG           93 2023-05-19
+50          KPWG           78 2023-05-20
+51          KPWG           74 2023-05-21
+52          KPWG           83 2023-05-22
+53          KPWG           87 2023-05-23
+54          KPWG           81 2023-05-24
+55          KPWG           82 2023-05-25
+56          KPWG           86 2023-05-26
+57          KPWG           85 2023-05-27
+58          KPWG           NA 2023-05-28
+59          KPWG           87 2023-05-29
+60          KPWG           82 2023-05-30
+61          KPWG           88 2023-05-31
+62          KPWG           90 2023-06-01
+63          KPWG           93 2023-06-02
+64          KPWG           91 2023-06-03
+65          KPWG           79 2023-06-04
+66          KPWG           83 2023-06-05
+67          KPWG           87 2023-06-06
+68          KPWG           91 2023-06-07
+69          KPWG           82 2023-06-08
+70          KPWG           95 2023-06-09
+71          KPWG          100 2023-06-10
+72          KPWG           97 2023-06-11
+73          KPWG           91 2023-06-12
+74          KPWG           90 2023-06-13
+75          KPWG           94 2023-06-14
+76          KPWG           94 2023-06-15
+77          KPWG          100 2023-06-16
+78          KPWG           93 2023-06-17
+79          KPWG           98 2023-06-18
+80          KPWG           99 2023-06-19
+81          KPWG          100 2023-06-20
+82          KPWG           92 2023-06-21
+83          KPWG           87 2023-06-22
+84          KPWG           96 2023-06-23
+85          KPWG           99 2023-06-24
+86          KPWG          101 2023-06-25
+87          KPWG          101 2023-06-26
+88          KPWG          101 2023-06-27
+89          KPWG          100 2023-06-28
+90          KPWG           99 2023-06-29
+91          KPWG           99 2023-06-30
+92          KPWG           97 2023-07-01
+93          KPWG           90 2023-07-02
+94          KPWG           96 2023-07-03
+95          KPWG           95 2023-07-04
+96          KPWG           98 2023-07-05
+97          KPWG           95 2023-07-06
+98          KPWG           94 2023-07-07
+99          KPWG          100 2023-07-08
+100         KPWG          101 2023-07-09
+101         KPWG          103 2023-07-10
+102         KPWG           99 2023-07-11
+103         KPWG          104 2023-07-12
+104         KPWG          105 2023-07-13
+105         KPWG          104 2023-07-14
+106         KPWG          103 2023-07-15
+107         KPWG           97 2023-07-16
+108         KPWG          107 2023-07-17
+109         KPWG          107 2023-07-18
+110         KPWG          104 2023-07-19
+111         KPWG          104 2023-07-20
+112         KPWG          102 2023-07-21
+113         KPWG           99 2023-07-22
+114         KPWG           98 2023-07-23
+115         KPWG          102 2023-07-24
+116         KPWG          102 2023-07-25
+117         KPWG          101 2023-07-26
+118         KPWG           98 2023-07-27
+119         KPWG           99 2023-07-28
+120         KPWG          101 2023-07-29
+121         KPWG          103 2023-07-30
+122         KPWG          105 2023-07-31
+123         KPWG          105 2023-08-01
+124         KPWG          106 2023-08-02
+125         KPWG          104 2023-08-03
+126         KPWG          104 2023-08-04
+127         KPWG          103 2023-08-05
+128         KPWG          104 2023-08-06
+129         KPWG          106 2023-08-07
+130         KPWG          105 2023-08-08
+131         KPWG          106 2023-08-09
+132         KPWG          107 2023-08-10
+133         KPWG          107 2023-08-11
+134         KPWG          107 2023-08-12
+135         KPWG          105 2023-08-13
+136         KPWG          106 2023-08-14
+137         KPWG           97 2023-08-15
+138         KPWG           98 2023-08-16
+139         KPWG          109 2023-08-17
+140         KPWG          106 2023-08-18
+141         KPWG          107 2023-08-20
+142         KPWG          104 2023-08-21
+143         KPWG          102 2023-08-22
+144         KPWG          102 2023-08-23
+145         KPWG          106 2023-08-24
+146         KPWG          108 2023-08-25
+147         KPWG          105 2023-08-26
+148         KPWG           85 2023-08-27
+149         KPWG           97 2023-08-28
+150         KPWG           95 2023-08-29
+151         KPWG           98 2023-08-30
+152         KPWG           98 2023-08-31
+153         KPWG           99 2023-09-01
+154         KPWG           98 2023-09-02
+155         KPWG          102 2023-09-03
+156         KPWG          101 2023-09-04
+157         KPWG          105 2023-09-05
+158         KPWG          104 2023-09-06
+159         KPWG          107 2023-09-07
+160         KPWG          108 2023-09-08
+161         KPWG          103 2023-09-09
+162         KPWG           94 2023-09-10
+163         KPWG           94 2023-09-11
+164         KPWG           90 2023-09-12
+165         KPWG           76 2023-09-13
+166         KPWG           80 2023-09-14
+167         KPWG           80 2023-09-15
+168         KPWG           79 2023-09-16
+169         KPWG           89 2023-09-17
+170         KPWG           91 2023-09-18
+171         KPWG           97 2023-09-19
+172         KPWG           98 2023-09-20
+173         KPWG           96 2023-09-21
+174         KPWG           97 2023-09-22
+175         KPWG           99 2023-09-23
+176         KPWG          101 2023-09-24
+177         KPWG           NA 2023-09-25
+178         KPWG           NA 2023-09-26
+179         KPWG           94 2023-09-27
+180         KPWG           94 2023-09-28
+181         KPWG           93 2023-09-29
+182         KPWG           93 2023-09-30
+
+[[10]]
+    station_code station_temp       date
+1           KLBB           72 2023-04-01
+2           KLBB           84 2023-04-02
+3           KLBB           89 2023-04-03
+4           KLBB           79 2023-04-04
+5           KLBB           59 2023-04-05
+6           KLBB           63 2023-04-06
+7           KLBB           67 2023-04-07
+8           KLBB           73 2023-04-08
+9           KLBB           76 2023-04-09
+10          KLBB           78 2023-04-10
+11          KLBB           81 2023-04-11
+12          KLBB           82 2023-04-12
+13          KLBB           83 2023-04-13
+14          KLBB           83 2023-04-14
+15          KLBB           72 2023-04-15
+16          KLBB           67 2023-04-16
+17          KLBB           81 2023-04-17
+18          KLBB           89 2023-04-18
+19          KLBB           90 2023-04-19
+20          KLBB           70 2023-04-20
+21          KLBB           69 2023-04-21
+22          KLBB           53 2023-04-22
+23          KLBB           49 2023-04-23
+24          KLBB           53 2023-04-24
+25          KLBB           74 2023-04-25
+26          KLBB           72 2023-04-26
+27          KLBB           76 2023-04-27
+28          KLBB           53 2023-04-28
+29          KLBB           76 2023-04-29
+30          KLBB           93 2023-04-30
+31          KLBB           76 2023-05-01
+32          KLBB           73 2023-05-02
+33          KLBB           81 2023-05-03
+34          KLBB           83 2023-05-04
+35          KLBB           90 2023-05-05
+36          KLBB           86 2023-05-06
+37          KLBB           94 2023-05-07
+38          KLBB           94 2023-05-08
+39          KLBB           94 2023-05-09
+40          KLBB           87 2023-05-10
+41          KLBB           82 2023-05-11
+42          KLBB           89 2023-05-12
+43          KLBB           59 2023-05-13
+44          KLBB           68 2023-05-14
+45          KLBB           69 2023-05-15
+46          KLBB           79 2023-05-16
+47          KLBB           84 2023-05-17
+48          KLBB           84 2023-05-18
+49          KLBB           77 2023-05-19
+50          KLBB           75 2023-05-20
+51          KLBB           79 2023-05-21
+52          KLBB           84 2023-05-22
+53          KLBB           85 2023-05-23
+54          KLBB           77 2023-05-24
+55          KLBB           80 2023-05-25
+56          KLBB           72 2023-05-26
+57          KLBB           69 2023-05-27
+58          KLBB           78 2023-05-28
+59          KLBB           81 2023-05-29
+60          KLBB           85 2023-05-30
+61          KLBB           83 2023-05-31
+62          KLBB           73 2023-06-01
+63          KLBB           59 2023-06-02
+64          KLBB           77 2023-06-03
+65          KLBB           78 2023-06-04
+66          KLBB           76 2023-06-05
+67          KLBB           80 2023-06-06
+68          KLBB           82 2023-06-07
+69          KLBB           84 2023-06-08
+70          KLBB           91 2023-06-09
+71          KLBB           93 2023-06-10
+72          KLBB           91 2023-06-11
+73          KLBB           73 2023-06-12
+74          KLBB           85 2023-06-13
+75          KLBB           91 2023-06-14
+76          KLBB           98 2023-06-15
+77          KLBB           92 2023-06-16
+78          KLBB           91 2023-06-17
+79          KLBB           91 2023-06-18
+80          KLBB          105 2023-06-19
+81          KLBB          105 2023-06-20
+82          KLBB          107 2023-06-21
+83          KLBB           94 2023-06-22
+84          KLBB           94 2023-06-23
+85          KLBB          107 2023-06-24
+86          KLBB          101 2023-06-25
+87          KLBB          100 2023-06-26
+88          KLBB          108 2023-06-27
+89          KLBB          105 2023-06-28
+90          KLBB           99 2023-06-29
+91          KLBB           72 2023-06-30
+92          KLBB           76 2023-07-01
+93          KLBB           89 2023-07-02
+94          KLBB           91 2023-07-03
+95          KLBB           95 2023-07-04
+96          KLBB           94 2023-07-05
+97          KLBB           90 2023-07-06
+98          KLBB           96 2023-07-07
+99          KLBB           90 2023-07-08
+100         KLBB           87 2023-07-09
+101         KLBB           97 2023-07-10
+102         KLBB          102 2023-07-11
+103         KLBB          107 2023-07-12
+104         KLBB          105 2023-07-13
+105         KLBB           94 2023-07-14
+106         KLBB           88 2023-07-15
+107         KLBB           94 2023-07-16
+108         KLBB          101 2023-07-17
+109         KLBB          106 2023-07-18
+110         KLBB          105 2023-07-19
+111         KLBB           99 2023-07-20
+112         KLBB           93 2023-07-21
+113         KLBB           90 2023-07-22
+114         KLBB           97 2023-07-23
+115         KLBB          101 2023-07-24
+116         KLBB          101 2023-07-25
+117         KLBB          100 2023-07-26
+118         KLBB          100 2023-07-27
+119         KLBB           99 2023-07-28
+120         KLBB           97 2023-07-29
+121         KLBB           96 2023-07-30
+122         KLBB           97 2023-07-31
+123         KLBB          100 2023-08-01
+124         KLBB           98 2023-08-02
+125         KLBB          100 2023-08-03
+126         KLBB          101 2023-08-04
+127         KLBB          100 2023-08-05
+128         KLBB          102 2023-08-06
+129         KLBB           92 2023-08-07
+130         KLBB           99 2023-08-08
+131         KLBB          100 2023-08-09
+132         KLBB           97 2023-08-10
+133         KLBB          106 2023-08-11
+134         KLBB          106 2023-08-12
+135         KLBB          101 2023-08-13
+136         KLBB           85 2023-08-14
+137         KLBB           89 2023-08-15
+138         KLBB          101 2023-08-16
+139         KLBB          105 2023-08-17
+140         KLBB          104 2023-08-18
+141         KLBB          100 2023-08-19
+142         KLBB           97 2023-08-20
+143         KLBB          101 2023-08-21
+144         KLBB           98 2023-08-22
+145         KLBB           93 2023-08-23
+146         KLBB           93 2023-08-24
+147         KLBB           97 2023-08-25
+148         KLBB           97 2023-08-26
+149         KLBB           83 2023-08-27
+150         KLBB           90 2023-08-28
+151         KLBB           89 2023-08-29
+152         KLBB           90 2023-08-30
+153         KLBB           95 2023-08-31
+154         KLBB           98 2023-09-01
+155         KLBB          100 2023-09-02
+156         KLBB           99 2023-09-03
+157         KLBB          100 2023-09-04
+158         KLBB          100 2023-09-05
+159         KLBB           95 2023-09-06
+160         KLBB          102 2023-09-07
+161         KLBB          105 2023-09-08
+162         KLBB           95 2023-09-09
+163         KLBB           92 2023-09-10
+164         KLBB           88 2023-09-11
+165         KLBB           68 2023-09-12
+166         KLBB           68 2023-09-13
+167         KLBB           80 2023-09-14
+168         KLBB           82 2023-09-15
+169         KLBB           77 2023-09-16
+170         KLBB           83 2023-09-17
+171         KLBB           89 2023-09-18
+172         KLBB           96 2023-09-19
+173         KLBB           94 2023-09-20
+174         KLBB           87 2023-09-21
+175         KLBB           94 2023-09-22
+176         KLBB           99 2023-09-23
+177         KLBB           92 2023-09-24
+178         KLBB           85 2023-09-25
+179         KLBB           88 2023-09-26
+180         KLBB           90 2023-09-27
+181         KLBB           91 2023-09-28
+182         KLBB           91 2023-09-29
+183         KLBB           85 2023-09-30
+
+[[11]]
+    station_code station_temp       date
+1           KTXK           80 2023-04-01
+2           KTXK           82 2023-04-02
+3           KTXK           90 2023-04-03
+4           KTXK           79 2023-04-04
+5           KTXK           67 2023-04-05
+6           KTXK           53 2023-04-06
+7           KTXK           61 2023-04-07
+8           KTXK           74 2023-04-08
+9           KTXK           64 2023-04-09
+10          KTXK           74 2023-04-10
+11          KTXK           79 2023-04-11
+12          KTXK           80 2023-04-12
+13          KTXK           75 2023-04-13
+14          KTXK           84 2023-04-14
+15          KTXK           93 2023-04-15
+16          KTXK           73 2023-04-16
+17          KTXK           81 2023-04-17
+18          KTXK           83 2023-04-18
+19          KTXK           84 2023-04-19
+20          KTXK           77 2023-04-20
+21          KTXK           76 2023-04-21
+22          KTXK           74 2023-04-22
+23          KTXK           54 2023-04-23
+24          KTXK           70 2023-04-24
+25          KTXK           66 2023-04-25
+26          KTXK           61 2023-04-26
+27          KTXK           74 2023-04-27
+28          KTXK           77 2023-04-28
+29          KTXK           67 2023-04-29
+30          KTXK           80 2023-04-30
+31          KTXK           78 2023-05-01
+32          KTXK           84 2023-05-02
+33          KTXK           82 2023-05-03
+34          KTXK           84 2023-05-04
+35          KTXK           85 2023-05-05
+36          KTXK           93 2023-05-06
+37          KTXK           81 2023-05-07
+38          KTXK           80 2023-05-08
+39          KTXK           88 2023-05-09
+40          KTXK           79 2023-05-10
+41          KTXK           77 2023-05-11
+42          KTXK           90 2023-05-12
+43          KTXK           91 2023-05-13
+44          KTXK           88 2023-05-14
+45          KTXK           87 2023-05-15
+46          KTXK           78 2023-05-16
+47          KTXK           82 2023-05-17
+48          KTXK           84 2023-05-18
+49          KTXK           89 2023-05-19
+50          KTXK           73 2023-05-20
+51          KTXK           73 2023-05-21
+52          KTXK           84 2023-05-22
+53          KTXK           85 2023-05-23
+54          KTXK           83 2023-05-24
+55          KTXK           89 2023-05-25
+56          KTXK           90 2023-05-26
+57          KTXK           88 2023-05-27
+58          KTXK           89 2023-05-28
+59          KTXK           91 2023-05-29
+60          KTXK           90 2023-05-30
+61          KTXK           92 2023-05-31
+62          KTXK           92 2023-06-01
+63          KTXK           91 2023-06-02
+64          KTXK           76 2023-06-03
+65          KTXK           88 2023-06-04
+66          KTXK           94 2023-06-05
+67          KTXK           90 2023-06-06
+68          KTXK           96 2023-06-07
+69          KTXK           93 2023-06-08
+70          KTXK           95 2023-06-09
+71          KTXK           71 2023-06-10
+72          KTXK           93 2023-06-11
+73          KTXK           82 2023-06-12
+74          KTXK           84 2023-06-13
+75          KTXK           82 2023-06-14
+76          KTXK           96 2023-06-15
+77          KTXK           88 2023-06-16
+78          KTXK           96 2023-06-17
+79          KTXK           91 2023-06-18
+80          KTXK           94 2023-06-19
+81          KTXK           93 2023-06-20
+82          KTXK           93 2023-06-21
+83          KTXK           92 2023-06-22
+84          KTXK           93 2023-06-23
+85          KTXK           98 2023-06-24
+86          KTXK           97 2023-06-25
+87          KTXK           91 2023-06-26
+88          KTXK           95 2023-06-27
+89          KTXK           99 2023-06-28
+90          KTXK           99 2023-06-29
+91          KTXK           98 2023-06-30
+92          KTXK           97 2023-07-01
+93          KTXK           83 2023-07-02
+94          KTXK           93 2023-07-03
+95          KTXK           80 2023-07-04
+96          KTXK           95 2023-07-05
+97          KTXK           75 2023-07-06
+98          KTXK           94 2023-07-07
+99          KTXK           75 2023-07-08
+100         KTXK           84 2023-07-09
+101         KTXK           87 2023-07-10
+102         KTXK           86 2023-07-11
+103         KTXK           95 2023-07-12
+104         KTXK           94 2023-07-13
+105         KTXK           90 2023-07-14
+106         KTXK           96 2023-07-15
+107         KTXK           74 2023-07-16
+108         KTXK           96 2023-07-17
+109         KTXK          100 2023-07-18
+110         KTXK           98 2023-07-19
+111         KTXK           97 2023-07-20
+112         KTXK           96 2023-07-21
+113         KTXK           91 2023-07-22
+114         KTXK           93 2023-07-23
+115         KTXK           96 2023-07-24
+116         KTXK           99 2023-07-25
+117         KTXK           98 2023-07-26
+118         KTXK           99 2023-07-27
+119         KTXK           98 2023-07-28
+120         KTXK          102 2023-07-29
+121         KTXK          106 2023-07-30
+122         KTXK           92 2023-07-31
+123         KTXK           95 2023-08-01
+124         KTXK          101 2023-08-02
+125         KTXK          100 2023-08-03
+126         KTXK          100 2023-08-04
+127         KTXK          101 2023-08-05
+128         KTXK           95 2023-08-06
+129         KTXK           91 2023-08-07
+130         KTXK           86 2023-08-08
+131         KTXK           97 2023-08-09
+132         KTXK           98 2023-08-10
+133         KTXK           98 2023-08-11
+134         KTXK           98 2023-08-12
+135         KTXK          101 2023-08-13
+136         KTXK           99 2023-08-14
+137         KTXK           89 2023-08-15
+138         KTXK           87 2023-08-16
+139         KTXK           97 2023-08-17
+140         KTXK          106 2023-08-18
+141         KTXK          103 2023-08-19
+142         KTXK          101 2023-08-20
+143         KTXK          100 2023-08-21
+144         KTXK          100 2023-08-22
+145         KTXK           99 2023-08-23
+146         KTXK          102 2023-08-24
+147         KTXK          105 2023-08-25
+148         KTXK          105 2023-08-26
+149         KTXK           97 2023-08-27
+150         KTXK           88 2023-08-28
+151         KTXK           92 2023-08-29
+152         KTXK           93 2023-08-30
+153         KTXK           89 2023-08-31
+154         KTXK           91 2023-09-01
+155         KTXK           93 2023-09-02
+156         KTXK           96 2023-09-03
+157         KTXK           74 2023-09-04
+158         KTXK           95 2023-09-05
+159         KTXK          100 2023-09-06
+160         KTXK           96 2023-09-07
+161         KTXK           74 2023-09-08
+162         KTXK           88 2023-09-09
+163         KTXK           85 2023-09-10
+164         KTXK           85 2023-09-11
+165         KTXK           78 2023-09-12
+166         KTXK           72 2023-09-13
+167         KTXK           76 2023-09-14
+168         KTXK           84 2023-09-15
+169         KTXK           86 2023-09-16
+170         KTXK           91 2023-09-17
+171         KTXK           90 2023-09-18
+172         KTXK           89 2023-09-19
+173         KTXK           80 2023-09-20
+174         KTXK           89 2023-09-21
+175         KTXK           71 2023-09-22
+176         KTXK           91 2023-09-23
+177         KTXK           82 2023-09-24
+178         KTXK           89 2023-09-25
+179         KTXK           91 2023-09-26
+180         KTXK           90 2023-09-27
+181         KTXK           91 2023-09-28
+182         KTXK           89 2023-09-29
+183         KTXK           91 2023-09-30
+
+[[12]]
+    station_code station_temp       date
+1           KDKR           79 2023-04-01
+2           KDKR           79 2023-04-02
+3           KDKR           86 2023-04-03
+4           KDKR           82 2023-04-04
+5           KDKR           64 2023-04-05
+6           KDKR           54 2023-04-06
+7           KDKR           54 2023-04-07
+8           KDKR           68 2023-04-08
+9           KDKR           70 2023-04-09
+10          KDKR           68 2023-04-10
+11          KDKR           72 2023-04-11
+12          KDKR           68 2023-04-12
+13          KDKR           77 2023-04-13
+14          KDKR           77 2023-04-14
+15          KDKR           86 2023-04-15
+16          KDKR           72 2023-04-16
+17          KDKR           77 2023-04-17
+18          KDKR           68 2023-04-18
+19          KDKR           82 2023-04-19
+20          KDKR           77 2023-04-20
+21          KDKR           70 2023-04-21
+22          KDKR           77 2023-04-22
+23          KDKR           55 2023-04-23
+24          KDKR           66 2023-04-24
+25          KDKR           70 2023-04-25
+26          KDKR           77 2023-04-26
+27          KDKR           72 2023-04-27
+28          KDKR           81 2023-04-28
+29          KDKR           64 2023-04-29
+30          KDKR           82 2023-04-30
+31          KDKR           79 2023-05-01
+32          KDKR           81 2023-05-02
+33          KDKR           84 2023-05-03
+34          KDKR           75 2023-05-04
+35          KDKR           90 2023-05-05
+36          KDKR           86 2023-05-06
+37          KDKR           82 2023-05-07
+38          KDKR           82 2023-05-08
+39          KDKR           79 2023-05-09
+40          KDKR           70 2023-05-10
+41          KDKR           84 2023-05-11
+42          KDKR           88 2023-05-12
+43          KDKR           79 2023-05-13
+44          KDKR           72 2023-05-14
+45          KDKR           86 2023-05-15
+46          KDKR           81 2023-05-16
+47          KDKR           81 2023-05-17
+48          KDKR           84 2023-05-18
+49          KDKR           90 2023-05-19
+50          KDKR           75 2023-05-20
+51          KDKR           75 2023-05-21
+52          KDKR           81 2023-05-22
+53          KDKR           77 2023-05-23
+54          KDKR           79 2023-05-24
+55          KDKR           84 2023-05-25
+56          KDKR           86 2023-05-26
+57          KDKR           84 2023-05-27
+58          KDKR           86 2023-05-28
+59          KDKR           88 2023-05-29
+60          KDKR           84 2023-05-30
+61          KDKR           86 2023-05-31
+62          KDKR           88 2023-06-01
+63          KDKR           90 2023-06-02
+64          KDKR           91 2023-06-03
+65          KDKR           82 2023-06-04
+66          KDKR           86 2023-06-05
+67          KDKR           86 2023-06-06
+68          KDKR           90 2023-06-07
+69          KDKR           77 2023-06-08
+70          KDKR           90 2023-06-09
+71          KDKR           84 2023-06-10
+72          KDKR           88 2023-06-11
+73          KDKR           91 2023-06-12
+74          KDKR           91 2023-06-13
+75          KDKR           91 2023-06-14
+76          KDKR           93 2023-06-15
+77          KDKR           97 2023-06-16
+78          KDKR           91 2023-06-17
+79          KDKR           93 2023-06-18
+80          KDKR           95 2023-06-19
+81          KDKR           95 2023-06-20
+82          KDKR           91 2023-06-21
+83          KDKR           90 2023-06-22
+84          KDKR           90 2023-06-23
+85          KDKR           95 2023-06-24
+86          KDKR           95 2023-06-25
+87          KDKR           95 2023-06-26
+88          KDKR           97 2023-06-27
+89          KDKR           97 2023-06-28
+90          KDKR           97 2023-06-29
+91          KDKR           95 2023-06-30
+92          KDKR           95 2023-07-01
+93          KDKR           90 2023-07-02
+94          KDKR           93 2023-07-03
+95          KDKR           90 2023-07-04
+96          KDKR           91 2023-07-05
+97          KDKR           84 2023-07-06
+98          KDKR           88 2023-07-07
+99          KDKR           95 2023-07-08
+100         KDKR           95 2023-07-09
+101         KDKR           97 2023-07-10
+102         KDKR           95 2023-07-11
+103         KDKR          102 2023-07-12
+104         KDKR          102 2023-07-13
+105         KDKR          100 2023-07-14
+106         KDKR          100 2023-07-15
+107         KDKR           97 2023-07-16
+108         KDKR          100 2023-07-17
+109         KDKR          102 2023-07-18
+110         KDKR          102 2023-07-19
+111         KDKR          100 2023-07-20
+112         KDKR          100 2023-07-21
+113         KDKR          100 2023-07-22
+114         KDKR           97 2023-07-23
+115         KDKR          100 2023-07-24
+116         KDKR          100 2023-07-25
+117         KDKR           99 2023-07-26
+118         KDKR           99 2023-07-27
+119         KDKR           97 2023-07-28
+120         KDKR          100 2023-07-29
+121         KDKR          102 2023-07-30
+122         KDKR          102 2023-07-31
+123         KDKR          104 2023-08-01
+124         KDKR          104 2023-08-02
+125         KDKR          104 2023-08-03
+126         KDKR          104 2023-08-04
+127         KDKR          102 2023-08-05
+128         KDKR          102 2023-08-06
+129         KDKR          102 2023-08-07
+130         KDKR          102 2023-08-08
+131         KDKR          106 2023-08-09
+132         KDKR          106 2023-08-10
+133         KDKR          106 2023-08-11
+134         KDKR          104 2023-08-12
+135         KDKR          106 2023-08-13
+136         KDKR          104 2023-08-14
+137         KDKR          100 2023-08-15
+138         KDKR           97 2023-08-16
+139         KDKR          106 2023-08-17
+140         KDKR          106 2023-08-18
+141         KDKR          104 2023-08-19
+142         KDKR          108 2023-08-20
+143         KDKR          102 2023-08-21
+144         KDKR          102 2023-08-22
+145         KDKR          102 2023-08-23
+146         KDKR          109 2023-08-24
+147         KDKR          108 2023-08-25
+148         KDKR          104 2023-08-26
+149         KDKR          108 2023-08-27
+150         KDKR           90 2023-08-28
+151         KDKR           95 2023-08-29
+152         KDKR           95 2023-08-30
+153         KDKR           97 2023-08-31
+154         KDKR           97 2023-09-01
+155         KDKR           99 2023-09-02
+156         KDKR           99 2023-09-03
+157         KDKR           81 2023-09-04
+158         KDKR          100 2023-09-05
+159         KDKR          102 2023-09-06
+160         KDKR          104 2023-09-07
+161         KDKR          106 2023-09-08
+162         KDKR           93 2023-09-10
+163         KDKR           90 2023-09-11
+164         KDKR           91 2023-09-12
+165         KDKR           82 2023-09-13
+166         KDKR           75 2023-09-14
+167         KDKR           73 2023-09-15
+168         KDKR           84 2023-09-16
+169         KDKR           88 2023-09-17
+170         KDKR           91 2023-09-18
+171         KDKR           91 2023-09-19
+172         KDKR           93 2023-09-20
+173         KDKR           95 2023-09-21
+174         KDKR           95 2023-09-22
+175         KDKR           97 2023-09-23
+176         KDKR           90 2023-09-24
+177         KDKR           90 2023-09-25
+178         KDKR           91 2023-09-26
+179         KDKR           95 2023-09-27
+180         KDKR           93 2023-09-28
+181         KDKR           93 2023-09-29
+182         KDKR           93 2023-09-30</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>KXBP <span class="ot">&lt;-</span> sep_stations[<span class="dv">1</span>]<span class="sc">|&gt;</span> <span class="fu">as.data.frame</span>()</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>KJAS <span class="ot">&lt;-</span> sep_stations[<span class="dv">2</span>]<span class="sc">|&gt;</span> <span class="fu">as.data.frame</span>()</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>KPPA <span class="ot">&lt;-</span> sep_stations[<span class="dv">3</span>]<span class="sc">|&gt;</span> <span class="fu">as.data.frame</span>()</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>KPSN <span class="ot">&lt;-</span> sep_stations[<span class="dv">4</span>]<span class="sc">|&gt;</span> <span class="fu">as.data.frame</span>()</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>KRFI <span class="ot">&lt;-</span> sep_stations[<span class="dv">5</span>]<span class="sc">|&gt;</span> <span class="fu">as.data.frame</span>()</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>KCXO <span class="ot">&lt;-</span> sep_stations[<span class="dv">6</span>]<span class="sc">|&gt;</span> <span class="fu">as.data.frame</span>()</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>KUTS <span class="ot">&lt;-</span> sep_stations[<span class="dv">7</span>] <span class="sc">|&gt;</span> <span class="fu">as.data.frame</span>()</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>KHYI <span class="ot">&lt;-</span> sep_stations[<span class="dv">8</span>]<span class="sc">|&gt;</span> <span class="fu">as.data.frame</span>()</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>KPWG <span class="ot">&lt;-</span> sep_stations[<span class="dv">9</span>]<span class="sc">|&gt;</span> <span class="fu">as.data.frame</span>()</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>KLBB <span class="ot">&lt;-</span> sep_stations[<span class="dv">10</span>]<span class="sc">|&gt;</span> <span class="fu">as.data.frame</span>()</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>KTXK <span class="ot">&lt;-</span> sep_stations[<span class="dv">11</span>]<span class="sc">|&gt;</span> <span class="fu">as.data.frame</span>()</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>KDKR <span class="ot">&lt;-</span> sep_stations[<span class="dv">12</span>]<span class="sc">|&gt;</span> <span class="fu">as.data.frame</span>()</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>KXBP</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    station_code station_temp       date
+1           KXBP           77 2013-04-01
+2           KXBP           59 2013-04-02
+3           KXBP           46 2013-04-03
+4           KXBP           46 2013-04-04
+5           KXBP           66 2013-04-05
+6           KXBP           77 2013-04-06
+7           KXBP           72 2013-04-07
+8           KXBP           73 2013-04-08
+9           KXBP           73 2013-04-09
+10          KXBP           43 2013-04-10
+11          KXBP           59 2013-04-11
+12          KXBP           72 2013-04-12
+13          KXBP           73 2013-04-13
+14          KXBP           84 2013-04-14
+15          KXBP           88 2013-04-15
+16          KXBP           82 2013-04-16
+17          KXBP           81 2013-04-17
+18          KXBP           55 2013-04-18
+19          KXBP           63 2013-04-19
+20          KXBP           68 2013-04-20
+21          KXBP           68 2013-04-21
+22          KXBP           79 2013-04-22
+23          KXBP           45 2013-04-23
+24          KXBP           59 2013-04-24
+25          KXBP           72 2013-04-25
+26          KXBP           70 2013-04-26
+27          KXBP           73 2013-04-27
+28          KXBP           81 2013-04-28
+29          KXBP           87 2013-04-29
+30          KXBP           81 2013-04-30
+31          KXBP           81 2013-05-01
+32          KXBP           43 2013-05-02
+33          KXBP           66 2013-05-03
+34          KXBP           73 2013-05-04
+35          KXBP           69 2013-05-05
+36          KXBP           76 2013-05-06
+37          KXBP           85 2013-05-07
+38          KXBP           83 2013-05-08
+39          KXBP           71 2013-05-09
+40          KXBP           82 2013-05-10
+41          KXBP           83 2013-05-11
+42          KXBP           79 2013-05-12
+43          KXBP           90 2013-05-13
+44          KXBP           89 2013-05-14
+45          KXBP           82 2013-05-15
+46          KXBP           85 2013-05-16
+47          KXBP           91 2013-05-17
+48          KXBP           92 2013-05-18
+49          KXBP           93 2013-05-19
+50          KXBP           94 2013-05-20
+51          KXBP           68 2013-05-21
+52          KXBP           88 2013-05-22
+53          KXBP           85 2013-05-23
+54          KXBP           79 2013-05-24
+55          KXBP           78 2013-05-25
+56          KXBP           88 2013-05-26
+57          KXBP           82 2013-05-27
+58          KXBP           81 2013-05-28
+59          KXBP           84 2013-05-29
+60          KXBP           90 2013-05-30
+61          KXBP           96 2013-05-31
+62          KXBP           82 2013-06-01
+63          KXBP           83 2013-06-02
+64          KXBP           90 2013-06-03
+65          KXBP           93 2013-06-04
+66          KXBP           92 2013-06-05
+67          KXBP           79 2013-06-06
+68          KXBP           83 2013-06-07
+69          KXBP           90 2013-06-08
+70          KXBP           88 2013-06-09
+71          KXBP           98 2013-06-10
+72          KXBP           95 2013-06-11
+73          KXBP           96 2013-06-12
+74          KXBP           98 2013-06-13
+75          KXBP           94 2013-06-14
+76          KXBP           77 2013-06-15
+77          KXBP           96 2013-06-16
+78          KXBP           86 2013-06-17
+79          KXBP           84 2013-06-18
+80          KXBP           93 2013-06-20
+81          KXBP           94 2013-06-21
+82          KXBP           95 2013-06-22
+83          KXBP           94 2013-06-23
+84          KXBP           93 2013-06-24
+85          KXBP           98 2013-06-25
+86          KXBP           98 2013-06-26
+87          KXBP          103 2013-06-27
+88          KXBP          103 2013-06-28
+89          KXBP           98 2013-06-29
+90          KXBP           92 2013-06-30
+91          KXBP           86 2013-07-01
+92          KXBP           88 2013-07-02
+93          KXBP           91 2013-07-03
+94          KXBP           94 2013-07-04
+95          KXBP           99 2013-07-05
+96          KXBP           97 2013-07-06
+97          KXBP           98 2013-07-07
+98          KXBP           98 2013-07-08
+99          KXBP          101 2013-07-09
+100         KXBP          102 2013-07-10
+101         KXBP          101 2013-07-11
+102         KXBP          103 2013-07-12
+103         KXBP          104 2013-07-13
+104         KXBP           69 2013-07-14
+105         KXBP           69 2013-07-15
+106         KXBP           85 2013-07-16
+107         KXBP           88 2013-07-17
+108         KXBP           91 2013-07-18
+109         KXBP           94 2013-07-19
+110         KXBP           95 2013-07-20
+111         KXBP           89 2013-07-25
+112         KXBP           91 2013-07-26
+113         KXBP           89 2013-07-27
+114         KXBP           90 2013-07-28
+115         KXBP           94 2013-07-29
+116         KXBP           99 2013-07-30
+117         KXBP           98 2013-07-31
+118         KXBP           99 2013-08-01
+119         KXBP          103 2013-08-02
+120         KXBP          102 2013-08-03
+121         KXBP           99 2013-08-04
+122         KXBP          103 2013-08-05
+123         KXBP          105 2013-08-06
+124         KXBP          106 2013-08-07
+125         KXBP           98 2013-08-08
+126         KXBP           94 2013-08-10
+127         KXBP          100 2013-08-11
+128         KXBP           95 2013-08-13
+129         KXBP           86 2013-08-14
+130         KXBP           86 2013-08-15
+131         KXBP           88 2013-08-16
+132         KXBP           89 2013-08-18
+133         KXBP           93 2013-08-19
+134         KXBP           93 2013-08-20
+135         KXBP           94 2013-08-22
+136         KXBP           96 2013-08-23
+137         KXBP           76 2013-08-24
+138         KXBP           94 2013-08-26
+139         KXBP           87 2013-08-27
+140         KXBP          100 2013-08-29
+141         KXBP          102 2013-08-30
+142         KXBP          104 2013-08-31
+143         KXBP          104 2013-09-01
+144         KXBP           94 2013-09-02
+145         KXBP           97 2013-09-03
+146         KXBP           97 2013-09-05
+147         KXBP           98 2013-09-06
+148         KXBP           93 2013-09-07
+149         KXBP           96 2013-09-08
+150         KXBP           92 2013-09-09
+151         KXBP           91 2013-09-10
+152         KXBP           94 2013-09-11
+153         KXBP           97 2013-09-12
+154         KXBP           92 2013-09-13
+155         KXBP           93 2013-09-14
+156         KXBP           94 2013-09-15
+157         KXBP           87 2013-09-16
+158         KXBP           89 2013-09-17
+159         KXBP           96 2013-09-18
+160         KXBP           72 2013-09-20
+161         KXBP           82 2013-09-21
+162         KXBP           82 2013-09-22
+163         KXBP           86 2013-09-23
+164         KXBP           91 2013-09-24
+165         KXBP           93 2013-09-25
+166         KXBP           93 2013-09-26
+167         KXBP           88 2013-09-27
+168         KXBP           70 2013-09-28
+169         KXBP           78 2013-09-29
+170         KXBP           87 2013-09-30</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>Ellis <span class="ot">&lt;-</span> all_units <span class="sc">|&gt;</span> <span class="fu">filter</span>(unit <span class="sc">==</span> <span class="st">"Ellis"</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>Estelle <span class="ot">&lt;-</span> all_units <span class="sc">|&gt;</span> <span class="fu">filter</span>(unit <span class="sc">==</span> <span class="st">"Estelle"</span>)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>Goree <span class="ot">&lt;-</span> all_units <span class="sc">|&gt;</span> <span class="fu">filter</span>(unit <span class="sc">==</span> <span class="st">"Goree"</span>)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>Holliday <span class="ot">&lt;-</span> all_units <span class="sc">|&gt;</span> <span class="fu">filter</span>(unit <span class="sc">==</span> <span class="st">"Holliday"</span>)</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>Huntsville <span class="ot">&lt;-</span> all_units <span class="sc">|&gt;</span> <span class="fu">filter</span>(unit <span class="sc">==</span> <span class="st">"Huntsville"</span>)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>Wynne <span class="ot">&lt;-</span> all_units <span class="sc">|&gt;</span> <span class="fu">filter</span>(unit <span class="sc">==</span> <span class="st">"Wynne"</span>)</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>Allred <span class="ot">&lt;-</span> all_units <span class="sc">|&gt;</span> <span class="fu">filter</span>(unit <span class="sc">==</span> <span class="st">"Allred"</span>)</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>Lindsey <span class="ot">&lt;-</span> all_units <span class="sc">|&gt;</span> <span class="fu">filter</span>(unit <span class="sc">==</span> <span class="st">"Lindsey"</span>) <span class="co"># no data</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>Goodman <span class="ot">&lt;-</span> all_units <span class="sc">|&gt;</span> <span class="fu">filter</span>(unit <span class="sc">==</span> <span class="st">"Goodman"</span>)</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>Connally <span class="ot">&lt;-</span> all_units <span class="sc">|&gt;</span> <span class="fu">filter</span>(unit <span class="sc">==</span> <span class="st">"Connally"</span>)</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>Kyle <span class="ot">&lt;-</span> all_units <span class="sc">|&gt;</span> <span class="fu">filter</span>(unit <span class="sc">==</span> <span class="st">"Kyle"</span>) <span class="co"># no data</span></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>Smith <span class="ot">&lt;-</span> all_units <span class="sc">|&gt;</span> <span class="fu">filter</span>(unit <span class="sc">==</span> <span class="st">"Smith"</span>)</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>Polunsky<span class="ot">&lt;-</span> all_units <span class="sc">|&gt;</span> <span class="fu">filter</span>(unit <span class="sc">==</span> <span class="st">"Polunsky"</span>)</span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>Coleman<span class="ot">&lt;-</span> all_units <span class="sc">|&gt;</span> <span class="fu">filter</span>(unit <span class="sc">==</span> <span class="st">"Coleman"</span>) <span class="co"># no data</span></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>Yellow<span class="ot">&lt;-</span> all_units <span class="sc">|&gt;</span> <span class="fu">filter</span>(unit <span class="sc">==</span> <span class="st">"Yellow"</span>) <span class="co">#no data</span></span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>Montford<span class="ot">&lt;-</span> all_units <span class="sc">|&gt;</span> <span class="fu">filter</span>(unit <span class="sc">==</span> <span class="st">"Montford"</span>)</span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>Hobby <span class="ot">&lt;-</span> all_units <span class="sc">|&gt;</span> <span class="fu">filter</span>(unit <span class="sc">==</span> <span class="st">"Hobby"</span>)</span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>Marlin <span class="ot">&lt;-</span> all_units <span class="sc">|&gt;</span> <span class="fu">filter</span>(unit <span class="sc">==</span> <span class="st">"Marlin"</span>) <span class="co">#no data</span></span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>Ferguson<span class="ot">&lt;-</span> all_units <span class="sc">|&gt;</span> <span class="fu">filter</span>(unit <span class="sc">==</span> <span class="st">"Ferguson"</span>)</span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>Luther<span class="ot">&lt;-</span> all_units <span class="sc">|&gt;</span> <span class="fu">filter</span>(unit <span class="sc">==</span> <span class="st">"Luther"</span>)</span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>Pack<span class="ot">&lt;-</span> all_units <span class="sc">|&gt;</span> <span class="fu">filter</span>(unit <span class="sc">==</span> <span class="st">"Pack"</span>) <span class="co"># no data</span></span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>Telford<span class="ot">&lt;-</span> all_units <span class="sc">|&gt;</span> <span class="fu">filter</span>(unit <span class="sc">==</span> <span class="st">"Telford"</span>)</span>
+<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a>Moore<span class="ot">&lt;-</span> all_units <span class="sc">|&gt;</span> <span class="fu">filter</span>(unit <span class="sc">==</span> <span class="st">"Moore"</span>) <span class="co"># no data</span></span>
+<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a>Powledge<span class="ot">&lt;-</span> all_units <span class="sc">|&gt;</span> <span class="fu">filter</span>(unit <span class="sc">==</span> <span class="st">"Powledge"</span>)</span>
+<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a>Baten<span class="ot">&lt;-</span> all_units <span class="sc">|&gt;</span> <span class="fu">filter</span>(unit <span class="sc">==</span> <span class="st">"Baten"</span>) <span class="co"># no data</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>ellis_merge <span class="ot">&lt;-</span> <span class="fu">left_join</span>(Ellis, KUTS, <span class="at">by =</span> <span class="st">"date"</span>) <span class="sc">|&gt;</span> <span class="fu">select</span>(date, unit, unit_temp, station_code, station_temp)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>ellis_merge</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 183 × 5
+   date       unit  unit_temp station_code station_temp
+   &lt;date&gt;     &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;               &lt;dbl&gt;
+ 1 2023-08-01 Ellis      98.3 KUTS                  105
+ 2 2023-08-02 Ellis      97.4 KUTS                  105
+ 3 2023-08-03 Ellis      93   KUTS                  102
+ 4 2023-08-04 Ellis      92.8 KUTS                  102
+ 5 2023-08-05 Ellis      91.6 KUTS                  103
+ 6 2023-08-06 Ellis      95.4 KUTS                  102
+ 7 2023-08-07 Ellis      94.4 KUTS                  102
+ 8 2023-08-08 Ellis      91   KUTS                  102
+ 9 2023-08-09 Ellis      90.8 KUTS                  104
+10 2023-08-10 Ellis      95.5 KUTS                  105
+# ℹ 173 more rows</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>estelle_merge <span class="ot">&lt;-</span> <span class="fu">left_join</span>(Estelle, KUTS, <span class="at">by =</span> <span class="st">"date"</span>) <span class="sc">|&gt;</span> <span class="fu">select</span>(date, unit, unit_temp, station_code, station_temp)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>estelle_merge</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 183 × 5
+   date       unit    unit_temp station_code station_temp
+   &lt;date&gt;     &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;               &lt;dbl&gt;
+ 1 2023-08-01 Estelle      92.6 KUTS                  105
+ 2 2023-08-02 Estelle      94.8 KUTS                  105
+ 3 2023-08-03 Estelle      94.6 KUTS                  102
+ 4 2023-08-04 Estelle      92   KUTS                  102
+ 5 2023-08-05 Estelle      94.5 KUTS                  103
+ 6 2023-08-06 Estelle      91.6 KUTS                  102
+ 7 2023-08-07 Estelle      92.7 KUTS                  102
+ 8 2023-08-08 Estelle      92   KUTS                  102
+ 9 2023-08-09 Estelle      94.3 KUTS                  104
+10 2023-08-10 Estelle      95.2 KUTS                  105
+# ℹ 173 more rows</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>goree_merge <span class="ot">&lt;-</span> <span class="fu">left_join</span>(Goree, KUTS, <span class="at">by =</span> <span class="st">"date"</span>) <span class="sc">|&gt;</span> <span class="fu">select</span>(date, unit, unit_temp, station_code, station_temp)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>goree_merge</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 183 × 5
+   date       unit  unit_temp station_code station_temp
+   &lt;date&gt;     &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;               &lt;dbl&gt;
+ 1 2023-08-01 Goree      89.5 KUTS                  105
+ 2 2023-08-02 Goree      92.3 KUTS                  105
+ 3 2023-08-03 Goree      89.3 KUTS                  102
+ 4 2023-08-04 Goree      90.2 KUTS                  102
+ 5 2023-08-05 Goree      90   KUTS                  103
+ 6 2023-08-06 Goree      92.4 KUTS                  102
+ 7 2023-08-07 Goree      91.8 KUTS                  102
+ 8 2023-08-08 Goree      92   KUTS                  102
+ 9 2023-08-09 Goree      91.6 KUTS                  104
+10 2023-08-10 Goree      92   KUTS                  105
+# ℹ 173 more rows</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>holliday_merge <span class="ot">&lt;-</span> <span class="fu">left_join</span>(Holliday, KUTS, <span class="at">by =</span> <span class="st">"date"</span>) <span class="sc">|&gt;</span> <span class="fu">select</span>(date, unit, unit_temp, station_code, station_temp)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>holliday_merge</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 183 × 5
+   date       unit     unit_temp station_code station_temp
+   &lt;date&gt;     &lt;chr&gt;        &lt;dbl&gt; &lt;chr&gt;               &lt;dbl&gt;
+ 1 2023-08-01 Holliday      96.1 KUTS                  105
+ 2 2023-08-02 Holliday      97.1 KUTS                  105
+ 3 2023-08-03 Holliday      94.6 KUTS                  102
+ 4 2023-08-04 Holliday      92.9 KUTS                  102
+ 5 2023-08-05 Holliday      97.2 KUTS                  103
+ 6 2023-08-06 Holliday      89.3 KUTS                  102
+ 7 2023-08-07 Holliday      95.6 KUTS                  102
+ 8 2023-08-08 Holliday      94.4 KUTS                  102
+ 9 2023-08-09 Holliday      96.9 KUTS                  104
+10 2023-08-10 Holliday      97.4 KUTS                  105
+# ℹ 173 more rows</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>huntsville_merge <span class="ot">&lt;-</span> <span class="fu">left_join</span>(Huntsville, KUTS, <span class="at">by =</span> <span class="st">"date"</span>) <span class="sc">|&gt;</span> <span class="fu">select</span>(date, unit, unit_temp, station_code, station_temp)</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>huntsville_merge</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 183 × 5
+   date       unit       unit_temp station_code station_temp
+   &lt;date&gt;     &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;               &lt;dbl&gt;
+ 1 2023-08-01 Huntsville      93.9 KUTS                  105
+ 2 2023-08-02 Huntsville      91.8 KUTS                  105
+ 3 2023-08-03 Huntsville      93.8 KUTS                  102
+ 4 2023-08-04 Huntsville      94.4 KUTS                  102
+ 5 2023-08-05 Huntsville      90.8 KUTS                  103
+ 6 2023-08-06 Huntsville      88.1 KUTS                  102
+ 7 2023-08-07 Huntsville      90   KUTS                  102
+ 8 2023-08-08 Huntsville      92.1 KUTS                  102
+ 9 2023-08-09 Huntsville      94.3 KUTS                  104
+10 2023-08-10 Huntsville      94.2 KUTS                  105
+# ℹ 173 more rows</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>wynne_merge <span class="ot">&lt;-</span> <span class="fu">left_join</span>(Wynne, KUTS, <span class="at">by =</span> <span class="st">"date"</span>) <span class="sc">|&gt;</span> <span class="fu">select</span>(date, unit, unit_temp, station_code, station_temp)</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>wynne_merge</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 183 × 5
+   date       unit  unit_temp station_code station_temp
+   &lt;date&gt;     &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;               &lt;dbl&gt;
+ 1 2023-08-01 Wynne      96.7 KUTS                  105
+ 2 2023-08-02 Wynne      97.3 KUTS                  105
+ 3 2023-08-03 Wynne      96.6 KUTS                  102
+ 4 2023-08-04 Wynne      95.2 KUTS                  102
+ 5 2023-08-05 Wynne      96.5 KUTS                  103
+ 6 2023-08-06 Wynne      94.8 KUTS                  102
+ 7 2023-08-07 Wynne      96.7 KUTS                  102
+ 8 2023-08-08 Wynne      95.1 KUTS                  102
+ 9 2023-08-09 Wynne      96.5 KUTS                  104
+10 2023-08-10 Wynne      97.5 KUTS                  105
+# ℹ 173 more rows</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>ferguson_merge <span class="ot">&lt;-</span> <span class="fu">left_join</span>(Ferguson, KUTS, <span class="at">by =</span> <span class="st">"date"</span>) <span class="sc">|&gt;</span> <span class="fu">select</span>(date, unit, unit_temp, station_code, station_temp)</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>ferguson_merge</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 183 × 5
+   date       unit     unit_temp station_code station_temp
+   &lt;date&gt;     &lt;chr&gt;        &lt;dbl&gt; &lt;chr&gt;               &lt;dbl&gt;
+ 1 2023-08-01 Ferguson      95.6 KUTS                  105
+ 2 2023-08-02 Ferguson      93.3 KUTS                  105
+ 3 2023-08-03 Ferguson      93.7 KUTS                  102
+ 4 2023-08-04 Ferguson      91.6 KUTS                  102
+ 5 2023-08-05 Ferguson      95.6 KUTS                  103
+ 6 2023-08-06 Ferguson      92   KUTS                  102
+ 7 2023-08-07 Ferguson      93.2 KUTS                  102
+ 8 2023-08-08 Ferguson      93.9 KUTS                  102
+ 9 2023-08-09 Ferguson      93.3 KUTS                  104
+10 2023-08-10 Ferguson      92.6 KUTS                  105
+# ℹ 173 more rows</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>goodman_merge <span class="ot">&lt;-</span> <span class="fu">left_join</span>(Goodman, KJAS, <span class="at">by =</span> <span class="st">"date"</span>) <span class="sc">|&gt;</span> <span class="fu">select</span>(date, unit, unit_temp, station_code, station_temp)</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>goodman_merge</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 183 × 5
+   date       unit    unit_temp station_code station_temp
+   &lt;date&gt;     &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;               &lt;dbl&gt;
+ 1 2023-08-01 Goodman      93   KJAS                  102
+ 2 2023-08-02 Goodman      96.9 KJAS                  102
+ 3 2023-08-03 Goodman      88.9 KJAS                   99
+ 4 2023-08-04 Goodman      93.2 KJAS                  102
+ 5 2023-08-05 Goodman      94.6 KJAS                  102
+ 6 2023-08-06 Goodman      92.6 KJAS                  100
+ 7 2023-08-07 Goodman      92.4 KJAS                  102
+ 8 2023-08-08 Goodman      95.1 KJAS                  100
+ 9 2023-08-09 Goodman      90.5 KJAS                  100
+10 2023-08-10 Goodman      89.7 KJAS                  102
+# ℹ 173 more rows</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>polunksy_merge <span class="ot">&lt;-</span> <span class="fu">left_join</span>(Polunsky, KCXO, <span class="at">by =</span> <span class="st">"date"</span>) <span class="sc">|&gt;</span> <span class="fu">select</span>(date, unit, unit_temp, station_code, station_temp)</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>polunksy_merge</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 183 × 5
+   date       unit     unit_temp station_code station_temp
+   &lt;date&gt;     &lt;chr&gt;        &lt;dbl&gt; &lt;chr&gt;               &lt;dbl&gt;
+ 1 2023-08-01 Polunsky      96.3 KCXO                  101
+ 2 2023-08-02 Polunsky      95.5 KCXO                  103
+ 3 2023-08-03 Polunsky      95.2 KCXO                  102
+ 4 2023-08-04 Polunsky      93.5 KCXO                   99
+ 5 2023-08-05 Polunsky      93.3 KCXO                  101
+ 6 2023-08-06 Polunsky      93.4 KCXO                  100
+ 7 2023-08-07 Polunsky      93.9 KCXO                  102
+ 8 2023-08-08 Polunsky      93.8 KCXO                  102
+ 9 2023-08-09 Polunsky      94.3 KCXO                  101
+10 2023-08-10 Polunsky      94.7 KCXO                  103
+# ℹ 173 more rows</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>montford_merge <span class="ot">&lt;-</span> <span class="fu">left_join</span>(Montford, KLBB, <span class="at">by =</span> <span class="st">"date"</span>) <span class="sc">|&gt;</span> <span class="fu">select</span>(date, unit, unit_temp, station_code, station_temp)</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>montford_merge</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 183 × 5
+   date       unit     unit_temp station_code station_temp
+   &lt;date&gt;     &lt;chr&gt;        &lt;dbl&gt; &lt;chr&gt;               &lt;dbl&gt;
+ 1 2023-08-01 Montford      93.3 KLBB                  100
+ 2 2023-08-02 Montford      90.1 KLBB                   98
+ 3 2023-08-03 Montford      89.5 KLBB                  100
+ 4 2023-08-04 Montford      93.7 KLBB                  101
+ 5 2023-08-05 Montford      93.6 KLBB                  100
+ 6 2023-08-06 Montford      92.6 KLBB                  102
+ 7 2023-08-07 Montford      92.4 KLBB                   92
+ 8 2023-08-08 Montford      90.3 KLBB                   99
+ 9 2023-08-09 Montford      93.5 KLBB                  100
+10 2023-08-10 Montford      96.4 KLBB                   97
+# ℹ 173 more rows</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>hobby_merge <span class="ot">&lt;-</span> <span class="fu">left_join</span>(Hobby, KPWG, <span class="at">by =</span> <span class="st">"date"</span>) <span class="sc">|&gt;</span> <span class="fu">select</span>(date, unit, unit_temp, station_code, station_temp)</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>hobby_merge</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 183 × 5
+   date       unit  unit_temp station_code station_temp
+   &lt;date&gt;     &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;               &lt;dbl&gt;
+ 1 2023-08-01 Hobby      95.7 KPWG                  105
+ 2 2023-08-02 Hobby      96.4 KPWG                  106
+ 3 2023-08-03 Hobby      93.9 KPWG                  104
+ 4 2023-08-04 Hobby      93.9 KPWG                  104
+ 5 2023-08-05 Hobby      94.5 KPWG                  103
+ 6 2023-08-06 Hobby      94.9 KPWG                  104
+ 7 2023-08-07 Hobby      93.6 KPWG                  106
+ 8 2023-08-08 Hobby      93.2 KPWG                  105
+ 9 2023-08-09 Hobby      93.3 KPWG                  106
+10 2023-08-10 Hobby      93.3 KPWG                  107
+# ℹ 173 more rows</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>telford_merge <span class="ot">&lt;-</span> <span class="fu">left_join</span>(Telford, KTXK, <span class="at">by =</span> <span class="st">"date"</span>) <span class="sc">|&gt;</span> <span class="fu">select</span>(date, unit, unit_temp, station_code, station_temp)</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>telford_merge</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 183 × 5
+   date       unit    unit_temp station_code station_temp
+   &lt;date&gt;     &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;               &lt;dbl&gt;
+ 1 2023-08-01 Telford      91.8 KTXK                   95
+ 2 2023-08-02 Telford      94.1 KTXK                  101
+ 3 2023-08-03 Telford      94.6 KTXK                  100
+ 4 2023-08-04 Telford      92.9 KTXK                  100
+ 5 2023-08-05 Telford      94.1 KTXK                  101
+ 6 2023-08-06 Telford      91.3 KTXK                   95
+ 7 2023-08-07 Telford      88.8 KTXK                   91
+ 8 2023-08-08 Telford      84.9 KTXK                   86
+ 9 2023-08-09 Telford      91.4 KTXK                   97
+10 2023-08-10 Telford      92.2 KTXK                   98
+# ℹ 173 more rows</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>powledge_merge <span class="ot">&lt;-</span> <span class="fu">left_join</span>(Powledge, KPSN, <span class="at">by =</span> <span class="st">"date"</span>) <span class="sc">|&gt;</span> <span class="fu">select</span>(date, unit, unit_temp, station_code, station_temp)</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>powledge_merge</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 183 × 5
+   date       unit     unit_temp station_code station_temp
+   &lt;date&gt;     &lt;chr&gt;        &lt;dbl&gt; &lt;chr&gt;               &lt;dbl&gt;
+ 1 2023-08-01 Powledge      96.6 KPSN                  104
+ 2 2023-08-02 Powledge      92.7 KPSN                  106
+ 3 2023-08-03 Powledge      93.4 KPSN                  104
+ 4 2023-08-04 Powledge      95.5 KPSN                  102
+ 5 2023-08-05 Powledge      94.9 KPSN                  102
+ 6 2023-08-06 Powledge      93.1 KPSN                  102
+ 7 2023-08-07 Powledge      94.6 KPSN                  102
+ 8 2023-08-08 Powledge      93.5 KPSN                  100
+ 9 2023-08-09 Powledge      93.4 KPSN                  104
+10 2023-08-10 Powledge      97.2 KPSN                  104
+# ℹ 173 more rows</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>all_comparison <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(ellis_merge, estelle_merge, goree_merge, holliday_merge, huntsville_merge, wynne_merge, goodman_merge, polunksy_merge, montford_merge, telford_merge, hobby_merge, ferguson_merge, powledge_merge)</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>all_comparison</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2,379 × 5
+   date       unit  unit_temp station_code station_temp
+   &lt;date&gt;     &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;               &lt;dbl&gt;
+ 1 2023-08-01 Ellis      98.3 KUTS                  105
+ 2 2023-08-02 Ellis      97.4 KUTS                  105
+ 3 2023-08-03 Ellis      93   KUTS                  102
+ 4 2023-08-04 Ellis      92.8 KUTS                  102
+ 5 2023-08-05 Ellis      91.6 KUTS                  103
+ 6 2023-08-06 Ellis      95.4 KUTS                  102
+ 7 2023-08-07 Ellis      94.4 KUTS                  102
+ 8 2023-08-08 Ellis      91   KUTS                  102
+ 9 2023-08-09 Ellis      90.8 KUTS                  104
+10 2023-08-10 Ellis      95.5 KUTS                  105
+# ℹ 2,369 more rows</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>all_comp_diff <span class="ot">&lt;-</span> all_comparison <span class="sc">|&gt;</span> <span class="fu">mutate</span>(</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">temp_diff =</span> <span class="fu">abs</span>(station_temp <span class="sc">-</span> unit_temp)</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>all_comp_diff <span class="sc">|&gt;</span> <span class="fu">arrange</span>(temp_diff <span class="sc">|&gt;</span> <span class="fu">desc</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2,379 × 6
+   date       unit     unit_temp station_code station_temp temp_diff
+   &lt;date&gt;     &lt;chr&gt;        &lt;dbl&gt; &lt;chr&gt;               &lt;dbl&gt;     &lt;dbl&gt;
+ 1 2023-04-06 Hobby         80.4 KPWG                   52      28.4
+ 2 2023-04-07 Powledge      79.3 KPSN                   52      27.3
+ 3 2023-04-06 Powledge      78.4 KPSN                   52      26.4
+ 4 2023-04-06 Telford       77.6 KTXK                   53      24.6
+ 5 2023-04-07 Hobby         79.3 KPWG                   56      23.3
+ 6 2023-04-07 Goodman       77   KJAS                   54      23  
+ 7 2023-04-23 Hobby         76.6 KPWG                   54      22.6
+ 8 2023-04-07 Wynne         76.3 KUTS                   54      22.3
+ 9 2023-04-24 Montford      74.8 KLBB                   53      21.8
+10 2023-09-08 Goree         86.7 KUTS                  108      21.3
+# ℹ 2,369 more rows</code></pre>
+</div>
+</div>
+<p>How to fill a column with an old column name: name = colnames(Ellis)[1] df &lt;- Ellis |&gt; mutate(new_column = name)</p>
+<p>df</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>all_comp_diff <span class="sc">|&gt;</span> <span class="fu">write_rds</span>(<span class="st">"data-processed/karina-final-comparison.rds"</span>)                      </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+
+
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

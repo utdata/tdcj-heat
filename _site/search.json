@@ -1,0 +1,86 @@
+[
+  {
+    "objectID": "johan-final-comparison-all.html",
+    "href": "johan-final-comparison-all.html",
+    "title": "johan-final-comparison-all",
+    "section": "",
+    "text": "Setting up my libraries.\n\nlibrary(tidyverse)\nlibrary(janitor)\nlibrary(dplyr)\nlibrary(lubridate)"
+  },
+  {
+    "objectID": "johan-final-comparison-all.html#loading-in-libaries",
+    "href": "johan-final-comparison-all.html#loading-in-libaries",
+    "title": "johan-final-comparison-all",
+    "section": "",
+    "text": "Setting up my libraries.\n\nlibrary(tidyverse)\nlibrary(janitor)\nlibrary(dplyr)\nlibrary(lubridate)"
+  },
+  {
+    "objectID": "johan-final-comparison-all.html#importing-final-comparisons",
+    "href": "johan-final-comparison-all.html#importing-final-comparisons",
+    "title": "johan-final-comparison-all",
+    "section": "Importing final comparison's",
+    "text": "Importing final comparison's\nI’m importing the final comparison RDS files, so that I can later combine them using rbind.\n\nali &lt;- read_rds(\"data-processed/ali-final-comparison.rds\")\njohan &lt;- read_rds(\"data-processed/johan-final-comparison.rds\")\nkarina &lt;- read_rds(\"data-processed/karina-final-comparison.rds\")\npearson &lt;- read_rds(\"data-processed/pearson-final-comparison.rds\")"
+  },
+  {
+    "objectID": "johan-final-comparison-all.html#binding-final-comparisons",
+    "href": "johan-final-comparison-all.html#binding-final-comparisons",
+    "title": "johan-final-comparison-all",
+    "section": "Binding final comparison's",
+    "text": "Binding final comparison's\nWe are flagging any temperature difference greater than or equal to 15 degrees Fahrenheit and 0 degrees Fahrenheit as notable.\n\nfinal &lt;- rbind(ali, johan, karina, pearson)\n\nunit_flagged &lt;- final |&gt; \n  arrange(temp_diff |&gt; desc()) |&gt; \n  filter(temp_diff &gt;= 15 | temp_diff == 0)\n\nunit_flagged\n\n# A tibble: 390 × 6\n   date       unit      unit_temp station_code station_temp temp_diff\n   &lt;date&gt;     &lt;chr&gt;         &lt;dbl&gt; &lt;chr&gt;               &lt;dbl&gt;     &lt;dbl&gt;\n 1 2023-09-02 Sanchez       887   KELP                   98     789  \n 2 2023-08-17 Hilltop        73.9 KGOP                  109      35.1\n 3 2023-04-24 Formby         77   KPVW                   46      31  \n 4 2023-04-23 Formby         77.2 KPVW                   47      30.2\n 5 2023-04-23 Wheeler        76.6 KPVW                   47      29.6\n 6 2023-04-23 Wallace        75.6 KSNK                   46      29.6\n 7 2023-04-23 Middleton      77.1 KABI                   48      29.1\n 8 2023-04-28 Roach          76.6 KCDS                   48      28.6\n 9 2023-04-05 Dalhart        77.5 KDHT                   49      28.5\n10 2023-04-06 Hobby          80.4 KPWG                   52      28.4\n# ℹ 380 more rows\n\n\nAfter looking at the original csv, there is a comma where it seems Sanchez on Sept. 9th, 2023 should be 88.7, not 887. So, the temp_diff should be 9.8."
+  },
+  {
+    "objectID": "johan-final-comparison-all.html#importing-unit_info",
+    "href": "johan-final-comparison-all.html#importing-unit_info",
+    "title": "johan-final-comparison-all",
+    "section": "Importing unit_info",
+    "text": "Importing unit_info\nI’m importing the created spreadsheet with collected unit information and cleaning the names.\n\nunits &lt;- read_csv(\"data-raw/unit_info_altered.csv\")\n\nNew names:\nRows: 101 Columns: 22\n── Column specification\n──────────────────────────────────────────────────────── Delimiter: \",\" chr\n(6): Unit Name, Data Fellow, Type, Region, AC, Prototype dbl (2): Established,\n...22 num (1): Capacity lgl (13): ...9, ...10, ...11, ...12, ...13, ...14,\n...15, ...16, ...17, ...1...\nℹ Use `spec()` to retrieve the full column specification for this data. ℹ\nSpecify the column types or set `show_col_types = FALSE` to quiet this message.\n• `` -&gt; `...9`\n• `` -&gt; `...10`\n• `` -&gt; `...11`\n• `` -&gt; `...12`\n• `` -&gt; `...13`\n• `` -&gt; `...14`\n• `` -&gt; `...15`\n• `` -&gt; `...16`\n• `` -&gt; `...17`\n• `` -&gt; `...18`\n• `` -&gt; `...19`\n• `` -&gt; `...20`\n• `` -&gt; `...21`\n• `` -&gt; `...22`\n\nunit_info &lt;- units |&gt; clean_names()\n\nunit_info\n\n# A tibble: 101 × 22\n   unit_name data_fellow type  region established capacity ac    prototype x9   \n   &lt;chr&gt;     &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt;        &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;     &lt;lgl&gt;\n 1 Middleton Johan       Pris… VI            1994     2128 Part… 2000 BED… NA   \n 2 Robertson Johan       Pris… VI            1992     2978 Part… 2250 BED… NA   \n 3 Clements  Johan       Pris… V             1990     2932 Part… 2250 BED… NA   \n 4 Travis C… Johan       Stat… VI            1997     1161 All   MISCELLA… NA   \n 5 Gist      Johan       Stat… III           1994     2276 Part… 2144 BED… NA   \n 6 LeBlanc   Johan       Pre-… III           1995     1224 All   1000 BED… NA   \n 7 Stiles    Johan       Pris… III           1993     2887 Part… 2250 BED… NA   \n 8 Garza Ea… Johan       Pris… IV            1994      912 Part… 2000 BED… NA   \n 9 Garza We… Johan       Pris… IV            1994     2278 Part… 2000 BED… NA   \n10 Mcconnell Johan       Pris… IV            1992     2956 Part… 2250 BED… NA   \n# ℹ 91 more rows\n# ℹ 13 more variables: x10 &lt;lgl&gt;, x11 &lt;lgl&gt;, x12 &lt;lgl&gt;, x13 &lt;lgl&gt;, x14 &lt;lgl&gt;,\n#   x15 &lt;lgl&gt;, x16 &lt;lgl&gt;, x17 &lt;lgl&gt;, x18 &lt;lgl&gt;, x19 &lt;lgl&gt;, x20 &lt;lgl&gt;,\n#   x21 &lt;lgl&gt;, x22 &lt;dbl&gt;"
+  },
+  {
+    "objectID": "johan-final-comparison-all.html#cleaning-unit_info",
+    "href": "johan-final-comparison-all.html#cleaning-unit_info",
+    "title": "johan-final-comparison-all",
+    "section": "Cleaning unit_info",
+    "text": "Cleaning unit_info\nI’m changing the column names to better fit our final comparison list, and selecting only the columns we need.\n\n unit_info_c &lt;- unit_info |&gt; \n  rename(unit = unit_name) |&gt; \n  select(unit, type, region, established)\n\nunit_info_c\n\n# A tibble: 101 × 4\n   unit          type        region established\n   &lt;chr&gt;         &lt;chr&gt;       &lt;chr&gt;        &lt;dbl&gt;\n 1 Middleton     Prison      VI            1994\n 2 Robertson     Prison      VI            1992\n 3 Clements      Prison      V             1990\n 4 Travis County State Jail  VI            1997\n 5 Gist          State Jail  III           1994\n 6 LeBlanc       Pre-Release III           1995\n 7 Stiles        Prison      III           1993\n 8 Garza East    Prison      IV            1994\n 9 Garza West    Prison      IV            1994\n10 Mcconnell     Prison      IV            1992\n# ℹ 91 more rows"
+  },
+  {
+    "objectID": "johan-final-comparison-all.html#joining",
+    "href": "johan-final-comparison-all.html#joining",
+    "title": "johan-final-comparison-all",
+    "section": "Joining",
+    "text": "Joining\nNow, let’s join our final comparison data with our new information by unit.\n\nunit_info_join &lt;- unit_flagged |&gt; \n  left_join(unit_info_c, by = \"unit\") |&gt; \n  select(date, type, region, established, unit, unit_temp, station_code, station_temp, temp_diff)\n\nunit_info_join\n\n# A tibble: 390 × 9\n   date       type  region established unit  unit_temp station_code station_temp\n   &lt;date&gt;     &lt;chr&gt; &lt;chr&gt;        &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;               &lt;dbl&gt;\n 1 2023-09-02 Stat… IV            1996 Sanc…     887   KELP                   98\n 2 2023-08-17 Pris… VI            1981 Hill…      73.9 KGOP                  109\n 3 2023-04-24 Stat… V             1995 Form…      77   KPVW                   46\n 4 2023-04-23 Stat… V             1995 Form…      77.2 KPVW                   47\n 5 2023-04-23 Stat… V             1995 Whee…      76.6 KPVW                   47\n 6 2023-04-23 Pris… V             1994 Wall…      75.6 KSNK                   46\n 7 2023-04-23 Pris… VI            1994 Midd…      77.1 KABI                   48\n 8 2023-04-28 Pris… V             1991 Roach      76.6 KCDS                   48\n 9 2023-04-05 Pris… V             1995 Dalh…      77.5 KDHT                   49\n10 2023-04-06 Pris… VI            1989 Hobby      80.4 KPWG                   52\n# ℹ 380 more rows\n# ℹ 1 more variable: temp_diff &lt;dbl&gt;"
+  },
+  {
+    "objectID": "johan-final-comparison-all.html#grouping-by-prison-type",
+    "href": "johan-final-comparison-all.html#grouping-by-prison-type",
+    "title": "johan-final-comparison-all",
+    "section": "Grouping by prison type",
+    "text": "Grouping by prison type\nNow, we want to group by prison type to see which types of prisons have more flagged days.\n\ntype_count &lt;- unit_info_join |&gt; \n  select(date, type, unit, station_code, station_temp, temp_diff) |&gt; \n  group_by(type) |&gt; \n  summarise(number_of_days_over_15 = n()) |&gt; \n  arrange(desc(number_of_days_over_15))\n\ntype_count\n\n# A tibble: 8 × 2\n  type               number_of_days_over_15\n  &lt;chr&gt;                               &lt;int&gt;\n1 Prison                                291\n2 State Jail                             67\n3 Psychiatric                            13\n4 Prison/ISF                              7\n5 Medical                                 4\n6 Private State Jail                      4\n7 SAFPF                                   3\n8 &lt;NA&gt;                                    1"
+  },
+  {
+    "objectID": "johan-final-comparison-all.html#grouping-by-region",
+    "href": "johan-final-comparison-all.html#grouping-by-region",
+    "title": "johan-final-comparison-all",
+    "section": "Grouping by region",
+    "text": "Grouping by region\nNow, we want to group by region to see which regions of prisons have more flagged days.\n\nregion_count &lt;- unit_info_join |&gt; \n  select(date, region, unit, station_code, station_temp, temp_diff) |&gt; \n  group_by(region) |&gt; \n  summarise(number_of_days_over_15 = n()) |&gt; \n  arrange(desc(number_of_days_over_15))\n\nregion_count\n\n# A tibble: 8 × 2\n  region  number_of_days_over_15\n  &lt;chr&gt;                    &lt;int&gt;\n1 V                          123\n2 IV                          71\n3 I                           66\n4 VI                          60\n5 II                          33\n6 III                         32\n7 Private                      4\n8 &lt;NA&gt;                         1"
+  },
+  {
+    "objectID": "johan-final-comparison-all.html#grouping-by-age-of-prison",
+    "href": "johan-final-comparison-all.html#grouping-by-age-of-prison",
+    "title": "johan-final-comparison-all",
+    "section": "Grouping by age of prison",
+    "text": "Grouping by age of prison\nNow, we want to group by the age of the prison to determine if the building’s age is associated with having more flagged days.\n\nage_count &lt;- unit_info_join |&gt; \n  select(date, established, unit, station_code, station_temp, temp_diff) |&gt; \n  group_by(established) |&gt; \n  summarise(number_of_days_over_15 = n()) |&gt; \n  arrange(desc(number_of_days_over_15))\n\nage_count\n\n# A tibble: 24 × 2\n   established number_of_days_over_15\n         &lt;dbl&gt;                  &lt;int&gt;\n 1        1995                     92\n 2        1994                     63\n 3        1990                     30\n 4        1996                     24\n 5        1989                     21\n 6        1992                     19\n 7        1907                     17\n 8        1965                     16\n 9        1964                     15\n10        1991                     15\n# ℹ 14 more rows"
+  },
+  {
+    "objectID": "johan-final-comparison-all.html#grouping-by-unit",
+    "href": "johan-final-comparison-all.html#grouping-by-unit",
+    "title": "johan-final-comparison-all",
+    "section": "Grouping by unit",
+    "text": "Grouping by unit\nNow, we want to group by unit to see which units have more flagged days.\n\nunit_count &lt;- unit_info_join |&gt; \n  select(date, region, unit, station_code, station_temp, temp_diff) |&gt; \n  group_by(unit) |&gt; \n  summarise(number_of_days_over_15 = n()) |&gt; \n  arrange(desc(number_of_days_over_15))\n\nunit_count\n\n# A tibble: 54 × 2\n   unit     number_of_days_over_15\n   &lt;chr&gt;                     &lt;int&gt;\n 1 Lynaugh                      31\n 2 Clements                     21\n 3 Sanchez                      20\n 4 Wheeler                      19\n 5 Goree                        17\n 6 Murray                       17\n 7 Daniel                       16\n 8 Byrd                         15\n 9 Roach                        15\n10 Dalhart                      14\n# ℹ 44 more rows"
+  },
+  {
+    "objectID": "johan-final-comparison-all.html#charts",
+    "href": "johan-final-comparison-all.html#charts",
+    "title": "johan-final-comparison-all",
+    "section": "Charts",
+    "text": "Charts\nFinally, we are creating individual charts to visualize the difference between unit and station temperatures.\n\nunits &lt;- unique(final$unit)\nfor (unit_name in units) {\n  df &lt;- subset(final, unit == unit_name)\n  \np &lt;- ggplot(df, aes(x = date)) +\n  geom_line(aes(y = unit_temp, color = \"Unit Temp\")) +\n  geom_line(aes(y = station_temp, color = \"Station Temp\")) +\n  labs(\n    title = paste(\"Temperature Trends for Unit:\", unit_name),\n    x = \"Date\",\n    y = \"Temperature\"\n  ) +\n  ylim(0, 120) +\n  theme_minimal()\n\nprint(p)\n}\n\n\n\n\n\n\n\n\n\n\nWarning: Removed 24 rows containing missing values (`geom_line()`).\n\n\n\n\n\nWarning: Removed 24 rows containing missing values (`geom_line()`).\n\n\n\n\n\nWarning: Removed 24 rows containing missing values (`geom_line()`).\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWarning: Removed 24 rows containing missing values (`geom_line()`).\n\n\n\n\n\nWarning: Removed 24 rows containing missing values (`geom_line()`).\n\n\n\n\n\n\n\n\nWarning: Removed 1 row containing missing values (`geom_line()`).\n\n\n\n\n\n\n\n\nWarning: Removed 24 rows containing missing values (`geom_line()`).\n\n\n\n\n\n\n\n\nWarning: Removed 76 rows containing missing values (`geom_line()`)."
+  }
+]

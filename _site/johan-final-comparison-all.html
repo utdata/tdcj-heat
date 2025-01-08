@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>heat_test - johan-final-comparison-all</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">heat_test</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html" rel="" target="">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./about.html" rel="" target="">
+ <span class="menu-text">About</span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools ms-auto">
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#loading-in-libaries" id="toc-loading-in-libaries" class="nav-link active" data-scroll-target="#loading-in-libaries">Loading in libaries</a></li>
+  <li><a href="#importing-final-comparisons" id="toc-importing-final-comparisons" class="nav-link" data-scroll-target="#importing-final-comparisons">Importing <code>final comparison's</code></a></li>
+  <li><a href="#binding-final-comparisons" id="toc-binding-final-comparisons" class="nav-link" data-scroll-target="#binding-final-comparisons">Binding <code>final comparison's</code></a></li>
+  <li><a href="#importing-unit_info" id="toc-importing-unit_info" class="nav-link" data-scroll-target="#importing-unit_info">Importing <code>unit_info</code></a></li>
+  <li><a href="#cleaning-unit_info" id="toc-cleaning-unit_info" class="nav-link" data-scroll-target="#cleaning-unit_info">Cleaning <code>unit_info</code></a></li>
+  <li><a href="#joining" id="toc-joining" class="nav-link" data-scroll-target="#joining">Joining</a></li>
+  <li><a href="#grouping-by-prison-type" id="toc-grouping-by-prison-type" class="nav-link" data-scroll-target="#grouping-by-prison-type">Grouping by <code>prison type</code></a></li>
+  <li><a href="#grouping-by-region" id="toc-grouping-by-region" class="nav-link" data-scroll-target="#grouping-by-region">Grouping by <code>region</code></a></li>
+  <li><a href="#grouping-by-age-of-prison" id="toc-grouping-by-age-of-prison" class="nav-link" data-scroll-target="#grouping-by-age-of-prison">Grouping by <code>age of prison</code></a></li>
+  <li><a href="#grouping-by-unit" id="toc-grouping-by-unit" class="nav-link" data-scroll-target="#grouping-by-unit">Grouping by <code>unit</code></a></li>
+  <li><a href="#charts" id="toc-charts" class="nav-link" data-scroll-target="#charts">Charts</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">johan-final-comparison-all</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="loading-in-libaries" class="level2">
+<h2 class="anchored" data-anchor-id="loading-in-libaries">Loading in libaries</h2>
+<p>Setting up my libraries.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(janitor)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="importing-final-comparisons" class="level2">
+<h2 class="anchored" data-anchor-id="importing-final-comparisons">Importing <code>final comparison's</code></h2>
+<p>I’m importing the final comparison RDS files, so that I can later combine them using rbind.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>ali <span class="ot">&lt;-</span> <span class="fu">read_rds</span>(<span class="st">"data-processed/ali-final-comparison.rds"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>johan <span class="ot">&lt;-</span> <span class="fu">read_rds</span>(<span class="st">"data-processed/johan-final-comparison.rds"</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>karina <span class="ot">&lt;-</span> <span class="fu">read_rds</span>(<span class="st">"data-processed/karina-final-comparison.rds"</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>pearson <span class="ot">&lt;-</span> <span class="fu">read_rds</span>(<span class="st">"data-processed/pearson-final-comparison.rds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="binding-final-comparisons" class="level2">
+<h2 class="anchored" data-anchor-id="binding-final-comparisons">Binding <code>final comparison's</code></h2>
+<p>We are flagging any temperature difference greater than or equal to 15 degrees Fahrenheit and 0 degrees Fahrenheit as notable.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>final <span class="ot">&lt;-</span> <span class="fu">rbind</span>(ali, johan, karina, pearson)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>unit_flagged <span class="ot">&lt;-</span> final <span class="sc">|&gt;</span> </span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(temp_diff <span class="sc">|&gt;</span> <span class="fu">desc</span>()) <span class="sc">|&gt;</span> </span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(temp_diff <span class="sc">&gt;=</span> <span class="dv">15</span> <span class="sc">|</span> temp_diff <span class="sc">==</span> <span class="dv">0</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>unit_flagged</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 390 × 6
+   date       unit      unit_temp station_code station_temp temp_diff
+   &lt;date&gt;     &lt;chr&gt;         &lt;dbl&gt; &lt;chr&gt;               &lt;dbl&gt;     &lt;dbl&gt;
+ 1 2023-09-02 Sanchez       887   KELP                   98     789  
+ 2 2023-08-17 Hilltop        73.9 KGOP                  109      35.1
+ 3 2023-04-24 Formby         77   KPVW                   46      31  
+ 4 2023-04-23 Formby         77.2 KPVW                   47      30.2
+ 5 2023-04-23 Wheeler        76.6 KPVW                   47      29.6
+ 6 2023-04-23 Wallace        75.6 KSNK                   46      29.6
+ 7 2023-04-23 Middleton      77.1 KABI                   48      29.1
+ 8 2023-04-28 Roach          76.6 KCDS                   48      28.6
+ 9 2023-04-05 Dalhart        77.5 KDHT                   49      28.5
+10 2023-04-06 Hobby          80.4 KPWG                   52      28.4
+# ℹ 380 more rows</code></pre>
+</div>
+</div>
+<p>After looking at the original csv, there is a comma where it seems Sanchez on Sept.&nbsp;9th, 2023 should be 88.7, not 887. So, the <code>temp_diff</code> should be 9.8.</p>
+</section>
+<section id="importing-unit_info" class="level2">
+<h2 class="anchored" data-anchor-id="importing-unit_info">Importing <code>unit_info</code></h2>
+<p>I’m importing the created spreadsheet with collected unit information and cleaning the names.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>units <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data-raw/unit_info_altered.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>New names:
+Rows: 101 Columns: 22
+── Column specification
+──────────────────────────────────────────────────────── Delimiter: "," chr
+(6): Unit Name, Data Fellow, Type, Region, AC, Prototype dbl (2): Established,
+...22 num (1): Capacity lgl (13): ...9, ...10, ...11, ...12, ...13, ...14,
+...15, ...16, ...17, ...1...
+ℹ Use `spec()` to retrieve the full column specification for this data. ℹ
+Specify the column types or set `show_col_types = FALSE` to quiet this message.
+• `` -&gt; `...9`
+• `` -&gt; `...10`
+• `` -&gt; `...11`
+• `` -&gt; `...12`
+• `` -&gt; `...13`
+• `` -&gt; `...14`
+• `` -&gt; `...15`
+• `` -&gt; `...16`
+• `` -&gt; `...17`
+• `` -&gt; `...18`
+• `` -&gt; `...19`
+• `` -&gt; `...20`
+• `` -&gt; `...21`
+• `` -&gt; `...22`</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>unit_info <span class="ot">&lt;-</span> units <span class="sc">|&gt;</span> <span class="fu">clean_names</span>()</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>unit_info</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 101 × 22
+   unit_name data_fellow type  region established capacity ac    prototype x9   
+   &lt;chr&gt;     &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt;        &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;     &lt;lgl&gt;
+ 1 Middleton Johan       Pris… VI            1994     2128 Part… 2000 BED… NA   
+ 2 Robertson Johan       Pris… VI            1992     2978 Part… 2250 BED… NA   
+ 3 Clements  Johan       Pris… V             1990     2932 Part… 2250 BED… NA   
+ 4 Travis C… Johan       Stat… VI            1997     1161 All   MISCELLA… NA   
+ 5 Gist      Johan       Stat… III           1994     2276 Part… 2144 BED… NA   
+ 6 LeBlanc   Johan       Pre-… III           1995     1224 All   1000 BED… NA   
+ 7 Stiles    Johan       Pris… III           1993     2887 Part… 2250 BED… NA   
+ 8 Garza Ea… Johan       Pris… IV            1994      912 Part… 2000 BED… NA   
+ 9 Garza We… Johan       Pris… IV            1994     2278 Part… 2000 BED… NA   
+10 Mcconnell Johan       Pris… IV            1992     2956 Part… 2250 BED… NA   
+# ℹ 91 more rows
+# ℹ 13 more variables: x10 &lt;lgl&gt;, x11 &lt;lgl&gt;, x12 &lt;lgl&gt;, x13 &lt;lgl&gt;, x14 &lt;lgl&gt;,
+#   x15 &lt;lgl&gt;, x16 &lt;lgl&gt;, x17 &lt;lgl&gt;, x18 &lt;lgl&gt;, x19 &lt;lgl&gt;, x20 &lt;lgl&gt;,
+#   x21 &lt;lgl&gt;, x22 &lt;dbl&gt;</code></pre>
+</div>
+</div>
+</section>
+<section id="cleaning-unit_info" class="level2">
+<h2 class="anchored" data-anchor-id="cleaning-unit_info">Cleaning <code>unit_info</code></h2>
+<p>I’m changing the column names to better fit our final comparison list, and selecting only the columns we need.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a> unit_info_c <span class="ot">&lt;-</span> unit_info <span class="sc">|&gt;</span> </span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">unit =</span> unit_name) <span class="sc">|&gt;</span> </span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(unit, type, region, established)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>unit_info_c</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 101 × 4
+   unit          type        region established
+   &lt;chr&gt;         &lt;chr&gt;       &lt;chr&gt;        &lt;dbl&gt;
+ 1 Middleton     Prison      VI            1994
+ 2 Robertson     Prison      VI            1992
+ 3 Clements      Prison      V             1990
+ 4 Travis County State Jail  VI            1997
+ 5 Gist          State Jail  III           1994
+ 6 LeBlanc       Pre-Release III           1995
+ 7 Stiles        Prison      III           1993
+ 8 Garza East    Prison      IV            1994
+ 9 Garza West    Prison      IV            1994
+10 Mcconnell     Prison      IV            1992
+# ℹ 91 more rows</code></pre>
+</div>
+</div>
+</section>
+<section id="joining" class="level2">
+<h2 class="anchored" data-anchor-id="joining">Joining</h2>
+<p>Now, let’s join our final comparison data with our new information by unit.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>unit_info_join <span class="ot">&lt;-</span> unit_flagged <span class="sc">|&gt;</span> </span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(unit_info_c, <span class="at">by =</span> <span class="st">"unit"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(date, type, region, established, unit, unit_temp, station_code, station_temp, temp_diff)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>unit_info_join</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 390 × 9
+   date       type  region established unit  unit_temp station_code station_temp
+   &lt;date&gt;     &lt;chr&gt; &lt;chr&gt;        &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;               &lt;dbl&gt;
+ 1 2023-09-02 Stat… IV            1996 Sanc…     887   KELP                   98
+ 2 2023-08-17 Pris… VI            1981 Hill…      73.9 KGOP                  109
+ 3 2023-04-24 Stat… V             1995 Form…      77   KPVW                   46
+ 4 2023-04-23 Stat… V             1995 Form…      77.2 KPVW                   47
+ 5 2023-04-23 Stat… V             1995 Whee…      76.6 KPVW                   47
+ 6 2023-04-23 Pris… V             1994 Wall…      75.6 KSNK                   46
+ 7 2023-04-23 Pris… VI            1994 Midd…      77.1 KABI                   48
+ 8 2023-04-28 Pris… V             1991 Roach      76.6 KCDS                   48
+ 9 2023-04-05 Pris… V             1995 Dalh…      77.5 KDHT                   49
+10 2023-04-06 Pris… VI            1989 Hobby      80.4 KPWG                   52
+# ℹ 380 more rows
+# ℹ 1 more variable: temp_diff &lt;dbl&gt;</code></pre>
+</div>
+</div>
+</section>
+<section id="grouping-by-prison-type" class="level2">
+<h2 class="anchored" data-anchor-id="grouping-by-prison-type">Grouping by <code>prison type</code></h2>
+<p>Now, we want to group by prison type to see which types of prisons have more flagged days.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>type_count <span class="ot">&lt;-</span> unit_info_join <span class="sc">|&gt;</span> </span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(date, type, unit, station_code, station_temp, temp_diff) <span class="sc">|&gt;</span> </span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(type) <span class="sc">|&gt;</span> </span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">number_of_days_over_15 =</span> <span class="fu">n</span>()) <span class="sc">|&gt;</span> </span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(number_of_days_over_15))</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>type_count</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 8 × 2
+  type               number_of_days_over_15
+  &lt;chr&gt;                               &lt;int&gt;
+1 Prison                                291
+2 State Jail                             67
+3 Psychiatric                            13
+4 Prison/ISF                              7
+5 Medical                                 4
+6 Private State Jail                      4
+7 SAFPF                                   3
+8 &lt;NA&gt;                                    1</code></pre>
+</div>
+</div>
+</section>
+<section id="grouping-by-region" class="level2">
+<h2 class="anchored" data-anchor-id="grouping-by-region">Grouping by <code>region</code></h2>
+<p>Now, we want to group by region to see which regions of prisons have more flagged days.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>region_count <span class="ot">&lt;-</span> unit_info_join <span class="sc">|&gt;</span> </span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(date, region, unit, station_code, station_temp, temp_diff) <span class="sc">|&gt;</span> </span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(region) <span class="sc">|&gt;</span> </span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">number_of_days_over_15 =</span> <span class="fu">n</span>()) <span class="sc">|&gt;</span> </span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(number_of_days_over_15))</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>region_count</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 8 × 2
+  region  number_of_days_over_15
+  &lt;chr&gt;                    &lt;int&gt;
+1 V                          123
+2 IV                          71
+3 I                           66
+4 VI                          60
+5 II                          33
+6 III                         32
+7 Private                      4
+8 &lt;NA&gt;                         1</code></pre>
+</div>
+</div>
+</section>
+<section id="grouping-by-age-of-prison" class="level2">
+<h2 class="anchored" data-anchor-id="grouping-by-age-of-prison">Grouping by <code>age of prison</code></h2>
+<p>Now, we want to group by the age of the prison to determine if the building’s age is associated with having more flagged days.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>age_count <span class="ot">&lt;-</span> unit_info_join <span class="sc">|&gt;</span> </span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(date, established, unit, station_code, station_temp, temp_diff) <span class="sc">|&gt;</span> </span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(established) <span class="sc">|&gt;</span> </span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">number_of_days_over_15 =</span> <span class="fu">n</span>()) <span class="sc">|&gt;</span> </span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(number_of_days_over_15))</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>age_count</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 24 × 2
+   established number_of_days_over_15
+         &lt;dbl&gt;                  &lt;int&gt;
+ 1        1995                     92
+ 2        1994                     63
+ 3        1990                     30
+ 4        1996                     24
+ 5        1989                     21
+ 6        1992                     19
+ 7        1907                     17
+ 8        1965                     16
+ 9        1964                     15
+10        1991                     15
+# ℹ 14 more rows</code></pre>
+</div>
+</div>
+</section>
+<section id="grouping-by-unit" class="level2">
+<h2 class="anchored" data-anchor-id="grouping-by-unit">Grouping by <code>unit</code></h2>
+<p>Now, we want to group by unit to see which units have more flagged days.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>unit_count <span class="ot">&lt;-</span> unit_info_join <span class="sc">|&gt;</span> </span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(date, region, unit, station_code, station_temp, temp_diff) <span class="sc">|&gt;</span> </span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(unit) <span class="sc">|&gt;</span> </span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">number_of_days_over_15 =</span> <span class="fu">n</span>()) <span class="sc">|&gt;</span> </span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(number_of_days_over_15))</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>unit_count</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 54 × 2
+   unit     number_of_days_over_15
+   &lt;chr&gt;                     &lt;int&gt;
+ 1 Lynaugh                      31
+ 2 Clements                     21
+ 3 Sanchez                      20
+ 4 Wheeler                      19
+ 5 Goree                        17
+ 6 Murray                       17
+ 7 Daniel                       16
+ 8 Byrd                         15
+ 9 Roach                        15
+10 Dalhart                      14
+# ℹ 44 more rows</code></pre>
+</div>
+</div>
+</section>
+<section id="charts" class="level2">
+<h2 class="anchored" data-anchor-id="charts">Charts</h2>
+<p>Finally, we are creating individual charts to visualize the difference between unit and station temperatures.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>units <span class="ot">&lt;-</span> <span class="fu">unique</span>(final<span class="sc">$</span>unit)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (unit_name <span class="cf">in</span> units) {</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  df <span class="ot">&lt;-</span> <span class="fu">subset</span>(final, unit <span class="sc">==</span> unit_name)</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> date)) <span class="sc">+</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> unit_temp, <span class="at">color =</span> <span class="st">"Unit Temp"</span>)) <span class="sc">+</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> station_temp, <span class="at">color =</span> <span class="st">"Station Temp"</span>)) <span class="sc">+</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="fu">paste</span>(<span class="st">"Temperature Trends for Unit:"</span>, unit_name),</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Date"</span>,</span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Temperature"</span></span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>, <span class="dv">120</span>) <span class="sc">+</span></span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(p)</span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="johan-final-comparison-all_files/figure-html/facets-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="johan-final-comparison-all_files/figure-html/facets-2.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="johan-final-comparison-all_files/figure-html/facets-3.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 24 rows containing missing values (`geom_line()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="johan-final-comparison-all_files/figure-html/facets-4.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 24 rows containing missing values (`geom_line()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="johan-final-comparison-all_files/figure-html/facets-5.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 24 rows containing missing values (`geom_line()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="johan-final-comparison-all_files/figure-html/facets-6.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="johan-final-comparison-all_files/figure-html/facets-7.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="johan-final-comparison-all_files/figure-html/facets-8.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="johan-final-comparison-all_files/figure-html/facets-9.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 24 rows containing missing values (`geom_line()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="johan-final-comparison-all_files/figure-html/facets-10.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 24 rows containing missing values (`geom_line()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="johan-final-comparison-all_files/figure-html/facets-11.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="johan-final-comparison-all_files/figure-html/facets-12.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 1 row containing missing values (`geom_line()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="johan-final-comparison-all_files/figure-html/facets-13.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="johan-final-comparison-all_files/figure-html/facets-14.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 24 rows containing missing values (`geom_line()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="johan-final-comparison-all_files/figure-html/facets-15.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="johan-final-comparison-all_files/figure-html/facets-16.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 76 rows containing missing values (`geom_line()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="johan-final-comparison-all_files/figure-html/facets-17.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="johan-final-comparison-all_files/figure-html/facets-18.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="johan-final-comparison-all_files/figure-html/facets-19.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="johan-final-comparison-all_files/figure-html/facets-20.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="johan-final-comparison-all_files/figure-html/facets-21.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="johan-final-comparison-all_files/figure-html/facets-22.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="johan-final-comparison-all_files/figure-html/facets-23.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="johan-final-comparison-all_files/figure-html/facets-24.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="johan-final-comparison-all_files/figure-html/facets-25.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="johan-final-comparison-all_files/figure-html/facets-26.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="johan-final-comparison-all_files/figure-html/facets-27.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="johan-final-comparison-all_files/figure-html/facets-28.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="johan-final-comparison-all_files/figure-html/facets-29.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="johan-final-comparison-all_files/figure-html/facets-30.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="johan-final-comparison-all_files/figure-html/facets-31.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="johan-final-comparison-all_files/figure-html/facets-32.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="johan-final-comparison-all_files/figure-html/facets-33.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="johan-final-comparison-all_files/figure-html/facets-34.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="johan-final-comparison-all_files/figure-html/facets-35.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="johan-final-comparison-all_files/figure-html/facets-36.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="johan-final-comparison-all_files/figure-html/facets-37.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="johan-final-comparison-all_files/figure-html/facets-38.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="johan-final-comparison-all_files/figure-html/facets-39.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="johan-final-comparison-all_files/figure-html/facets-40.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="johan-final-comparison-all_files/figure-html/facets-41.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="johan-final-comparison-all_files/figure-html/facets-42.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="johan-final-comparison-all_files/figure-html/facets-43.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="johan-final-comparison-all_files/figure-html/facets-44.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="johan-final-comparison-all_files/figure-html/facets-45.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="johan-final-comparison-all_files/figure-html/facets-46.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="johan-final-comparison-all_files/figure-html/facets-47.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="johan-final-comparison-all_files/figure-html/facets-48.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="johan-final-comparison-all_files/figure-html/facets-49.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="johan-final-comparison-all_files/figure-html/facets-50.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="johan-final-comparison-all_files/figure-html/facets-51.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="johan-final-comparison-all_files/figure-html/facets-52.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="johan-final-comparison-all_files/figure-html/facets-53.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="johan-final-comparison-all_files/figure-html/facets-54.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="johan-final-comparison-all_files/figure-html/facets-55.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="johan-final-comparison-all_files/figure-html/facets-56.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

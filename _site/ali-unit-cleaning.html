@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>heat_test - cleaning</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">heat_test</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html" rel="" target="">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./about.html" rel="" target="">
+ <span class="menu-text">About</span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools ms-auto">
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#goals-of-this-notebook" id="toc-goals-of-this-notebook" class="nav-link active" data-scroll-target="#goals-of-this-notebook">Goals of this notebook</a></li>
+  <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup">Setup</a></li>
+  <li><a href="#downloading-data" id="toc-downloading-data" class="nav-link" data-scroll-target="#downloading-data">Downloading data</a></li>
+  <li><a href="#pivot-longer" id="toc-pivot-longer" class="nav-link" data-scroll-target="#pivot-longer">Pivot Longer</a></li>
+  <li><a href="#combine-data-frames" id="toc-combine-data-frames" class="nav-link" data-scroll-target="#combine-data-frames">Combine data frames</a></li>
+  <li><a href="#clean-names" id="toc-clean-names" class="nav-link" data-scroll-target="#clean-names">Clean names</a></li>
+  <li><a href="#add-date-column" id="toc-add-date-column" class="nav-link" data-scroll-target="#add-date-column">Add date column</a></li>
+  <li><a href="#combine-ramsey-rows" id="toc-combine-ramsey-rows" class="nav-link" data-scroll-target="#combine-ramsey-rows">Combine Ramsey rows</a></li>
+  <li><a href="#export-the-data" id="toc-export-the-data" class="nav-link" data-scroll-target="#export-the-data">Export the data</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">cleaning</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="goals-of-this-notebook" class="level2">
+<h2 class="anchored" data-anchor-id="goals-of-this-notebook">Goals of this notebook</h2>
+<p>What we’ll do to prepare the data:</p>
+<ul>
+<li>Download the data</li>
+<li>Import it into our notebook</li>
+<li>Clean up data types and columns</li>
+<li>Export data into our next notebook</li>
+</ul>
+</section>
+<section id="setup" class="level2">
+<h2 class="anchored" data-anchor-id="setup">Setup</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(janitor)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="downloading-data" class="level2">
+<h2 class="anchored" data-anchor-id="downloading-data">Downloading data</h2>
+<p>This data comes from a public information request to the Texas Department of Criminal Justice.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>indoor_temps <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data-raw/Indoor-30days-edited.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 201 Columns: 33
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (3): File Name, Unit, Validation Link
+dbl (29): 1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20...
+num  (1): 2
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>indoor_temps <span class="sc">|&gt;</span> <span class="fu">glimpse</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 201
+Columns: 33
+$ `File Name`       &lt;chr&gt; "SB1R56 - April 2023_1.pdf", "SB1R56 - April 2023_1.…
+$ Unit              &lt;chr&gt; "Allred", "Beto", "Boyd", "Bradshaw", "Briscoe", "By…
+$ `1`               &lt;dbl&gt; 75.5, 73.4, 76.6, 80.1, 84.0, 76.9, 77.5, 71.4, 76.4…
+$ `2`               &lt;dbl&gt; 79.0, 73.9, 76.5, 82.1, 88.0, 74.0, 79.1, 72.8, 76.1…
+$ `3`               &lt;dbl&gt; 78.1, 78.6, 81.3, 86.3, 91.2, 81.1, 78.6, 74.7, 80.8…
+$ `4`               &lt;dbl&gt; 80.5, 79.4, 82.5, 80.5, 88.0, 81.2, 75.6, 73.3, 82.2…
+$ `5`               &lt;dbl&gt; 74.3, 74.2, 77.0, 73.8, 76.4, 75.4, 81.5, 71.4, 73.8…
+$ `6`               &lt;dbl&gt; 74.2, 69.9, 68.7, 68.5, 67.7, 72.7, 73.2, 72.3, 66.3…
+$ `7`               &lt;dbl&gt; 76.1, 69.6, 72.1, 70.2, 69.1, 65.1, 67.0, 73.3, 76.4…
+$ `8`               &lt;dbl&gt; 77.9, 71.3, 74.2, 78.4, 73.1, 72.3, 67.5, 72.5, 78.5…
+$ `9`               &lt;dbl&gt; 79.0, 73.2, 74.2, 73.0, 76.5, 69.8, 72.0, 73.2, 75.7…
+$ `10`              &lt;dbl&gt; 78.4, 71.6, 73.1, 79.1, 75.6, 75.8, 72.2, 73.3, 72.1…
+$ `11`              &lt;dbl&gt; 78.9, 72.1, 78.8, 78.5, 80.6, 76.9, 71.1, 74.4, 77.1…
+$ `12`              &lt;dbl&gt; 78.3, 72.5, 77.0, 78.3, 80.0, 73.0, 72.4, 75.0, 77.2…
+$ `13`              &lt;dbl&gt; 79.7, 72.6, 76.5, 75.8, 81.0, 76.0, 74.7, 74.9, 77.2…
+$ `14`              &lt;dbl&gt; 80.4, 73.4, 77.2, 85.3, 88.6, 74.0, 70.9, 74.4, 75.8…
+$ `15`              &lt;dbl&gt; 77.1, 79.2, 80.9, 84.9, 90.6, 73.1, 76.4, 69.8, 79.9…
+$ `16`              &lt;dbl&gt; 76.3, 70.9, 73.3, 82.0, 88.2, 72.0, 72.6, 67.0, 71.0…
+$ `17`              &lt;dbl&gt; 77.8, 70.8, 76.1, 82.2, 79.4, 77.2, 73.1, 69.3, 77.0…
+$ `18`              &lt;dbl&gt; 82.2, 71.9, 72.3, 73.7, 83.0, 73.0, 76.5, 77.6, 72.6…
+$ `19`              &lt;dbl&gt; 81.3, 74.9, 77.8, 82.1, 80.0, 72.5, 75.6, 72.5, 76.5…
+$ `20`              &lt;dbl&gt; 76.9, 75.8, 78.9, 80.1, 85.0, 76.0, 75.3, 69.6, 79.8…
+$ `21`              &lt;dbl&gt; 74.4, 75.9, 74.8, 78.1, 82.5, 73.0, 75.5, 74.1, 76.6…
+$ `22`              &lt;dbl&gt; 75.4, 72.3, 75.6, 80.7, 81.0, 71.0, 74.2, 73.5, 73.8…
+$ `23`              &lt;dbl&gt; 77.0, 65.3, 65.0, 72.6, 67.9, 76.8, 66.1, 61.0, 76.4…
+$ `24`              &lt;dbl&gt; 71.6, 69.1, 73.0, 78.2, 72.0, 76.0, 67.3, 61.7, 76.8…
+$ `25`              &lt;dbl&gt; 77.1, 70.1, 73.3, 79.7, 77.0, 72.6, 72.9, 64.7, 75.7…
+$ `26`              &lt;dbl&gt; 76.3, 71.2, 73.1, 74.0, 83.6, 71.5, 77.1, 62.2, 76.7…
+$ `27`              &lt;dbl&gt; 76.9, 71.4, 73.5, 74.8, 83.2, 67.9, 70.3, 61.9, 78.5…
+$ `28`              &lt;dbl&gt; 77.2, 71.6, 78.6, 80.5, 86.3, 74.5, 78.9, 60.7, 77.4…
+$ `29`              &lt;dbl&gt; 71.8, 67.7, 73.0, 76.0, 77.1, 67.1, 68.8, 61.9, 76.3…
+$ `30`              &lt;dbl&gt; 77.0, 71.7, 81.3, 79.1, 84.3, 69.6, 74.9, 63.9, 78.5…
+$ `Validation Link` &lt;chr&gt; "https://journaliststudio.google.com/pinpoint-extrac…</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>other_indoor_temps <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data-raw/Indoor-31days-edited.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 203 Columns: 34
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (3): File Name, Unit, Validation Link
+dbl (31): 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19,...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>other_indoor_temps <span class="sc">|&gt;</span> <span class="fu">glimpse</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 203
+Columns: 34
+$ `File Name`       &lt;chr&gt; "SB1R56 - August 2023_1.pdf", "SB1R56 - August 2023_…
+$ Unit              &lt;chr&gt; "Allred", "Beto", "Boyd", "Bradshaw", "Briscoe", "By…
+$ `1`               &lt;dbl&gt; 97.7, 91.9, 95.1, 98.2, 96.0, 93.8, 84.3, 89.3, 97.0…
+$ `2`               &lt;dbl&gt; 99.7, 94.4, 97.0, 97.7, 94.1, 94.2, 87.4, 89.0, 93.8…
+$ `3`               &lt;dbl&gt; 95.6, 92.8, 97.4, 98.4, 94.9, 93.4, 85.6, 88.8, 92.7…
+$ `4`               &lt;dbl&gt; 97.6, 91.1, 96.0, 97.6, 91.7, 93.7, 83.0, 88.0, 94.0…
+$ `5`               &lt;dbl&gt; 100.5, 93.8, 96.4, 97.8, 95.1, 93.9, 84.2, 89.3, 92.…
+$ `6`               &lt;dbl&gt; 97.1, 94.7, 94.9, 97.4, 95.3, 90.1, 87.2, 85.1, 93.7…
+$ `7`               &lt;dbl&gt; 93.8, 92.3, 94.5, 94.5, 95.5, 95.2, 84.9, 82.5, 93.5…
+$ `8`               &lt;dbl&gt; 92.3, 93.1, 95.3, 95.3, 95.4, 94.0, 89.4, 83.5, 93.1…
+$ `9`               &lt;dbl&gt; 95.8, 91.3, 94.4, 92.8, 98.1, 92.5, 89.9, 83.9, 94.5…
+$ `10`              &lt;dbl&gt; 93.0, 93.9, 95.3, 95.9, 97.5, 92.9, 91.7, 84.0, 96.2…
+$ `11`              &lt;dbl&gt; 99.1, 92.7, 93.2, 95.4, 96.1, 92.8, 90.2, 87.3, 94.2…
+$ `12`              &lt;dbl&gt; 100.1, 93.7, 95.4, 96.3, 97.2, 93.0, 88.6, 87.2, 94.…
+$ `13`              &lt;dbl&gt; 97.5, 92.4, 95.6, 95.0, 98.1, 92.6, 86.2, 86.0, 93.8…
+$ `14`              &lt;dbl&gt; 83.3, 93.2, 95.0, 94.2, 96.3, 92.3, 88.6, 81.4, 94.9…
+$ `15`              &lt;dbl&gt; 85.9, 89.0, 93.7, 92.1, 94.6, 91.2, 87.9, 81.0, 91.1…
+$ `16`              &lt;dbl&gt; 87.5, 86.8, 91.1, 89.7, 94.5, 90.2, 89.5, 83.5, 88.8…
+$ `17`              &lt;dbl&gt; 94.3, 90.3, 94.8, 94.6, 96.7, 90.4, 90.5, 87.9, 89.6…
+$ `18`              &lt;dbl&gt; 97.9, 93.2, 98.0, 89.7, 94.1, 91.8, 90.1, 82.0, 95.1…
+$ `19`              &lt;dbl&gt; 95.0, 91.9, 94.9, 95.2, 95.0, 91.9, 89.4, 85.7, 96.5…
+$ `20`              &lt;dbl&gt; 96.3, 94.9, 97.6, 96.1, 98.2, 92.9, 88.7, 85.9, 99.1…
+$ `21`              &lt;dbl&gt; 93.4, 94.2, 98.2, 96.1, 93.7, 93.3, 87.2, 87.0, 96.6…
+$ `22`              &lt;dbl&gt; 95.7, 92.3, 96.1, 98.1, 85.6, 92.1, 84.4, 89.9, 93.6…
+$ `23`              &lt;dbl&gt; 97.8, 94.3, 96.2, 98.6, 89.5, 91.4, 89.1, 89.4, 94.8…
+$ `24`              &lt;dbl&gt; 99.1, 95.7, 98.9, 98.5, 92.2, 94.2, 91.7, 86.0, 99.5…
+$ `25`              &lt;dbl&gt; 95.6, 96.2, 98.0, 98.9, 96.2, 92.2, 90.9, 87.8, 95.6…
+$ `26`              &lt;dbl&gt; 99.3, 96.3, 98.7, 98.6, 93.2, 95.4, 90.7, 84.8, 99.1…
+$ `27`              &lt;dbl&gt; 97.3, 96.5, 99.6, 98.1, 96.3, 93.2, 85.7, 83.8, 101.…
+$ `28`              &lt;dbl&gt; 88.0, 86.3, 89.9, 84.3, 97.1, 86.2, 86.9, 84.0, 86.2…
+$ `29`              &lt;dbl&gt; 87.7, 87.1, 90.7, 89.3, 93.8, 88.2, 88.9, 81.7, 88.6…
+$ `30`              &lt;dbl&gt; 87.8, 87.3, 91.8, 89.1, 95.4, 86.5, 88.8, 81.6, 88.8…
+$ `31`              &lt;dbl&gt; 88.6, 87.6, 91.8, 91.2, 97.2, 81.9, 87.9, 81.0, 88.0…
+$ `Validation Link` &lt;chr&gt; "https://journaliststudio.google.com/pinpoint-extrac…</code></pre>
+</div>
+</div>
+</section>
+<section id="pivot-longer" class="level2">
+<h2 class="anchored" data-anchor-id="pivot-longer">Pivot Longer</h2>
+<p>Right now each day is a column, let’s change it so days are all under one column and clean up the names of our columns.</p>
+<p>We’ll do this individually before we join the columns so we don’t have to remove the 31st rows for months with only 30 days.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>other_temps_raw <span class="ot">&lt;-</span> other_indoor_temps <span class="sc">|&gt;</span> </span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="st">"1"</span><span class="sc">:</span><span class="st">"31"</span>,</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="st">"day"</span>,</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">"temperature"</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>other_temps_raw</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6,293 × 5
+   `File Name`                Unit   `Validation Link`         day   temperature
+   &lt;chr&gt;                      &lt;chr&gt;  &lt;chr&gt;                     &lt;chr&gt;       &lt;dbl&gt;
+ 1 SB1R56 - August 2023_1.pdf Allred https://journaliststudio… 1            97.7
+ 2 SB1R56 - August 2023_1.pdf Allred https://journaliststudio… 2            99.7
+ 3 SB1R56 - August 2023_1.pdf Allred https://journaliststudio… 3            95.6
+ 4 SB1R56 - August 2023_1.pdf Allred https://journaliststudio… 4            97.6
+ 5 SB1R56 - August 2023_1.pdf Allred https://journaliststudio… 5           100. 
+ 6 SB1R56 - August 2023_1.pdf Allred https://journaliststudio… 6            97.1
+ 7 SB1R56 - August 2023_1.pdf Allred https://journaliststudio… 7            93.8
+ 8 SB1R56 - August 2023_1.pdf Allred https://journaliststudio… 8            92.3
+ 9 SB1R56 - August 2023_1.pdf Allred https://journaliststudio… 9            95.8
+10 SB1R56 - August 2023_1.pdf Allred https://journaliststudio… 10           93  
+# ℹ 6,283 more rows</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>indoor_temps_raw <span class="ot">&lt;-</span> indoor_temps <span class="sc">|&gt;</span> </span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="st">"1"</span><span class="sc">:</span><span class="st">"30"</span>,</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="st">"day"</span>,</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">"temperature"</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>indoor_temps_raw</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6,030 × 5
+   `File Name`               Unit   `Validation Link`          day   temperature
+   &lt;chr&gt;                     &lt;chr&gt;  &lt;chr&gt;                      &lt;chr&gt;       &lt;dbl&gt;
+ 1 SB1R56 - April 2023_1.pdf Allred https://journaliststudio.… 1            75.5
+ 2 SB1R56 - April 2023_1.pdf Allred https://journaliststudio.… 2            79  
+ 3 SB1R56 - April 2023_1.pdf Allred https://journaliststudio.… 3            78.1
+ 4 SB1R56 - April 2023_1.pdf Allred https://journaliststudio.… 4            80.5
+ 5 SB1R56 - April 2023_1.pdf Allred https://journaliststudio.… 5            74.3
+ 6 SB1R56 - April 2023_1.pdf Allred https://journaliststudio.… 6            74.2
+ 7 SB1R56 - April 2023_1.pdf Allred https://journaliststudio.… 7            76.1
+ 8 SB1R56 - April 2023_1.pdf Allred https://journaliststudio.… 8            77.9
+ 9 SB1R56 - April 2023_1.pdf Allred https://journaliststudio.… 9            79  
+10 SB1R56 - April 2023_1.pdf Allred https://journaliststudio.… 10           78.4
+# ℹ 6,020 more rows</code></pre>
+</div>
+</div>
+</section>
+<section id="combine-data-frames" class="level2">
+<h2 class="anchored" data-anchor-id="combine-data-frames">Combine data frames</h2>
+<p>Let’s combine both of our datasets to make a single table.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>indoor_temps_combined <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(other_temps_raw, indoor_temps_raw)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>indoor_temps_combined</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 12,323 × 5
+   `File Name`                Unit   `Validation Link`         day   temperature
+   &lt;chr&gt;                      &lt;chr&gt;  &lt;chr&gt;                     &lt;chr&gt;       &lt;dbl&gt;
+ 1 SB1R56 - August 2023_1.pdf Allred https://journaliststudio… 1            97.7
+ 2 SB1R56 - August 2023_1.pdf Allred https://journaliststudio… 2            99.7
+ 3 SB1R56 - August 2023_1.pdf Allred https://journaliststudio… 3            95.6
+ 4 SB1R56 - August 2023_1.pdf Allred https://journaliststudio… 4            97.6
+ 5 SB1R56 - August 2023_1.pdf Allred https://journaliststudio… 5           100. 
+ 6 SB1R56 - August 2023_1.pdf Allred https://journaliststudio… 6            97.1
+ 7 SB1R56 - August 2023_1.pdf Allred https://journaliststudio… 7            93.8
+ 8 SB1R56 - August 2023_1.pdf Allred https://journaliststudio… 8            92.3
+ 9 SB1R56 - August 2023_1.pdf Allred https://journaliststudio… 9            95.8
+10 SB1R56 - August 2023_1.pdf Allred https://journaliststudio… 10           93  
+# ℹ 12,313 more rows</code></pre>
+</div>
+</div>
+</section>
+<section id="clean-names" class="level2">
+<h2 class="anchored" data-anchor-id="clean-names">Clean names</h2>
+<p>One column we’ll have to convert is our file_name column into a month/year column. In order to do that, we first have to create a value with all of the characters we want to remove.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>word_list <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"SB1R56 - |_1.pdf|_2.pdf"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now that we’ve done that, let’s clean names and make our new column.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>daily_indoor <span class="ot">&lt;-</span> indoor_temps_combined<span class="sc">|&gt;</span> </span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">clean_names</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">month =</span> <span class="fu">str_remove_all</span>(file_name, word_list) </span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  ) </span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>daily_indoor</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 12,323 × 6
+   file_name                  unit   validation_link     day   temperature month
+   &lt;chr&gt;                      &lt;chr&gt;  &lt;chr&gt;               &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;
+ 1 SB1R56 - August 2023_1.pdf Allred https://journalist… 1            97.7 Augu…
+ 2 SB1R56 - August 2023_1.pdf Allred https://journalist… 2            99.7 Augu…
+ 3 SB1R56 - August 2023_1.pdf Allred https://journalist… 3            95.6 Augu…
+ 4 SB1R56 - August 2023_1.pdf Allred https://journalist… 4            97.6 Augu…
+ 5 SB1R56 - August 2023_1.pdf Allred https://journalist… 5           100.  Augu…
+ 6 SB1R56 - August 2023_1.pdf Allred https://journalist… 6            97.1 Augu…
+ 7 SB1R56 - August 2023_1.pdf Allred https://journalist… 7            93.8 Augu…
+ 8 SB1R56 - August 2023_1.pdf Allred https://journalist… 8            92.3 Augu…
+ 9 SB1R56 - August 2023_1.pdf Allred https://journalist… 9            95.8 Augu…
+10 SB1R56 - August 2023_1.pdf Allred https://journalist… 10           93   Augu…
+# ℹ 12,313 more rows</code></pre>
+</div>
+</div>
+</section>
+<section id="add-date-column" class="level2">
+<h2 class="anchored" data-anchor-id="add-date-column">Add date column</h2>
+<p>We’ll need to clean up the dates so they’re standardized and readable. We’ll combine our month/year column with the day column to put through the lubridate function and, while we’re at it, remove unnecessary columns.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>daily_indoor_dated <span class="ot">&lt;-</span> daily_indoor <span class="sc">|&gt;</span> </span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">unite</span>(</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">col =</span> <span class="st">"temp_date"</span>, </span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    day, month,</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">sep =</span> <span class="st">" "</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">|&gt;</span> </span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">date =</span> <span class="fu">dmy</span>(temp_date)</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">!</span><span class="fu">c</span>(file_name, validation_link, temp_date)) <span class="sc">|&gt;</span> </span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">unit_temp =</span> temperature) <span class="sc">|&gt;</span> </span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">!</span>temperature)</span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>daily_indoor_dated</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 12,323 × 3
+   unit   date       unit_temp
+   &lt;chr&gt;  &lt;date&gt;         &lt;dbl&gt;
+ 1 Allred 2023-08-01      97.7
+ 2 Allred 2023-08-02      99.7
+ 3 Allred 2023-08-03      95.6
+ 4 Allred 2023-08-04      97.6
+ 5 Allred 2023-08-05     100. 
+ 6 Allred 2023-08-06      97.1
+ 7 Allred 2023-08-07      93.8
+ 8 Allred 2023-08-08      92.3
+ 9 Allred 2023-08-09      95.8
+10 Allred 2023-08-10      93  
+# ℹ 12,313 more rows</code></pre>
+</div>
+</div>
+</section>
+<section id="combine-ramsey-rows" class="level2">
+<h2 class="anchored" data-anchor-id="combine-ramsey-rows">Combine Ramsey rows</h2>
+<p>It looks like the Ramsey unit was recorded with slightly different names in each csv. Let’s combine both of those columns so all of the data is together and then remove any leftover NA’s.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>ramsey <span class="ot">&lt;-</span> daily_indoor_dated <span class="sc">|&gt;</span> </span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(<span class="at">unit =</span> <span class="fu">case_when</span>(</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">grepl</span>(<span class="st">'ram'</span>, unit, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>) <span class="sc">==</span> <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"Ramsey"</span>,</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="cn">TRUE</span> <span class="sc">~</span> unit</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>))</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>ramsey</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 12,323 × 3
+   unit   date       unit_temp
+   &lt;chr&gt;  &lt;date&gt;         &lt;dbl&gt;
+ 1 Allred 2023-08-01      97.7
+ 2 Allred 2023-08-02      99.7
+ 3 Allred 2023-08-03      95.6
+ 4 Allred 2023-08-04      97.6
+ 5 Allred 2023-08-05     100. 
+ 6 Allred 2023-08-06      97.1
+ 7 Allred 2023-08-07      93.8
+ 8 Allred 2023-08-08      92.3
+ 9 Allred 2023-08-09      95.8
+10 Allred 2023-08-10      93  
+# ℹ 12,313 more rows</code></pre>
+</div>
+</div>
+</section>
+<section id="export-the-data" class="level2">
+<h2 class="anchored" data-anchor-id="export-the-data">Export the data</h2>
+<p>We did it! Now let’s export our data and place it in our processed data folder.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>ramsey <span class="sc">|&gt;</span> <span class="fu">write_rds</span>(<span class="st">"data-processed/ali-01-heat-all.rds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

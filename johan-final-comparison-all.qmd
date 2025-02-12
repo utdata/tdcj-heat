@@ -128,6 +128,7 @@ age_count <- unit_info_join |>
 
 age_count
 ```
+
 ## Grouping by `unit`
 
 Now, we want to group by unit to see which units have more flagged days.
@@ -168,12 +169,68 @@ print(p)
 }
 ```
 
+## Analysis of `prison type` grouping
 
+```{r}
+#| label: specific prison
+unit_info_join |> 
+  select(date, type, unit, station_code, station_temp, temp_diff) |> 
+  filter(type == "Prison") |>
+  group_by(unit) |> 
+  summarise(number_of_days_over_15 = n()) |> 
+  arrange(desc(number_of_days_over_15))
+```
 
+```{r}
+#| label: specific state jail
+unit_info_join |> 
+  select(date, type, unit, station_code, station_temp, temp_diff) |> 
+  filter(type == "State Jail") |>
+  group_by(unit) |> 
+  summarise(number_of_days_over_15 = n()) |> 
+  arrange(desc(number_of_days_over_15))
+```
 
+## Analysis of `Region` grouping
 
+```{r}
+#| label: region V 
+unit_info_join |> 
+  select(date, region, unit, station_code, station_temp, temp_diff) |> 
+  filter(region == "V") |> 
+  group_by(unit) |> 
+  summarise(number_of_days_over_15 = n()) |> 
+  arrange(desc(number_of_days_over_15))
+```
 
+```{r}
+#| label: region IV 
+unit_info_join |> 
+  select(date, region, unit, station_code, station_temp, temp_diff) |> 
+  filter(region == "IV") |> 
+  group_by(unit) |> 
+  summarise(number_of_days_over_15 = n()) |> 
+  arrange(desc(number_of_days_over_15))
+```
 
+## Analysis of `prison age` grouping
 
+```{r}
+#| label: age
+unit_info_join |> 
+  select(date, established, unit, station_code, station_temp, temp_diff) |> 
+  filter(established == "1995") |> 
+  group_by(unit) |> 
+  summarise(number_of_days_over_15 = n()) |> 
+  arrange(desc(number_of_days_over_15))
+```
 
-
+```{r}
+#| label: age
+unit_info_join |> 
+  select(date, established, unit, station_code, station_temp, temp_diff) |> 
+  filter(established == "1994") |> 
+  group_by(unit) |> 
+  summarise(number_of_days_over_15 = n()) |> 
+  arrange(desc(number_of_days_over_15))
+```

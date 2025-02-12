@@ -1,0 +1,45 @@
+---
+title: "Activation Cleaning"
+---
+
+```{r}
+#| label: setup
+#| message: false
+
+library(tidyverse)
+library(janitor)
+library(readxl)
+```
+
+## Importing activation data
+
+This code chunk will import the activation data and clean the columns to work with in the next notebook. The column types functions is used to make the times work, the column names function is used to fix the names of the columns
+
+```{r}
+#| label: cleaning
+
+activation_data <- read_csv("data-raw/unit-activation-log.csv")
+  colnames(activation_data) <- c("initial_date","implementation_date","county","unit","initiated_date","ics_initiated_time","deactivated_date","ics_deactivated_time")
+  
+activation_data_cleaned <- select(activation_data, c("initial_date", "implementation_date", "unit", "deactivated_date"))
+
+activation_data_cleaned <- activation_data_cleaned[-1, ]
+
+activation_data_cleaned$initial_date <- mdy(activation_data_cleaned$initial_date)
+
+final_df <- activation_data_cleaned$implementation_date <- mdy(activation_data_cleaned$implementation_date)
+
+final_initited <- activation_data_cleaned$deactivated_date <- mdy(activation_data_cleaned$deactivated_date)
+
+str(activation_data_cleaned)
+```
+## Exporting file
+
+This code chunk will export the data into the data processed file.
+
+```{r}
+#| label: exporting
+
+activation_data_cleaned |> write_rds("data-processed/pearson-activation-data.rds")
+```
+

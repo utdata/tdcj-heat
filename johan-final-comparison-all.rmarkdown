@@ -1,0 +1,192 @@
+---
+title: "johan-final-comparison-all"
+---
+
+
+## Loading in libaries
+
+Setting up my libraries.
+
+
+```{r}
+#| label: setup
+#| message: false
+
+library(tidyverse)
+library(janitor)
+library(dplyr)
+library(lubridate)
+```
+
+
+## Importing `final comparison's`
+
+I’m importing the final comparison RDS files, so that I can later combine them using rbind.
+
+
+```{r}
+#| label: importing comparisons
+ali <- read_rds("data-processed/ali-final-comparison.rds")
+johan <- read_rds("data-processed/johan-final-comparison.rds")
+karina <- read_rds("data-processed/karina-final-comparison.rds")
+pearson <- read_rds("data-processed/pearson-final-comparison.rds")
+```
+
+
+## Binding `final comparison's`
+
+We are flagging any temperature difference greater than or equal to 15 degrees Fahrenheit and 0 degrees Fahrenheit as notable.
+
+
+```{r}
+#| label: cleaning flagged data
+final <- rbind(ali, johan, karina, pearson)
+
+unit_flagged <- final |> 
+  arrange(temp_diff |> desc()) |> 
+  filter(temp_diff >= 15 | temp_diff == 0)
+
+unit_flagged
+```
+
+
+After looking at the original csv, there is a comma where it seems Sanchez on Sept. 9th, 2023 should be 88.7, not 887. So, the `temp_diff` should be 9.8.
+
+## Importing `unit_info`
+
+I’m importing the created spreadsheet with collected unit information and cleaning the names.
+
+
+```{r}
+#| label: importing unit_info
+units <- read_csv("data-raw/unit_info_altered.csv")
+
+unit_info <- units |> clean_names()
+
+unit_info
+```
+
+
+## Cleaning `unit_info`
+
+I’m changing the column names to better fit our final comparison list, and selecting only the columns we need.
+
+
+```{r}
+#| label: cleaning
+ unit_info_c <- unit_info |> 
+  rename(unit = unit_name) |> 
+  select(unit, type, region, established)
+
+unit_info_c
+```
+
+
+## Joining
+
+Now, let’s join our final comparison data with our new information by unit.
+
+
+```{r}
+#| label: full join
+unit_info_join <- unit_flagged |> 
+  left_join(unit_info_c, by = "unit") |> 
+  select(date, type, region, established, unit, unit_temp, station_code, station_temp, temp_diff)
+
+unit_info_join
+```
+
+
+## Grouping by `prison type`
+
+Now, we want to group by prison type to see which types of prisons have more flagged days.
+
+
+```{r}
+#| label: type
+type_count <- unit_info_join |> 
+  select(date, type, unit, station_code, station_temp, temp_diff) |> 
+  group_by(type) |> 
+  summarise(number_of_days_over_15 = n()) |> 
+  arrange(desc(number_of_days_over_15))
+
+type_count
+```
+
+
+## Grouping by `region`
+
+Now, we want to group by region to see which regions of prisons have more flagged days.
+
+
+```{r}
+#| label: region
+region_count <- unit_info_join |> 
+  select(date, region, unit, station_code, station_temp, temp_diff) |> 
+  group_by(region) |> 
+  summarise(number_of_days_over_15 = n()) |> 
+  arrange(desc(number_of_days_over_15))
+
+region_count
+```
+
+
+## Grouping by `age of prison`
+
+Now, we want to group by the age of the prison to determine if the building’s age is associated with having more flagged days.
+
+
+```{r}
+#| label: age
+age_count <- unit_info_join |> 
+  select(date, established, unit, station_code, station_temp, temp_diff) |> 
+  group_by(established) |> 
+  summarise(number_of_days_over_15 = n()) |> 
+  arrange(desc(number_of_days_over_15))
+
+age_count
+```
+
+## Grouping by `unit`
+
+Now, we want to group by unit to see which units have more flagged days.
+
+
+```{r}
+unit_count <- unit_info_join |> 
+  select(date, region, unit, station_code, station_temp, temp_diff) |> 
+  group_by(unit) |> 
+  summarise(number_of_days_over_15 = n()) |> 
+  arrange(desc(number_of_days_over_15))
+
+unit_count
+```
+
+
+## Charts
+
+Finally, we are creating individual charts to visualize the difference between unit and station temperatures.
+
+
+```{r}
+#| label: facets
+
+units <- unique(final$unit)
+for (unit_name in units) {
+  df <- subset(final, unit == unit_name)
+  
+p <- ggplot(df, aes(x = date)) +
+  geom_line(aes(y = unit_temp, color = "Unit Temp")) +
+  geom_line(aes(y = station_temp, color = "Station Temp")) +
+  labs(
+    title = paste("Temperature Trends for Unit:", unit_name),
+    x = "Date",
+    y = "Temperature"
+  ) +
+  ylim(0, 120) +
+  theme_minimal()
+
+print(p)
+}
+```
+

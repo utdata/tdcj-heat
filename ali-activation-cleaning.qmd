@@ -1,0 +1,75 @@
+---
+title: "ali-activation-cleaning"
+---
+
+It's time to add in a new data source: the heat protocol activation logs. 
+
+## Set up
+
+You know the drill!
+
+```{r}
+#| label: setup
+#| message: false
+
+library(tidyverse)
+library(janitor)
+```
+
+## Import activation log
+
+Let's add our activation log file in.
+
+```{r}
+raw_activation_log <- read_csv("data-raw/unit_activation_log.csv")
+
+raw_activation_log
+```
+
+## Clean column names
+
+Our column names didn't translate perfectly, so let's work on cleaning them up and remove the last two unnecessary columns.
+
+```{r}
+activation_log <- raw_activation_log |> 
+  rename(initial_extreme_temp = ...1) |> 
+  rename(initiation_date = ...2) |> 
+  rename(county = ...3) |> 
+  rename(unit = ...4) |> 
+  rename(activation_date = "ICS Initiated") |> 
+  rename(activation_time = ...6) |> 
+  rename(deactivation_date = "ICS Deactivated") |> 
+  rename(deactivation_time = ...8) |> 
+  select(!c(...9, ...10))
+
+activation_log
+```
+
+Now let's remove the first row since that repeats our column information.
+
+```{r}
+clean_activation_log <- activation_log[-c(1), ]
+
+clean_activation_log
+```
+
+## Change date columns
+
+We need our dates to be date columns instead of character columns. Let's adjust.
+
+```{r}
+activation_log_dates <- clean_activation_log |> 
+  mutate(
+    initial_extreme_temp = mdy(initial_extreme_temp)
+  ) |> 
+  mutate(
+    initiation_date = mdy(initiation_date)
+    ) |> 
+  mutate(
+    activation_date = mdy(activation_date)
+    ) |> 
+  mutate(deactivation_date = mdy(deactivation_date))
+
+activation_log_dates
+```
+

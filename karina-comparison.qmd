@@ -98,84 +98,218 @@ Baten<- all_units |> filter(unit == "Baten") # no data
 ```
 
 ```{r}
-ellis_merge <- left_join(Ellis, KUTS, by = "date") |> select(date, unit, unit_temp, station_code, station_temp)
+ellis_merge <- left_join(Ellis, KUTS, by = "date") |> select(date, unit, unit_temp, station_code, station_temp) |> 
+  mutate(
+    status = case_when(
+      date %in%
+      c(
+        seq(ymd("2023-08-02"), ymd("2023-08-28"), by = "days")
+        ) ~ "active",
+      date %in%
+      c(
+        "2023-07-31", "2023-08-01", "2023-08-29", "2023-08-30"
+        ) ~ "adjacent",
+      .default = "inactive")
+    ) 
 
 ellis_merge
 ```
 
 
 ```{r}
-estelle_merge <- left_join(Estelle, KUTS, by = "date") |> select(date, unit, unit_temp, station_code, station_temp)
+estelle_merge <- left_join(Estelle, KUTS, by = "date") |> select(date, unit, unit_temp, station_code, station_temp) |> 
+  mutate(
+    status = case_when(
+      date %in%
+      c(
+        seq(ymd("2023-08-02"), ymd("2023-08-28"), by = "days")
+        ) ~ "active",
+      date %in%
+      c(
+        "2023-07-31", "2023-08-01", "2023-08-29", "2023-08-30"
+        ) ~ "adjacent",
+      .default = "inactive")
+    )
 
 estelle_merge
 ```
 
 ```{r}
-goree_merge <- left_join(Goree, KUTS, by = "date") |> select(date, unit, unit_temp, station_code, station_temp)
+goree_merge <- left_join(Goree, KUTS, by = "date") |> select(date, unit, unit_temp, station_code, station_temp) |> 
+  mutate(
+    status = case_when(
+      date %in%
+      c(
+        seq(ymd("2023-06-23"), ymd("2023-06-29"), by = "days"),
+        seq(ymd("2023-08-02"), ymd("2023-08-28"), by = "days")
+        ) ~ "active",
+      date %in%
+      c(
+        "2023-06-21", "2023-06-22", "2023-06-30", "2023-07-01", "2023-07-31", "2023-08-01", "2023-08-29", "2023-08-30"
+        ) ~ "adjacent",
+      .default = "inactive")
+    )
 
 goree_merge
 ```
 
 
 ```{r}
-holliday_merge <- left_join(Holliday, KUTS, by = "date") |> select(date, unit, unit_temp, station_code, station_temp)
+holliday_merge <- left_join(Holliday, KUTS, by = "date") |> select(date, unit, unit_temp, station_code, station_temp) |> 
+  mutate(
+    status = case_when(
+      date %in%
+      c(
+        seq(ymd("2023-06-24"), ymd("2023-06-29"), by = "days"),
+        seq(ymd("2023-07-30"), ymd("2023-08-28"), by = "days")
+        ) ~ "active",
+      date %in%
+      c(
+        "2023-06-22", "2023-06-23", "2023-06-30", "2023-07-01", "2023-07-28", "2023-07-29", "2023-08-29", "2023-08-30"
+        ) ~ "adjacent",
+      .default = "inactive")
+    )
 
 holliday_merge
 ```
 
 ```{r}
 
-huntsville_merge <- left_join(Huntsville, KUTS, by = "date") |> select(date, unit, unit_temp, station_code, station_temp)
+huntsville_merge <- left_join(Huntsville, KUTS, by = "date") |> select(date, unit, unit_temp, station_code, station_temp) |> 
+  mutate(
+    status = "inactive"
+    ) 
 
 huntsville_merge
 ```
 
 ```{r}
-wynne_merge <- left_join(Wynne, KUTS, by = "date") |> select(date, unit, unit_temp, station_code, station_temp)
+wynne_merge <- left_join(Wynne, KUTS, by = "date") |> select(date, unit, unit_temp, station_code, station_temp) |> 
+  mutate(
+    status = case_when(
+      date %in%
+      c(
+        seq(ymd("2023-06-24"), ymd("2023-06-29"), by = "days"),
+        seq(ymd("2023-08-02"), ymd("2023-08-28"), by = "days")
+        ) ~ "active",
+      date %in%
+      c(
+        "2023-06-22", "2023-06-23", "2023-06-30", "2023-07-01", "2023-07-31", "2023-08-01", "2023-08-29", "2023-08-30"
+        ) ~ "adjacent",
+      .default = "inactive")
+    )
 
 wynne_merge
 ```
 
 ```{r}
-ferguson_merge <- left_join(Ferguson, KUTS, by = "date") |> select(date, unit, unit_temp, station_code, station_temp)
+ferguson_merge <- left_join(Ferguson, KUTS, by = "date") |> select(date, unit, unit_temp, station_code, station_temp) |> 
+  mutate(
+    status = case_when(
+      date %in%
+      c(
+        seq(ymd("2023-06-15"), ymd("2023-06-22"), by = "days"),
+        seq(ymd("2023-06-23"), ymd("2023-06-30"), by = "days"),
+        seq(ymd("2023-07-08"), ymd("2023-07-24"), by = "days"),
+        seq(ymd("2023-07-30"), ymd("2023-08-28"), by = "days")
+        ) ~ "active",
+      date %in%
+      c(
+        "2023-06-13", "2023-06-14", "2023-07-01", "2023-07-02", "2023-07-06", "2023-07-07", "2023-07-25", "2023-07-26", "2023-07-28", "2023-07-29", "2023-08-29", "2023-08-30"
+        ) ~ "adjacent",
+      .default = "inactive")
+    )
 
 ferguson_merge
-
 ```
 
 ```{r}
-
-goodman_merge <- left_join(Goodman, KJAS, by = "date") |> select(date, unit, unit_temp, station_code, station_temp)
+goodman_merge <- left_join(Goodman, KJAS, by = "date") |> select(date, unit, unit_temp, station_code, station_temp) |> 
+  mutate(
+    status = case_when(
+      date %in%
+      c(
+        seq(ymd("2023-07-30"), ymd("2023-08-28"), by = "days")
+        ) ~ "active",
+      date %in%
+      c(
+        "2023-07-28", "2023-07-29", "2023-08-29", "2023-08-30"
+        ) ~ "adjacent",
+      .default = "inactive")
+    )
 
 goodman_merge
 ```
 
 ```{r}
-polunksy_merge <- left_join(Polunsky, KCXO, by = "date") |> select(date, unit, unit_temp, station_code, station_temp)
+polunksy_merge <- left_join(Polunsky, KCXO, by = "date") |> select(date, unit, unit_temp, station_code, station_temp) |> 
+  mutate(
+    status = case_when(
+      date %in%
+      c(
+        seq(ymd("2023-08-02"), ymd("2023-08-28"), by = "days")
+        ) ~ "active",
+      date %in%
+      c(
+        "2023-07-31", "2023-08-01", "2023-08-29", "2023-08-30"
+        ) ~ "adjacent",
+      .default = "inactive")
+    )
 
 polunksy_merge
 ```
 
 ```{r}
-montford_merge <- left_join(Montford, KLBB, by = "date") |> select(date, unit, unit_temp, station_code, station_temp)
+montford_merge <- left_join(Montford, KLBB, by = "date") |> select(date, unit, unit_temp, station_code, station_temp) |> 
+  mutate(
+    status = case_when(
+      date %in%
+      c(
+        seq(ymd("2023-06-19"), ymd("2023-06-22"), by = "days")
+        ) ~ "active",
+      date %in%
+      c(
+        "2023-06-17", "2023-06-18", "2023-06-23", "2023-06-24"
+        ) ~ "adjacent",
+      .default = "inactive")
+    )
 
 montford_merge
 ```
 
 ```{r}
-hobby_merge <- left_join(Hobby, KPWG, by = "date") |> select(date, unit, unit_temp, station_code, station_temp)
+hobby_merge <- left_join(Hobby, KPWG, by = "date") |> select(date, unit, unit_temp, station_code, station_temp)  |> 
+  mutate(
+    status = case_when(
+      date %in%
+      c(
+        seq(ymd("2023-06-17"), ymd("2023-06-30"), by = "days"),
+        seq(ymd("2023-07-12"), ymd("2023-07-21"), by = "days")
+        ) ~ "active",
+      date %in%
+      c(
+        "2023-06-15", "2023-06-16", "2023-07-01", "2023-07-02", "2023-07-10", "2023-07-11", "2023-07-22", "2023-07-23"
+        ) ~ "adjacent",
+      .default = "inactive")
+    )
 
 hobby_merge
 ```
 
 ```{r}
-telford_merge <- left_join(Telford, KTXK, by = "date") |> select(date, unit, unit_temp, station_code, station_temp)
+telford_merge <- left_join(Telford, KTXK, by = "date") |> select(date, unit, unit_temp, station_code, station_temp) |> 
+  mutate(
+    status = "inactive"
+    ) 
 
 telford_merge
 ```
 
 ```{r}
-powledge_merge <- left_join(Powledge, KPSN, by = "date") |> select(date, unit, unit_temp, station_code, station_temp)
+powledge_merge <- left_join(Powledge, KPSN, by = "date") |> select(date, unit, unit_temp, station_code, station_temp) |> 
+  mutate(
+    status = "inactive"
+    ) 
 
 powledge_merge
 ```

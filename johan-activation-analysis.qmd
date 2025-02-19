@@ -1,0 +1,60 @@
+---
+title: "johan-activation-analysis"
+---
+
+## Loading in libaries
+
+Setting up my libraries.
+
+```{r}
+#| label: setup
+#| message: false
+
+library(tidyverse)
+library(janitor)
+library(dplyr)
+library(lubridate)
+```
+
+## Importing `final comparison's`
+
+I’m importing the final comparison RDS files, so that I can later combine them using rbind.
+
+```{r}
+#| label: importing comparisons
+activation <- read_rds("data-processed/activation_data.rds")
+unit <- read_rds("data-processed/unit_temps.rds")
+
+unit
+
+activation
+```
+
+
+```{r}
+unit_lopez <- unit |> 
+  filter(unit == "Lopez")
+
+unit_lopez
+```
+
+```{r}
+activation_lopez <- activation |> 
+  filter(unit == "Lopez")
+
+activation_lopez
+```
+```{r}
+activation_lopez %>%
+  inner_join(unit_lopez, by = c("initial_date" = "date"))
+```
+
+# Binding `final comparison's`
+
+We are flagging any temperature difference greater than or equal to 15 degrees Fahrenheit and 0 degrees Fahrenheit as notable.
+
+```{r}
+#| label: cleaning flagged data
+
+
+```

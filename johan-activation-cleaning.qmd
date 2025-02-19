@@ -1,0 +1,121 @@
+---
+title: "Cleaning"
+---
+
+## Setup
+
+Setting up my libraries.
+
+```{r}
+#| label: setup
+#| message: false
+
+library(tidyverse)
+library(janitor)
+library(dplyr)
+library(lubridate)
+```
+
+## Importing `final comparison's`
+
+I’m importing the final comparison RDS files, so that I can later combine them using rbind.
+
+```{r}
+#| label: importing comparisons
+ali <- read_rds("data-processed/ali-final-comparison.rds")
+johan <- read_rds("data-processed/johan-final-comparison.rds")
+karina <- read_rds("data-processed/karina-final-comparison.rds")
+pearson <- read_rds("data-processed/pearson-final-comparison.rds")
+```
+
+## Binding `final comparison's`
+
+```{r}
+#| label: cleaning flagged data
+final <- rbind(ali, johan, karina, pearson)
+
+unit <- final |> 
+  arrange(date)
+
+unit
+```
+
+## Exporting final comparison
+
+```{r}
+unit |> 
+  write_rds("data-processed/unit_temps.rds")
+```
+
+## Importing Activation Data
+
+```{r}
+#| label: import activation
+
+heat <- read_csv("data-raw/unit-activation-log.csv")
+
+heat
+```
+
+## Cleaning Activation data
+
+```{r}
+#| label: cleaning
+
+heat_c <- heat |> 
+  clean_names() |> 
+  rename(initial_date = initial_date_of_extreme_temperature,
+         implementation_date = ics_implementation_date,
+         unit = unit_affected,
+         initiated_date = ics_initiated_date, 
+         initiated_time = ics_initiated_time, 
+         deactivated_date = ics_deactivated_date,
+         deactivated_time = ics_deactivated_time,
+         )
+
+heat_c
+```
+
+
+```{r}
+
+heat_c$initial_date <- ymd(heat_c$initial_date) 
+
+final_df <- heat_c$implementation_date <- as.Date(heat_c$implementation_date, format = "%Y-%m-%d")
+
+final_initiated <- heat_c$initiated_date  <- as.Date(heat_c$initiated_date, format = "%Y-%m-%d")  
+
+str(heat_c)
+```
+
+```{r}
+heat_c |> 
+  select(c(initial_date, implementation_date, unit, deactivated_date))
+```
+
+```{r}
+#| label: export
+
+heat_c |> 
+  write_rds("data-processed/activation_data.rds")
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

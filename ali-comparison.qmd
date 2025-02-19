@@ -10,6 +10,17 @@ Here's what we want to get done in this notebook:
 - Determine temperature differences
 - Recombine all stations/units into one data frame
 
+## Set up
+
+```{r}
+#| label: setup
+#| message: false
+
+library(tidyverse)
+library(janitor)
+```
+
+
 ## Import data
 
 ```{r}
@@ -163,7 +174,21 @@ Let's put together the right station data with the right unit data.
 ```{r}
 byrd_combined <- byrd |> 
   left_join(KUTS) |> 
-  arrange(date)
+  arrange(date) |> 
+  mutate(
+    status = case_when(
+      date %in%
+      c(
+        seq(ymd("2023-06-19"), ymd("2023-06-23"), by = "days"),
+        seq(ymd("2023-06-24"), ymd("2023-06-29"), by = "days"),
+        seq(ymd("2023-07-30"), ymd("2023-08-28"), by = "days")
+        ) ~ "active",
+      date %in%
+      c(
+        "2023-06-17", "2023-06-18", "2023-06-23", "2023-06-30", "2023-07-01", "2023-07-28", "2023-07-29", "2023-08-29", "2023-08-30"
+        ) ~ "adjacent",
+      .default = "inactive")
+    ) 
 
 byrd_combined
 ```
@@ -171,7 +196,10 @@ byrd_combined
 ```{r}
 lychner_combined <- lychner |> 
   left_join(KIAH) |> 
-  arrange(date)
+  arrange(date)  |> 
+  mutate(
+    status = "inactive"
+    ) 
 
 lychner_combined
 ```
@@ -179,7 +207,10 @@ lychner_combined
 ```{r}
 torres_combined <- torres |> 
   left_join(KIAH) |> 
-  arrange(date)
+  arrange(date) |> 
+  mutate(
+    status = "inactive"
+    ) 
 
 torres_combined
 ```
@@ -187,7 +218,10 @@ torres_combined
 ```{r}
 bradshaw_combined <- bradshaw |> 
   left_join(KRFI) |> 
-  arrange(date)
+  arrange(date) |> 
+  mutate(
+    status = "inactive"
+    ) 
 
 bradshaw_combined
 ```
@@ -195,7 +229,19 @@ bradshaw_combined
 ```{r}
 woodman_combined <- woodman |> 
   left_join(KGOP) |> 
-  arrange(date)
+  arrange(date) |> 
+  mutate(
+    status = case_when(
+      date %in%
+      c(
+        seq(ymd("2023-06-17"), ymd("2023-06-23"), by = "days")
+        ) ~ "active",
+      date %in%
+      c(
+        "2023-06-15", "2023-06-16", "2023-06-24", "2023-06-25"
+        ) ~ "adjacent",
+      .default = "inactive")
+    ) 
 
 woodman_combined
 ```
@@ -203,7 +249,19 @@ woodman_combined
 ```{r}
 o_daniel_combined <- o_daniel |> 
   left_join(KGOP) |> 
-  arrange(date)
+  arrange(date)  |> 
+  mutate(
+    status = case_when(
+      date %in%
+      c(
+        seq(ymd("2023-06-17"), ymd("2023-06-23"), by = "days")
+        ) ~ "active",
+      date %in%
+      c(
+        "2023-06-15", "2023-06-16", "2023-06-24", "2023-06-25"
+        ) ~ "adjacent",
+      .default = "inactive")
+    ) 
 
 o_daniel_combined
 ```
@@ -211,7 +269,19 @@ o_daniel_combined
 ```{r}
 murray_combined <- murray |> 
   left_join(KGOP) |> 
-  arrange(date)
+  arrange(date) |> 
+  mutate(
+    status = case_when(
+      date %in%
+      c(
+        seq(ymd("2023-06-17"), ymd("2023-06-23"), by = "days")
+        ) ~ "active",
+      date %in%
+      c(
+        "2023-06-15", "2023-06-16", "2023-06-24", "2023-06-25"
+        ) ~ "adjacent",
+      .default = "inactive")
+    ) 
 
 murray_combined
 ```
@@ -219,7 +289,19 @@ murray_combined
 ```{r}
 hughes_combined <- hughes |> 
   left_join(KGOP) |> 
-  arrange(date)
+  arrange(date) |> 
+  mutate(
+    status = case_when(
+      date %in%
+      c(
+        seq(ymd("2023-06-17"), ymd("2023-06-23"), by = "days")
+        ) ~ "active",
+      date %in%
+      c(
+        "2023-06-15", "2023-06-16", "2023-06-24", "2023-06-25"
+        ) ~ "adjacent",
+      .default = "inactive")
+    ) 
 
 hughes_combined
 ```
@@ -227,7 +309,19 @@ hughes_combined
 ```{r}
 hilltop_combined <- hilltop |> 
   left_join(KGOP) |> 
-  arrange(date)
+  arrange(date) |> 
+  mutate(
+    status = case_when(
+      date %in%
+      c(
+        seq(ymd("2023-06-17"), ymd("2023-06-23"), by = "days")
+        ) ~ "active",
+      date %in%
+      c(
+        "2023-06-15", "2023-06-16", "2023-06-24", "2023-06-25"
+        ) ~ "adjacent",
+      .default = "inactive")
+    ) 
 
 hilltop_combined
 ```
@@ -235,7 +329,19 @@ hilltop_combined
 ```{r}
 crain_combined <- crain |> 
   left_join(KGOP) |> 
-  arrange(date)
+  arrange(date) |> 
+  mutate(
+    status = case_when(
+      date %in%
+      c(
+        seq(ymd("2023-06-17"), ymd("2023-06-23"), by = "days")
+        ) ~ "active",
+      date %in%
+      c(
+        "2023-06-15", "2023-06-16", "2023-06-24", "2023-06-25"
+        ) ~ "adjacent",
+      .default = "inactive")
+    ) 
 
 crain_combined
 ```
@@ -243,7 +349,21 @@ crain_combined
 ```{r}
 lynaugh_combined <- lynaugh |> 
   left_join(KFST) |> 
-  arrange(date)
+  arrange(date) |> 
+  mutate(
+    status = case_when(
+      date %in%
+      c(
+        seq(ymd("2023-06-19"), ymd("2023-06-29"), by = "days"),
+        seq(ymd("2023-07-11"), ymd("2023-07-16"), by = "days"),
+        seq(ymd("2023-08-04"), ymd("2023-08-14"), by = "days")
+        ) ~ "active",
+      date %in%
+      c(
+        "2023-06-17", "2023-06-18", "2023-06-30", "2023-07-01", "2023-07-09", "2023-07-10", "2023-07-17", "2023-07-18", "2023-08-02", "2023-08-03", "2023-08-15", "2023-08-16"
+        ) ~ "adjacent",
+      .default = "inactive")
+    ) 
 
 lynaugh_combined
 ```
@@ -251,7 +371,21 @@ lynaugh_combined
 ```{r}
 sanchez_combined <- sanchez |> 
   left_join(KELP) |> 
-  arrange(date)
+  arrange(date) |>
+  mutate(
+    status = case_when(
+      date %in%
+      c(
+        seq(ymd("2023-07-06"), ymd("2023-07-09"), by = "days"),
+        seq(ymd("2023-07-17"), ymd("2023-07-21"), by = "days"),
+        seq(ymd("2023-08-05"), ymd("2023-08-11"), by = "days")
+        ) ~ "active",
+      date %in%
+      c(
+        "2023-07-04", "2023-07-05", "2023-07-10", "2023-07-11", "2023-07-15", "2023-07-16", "2023-07-22", "2023-07-23", "2023-08-03", "2023-08-04", "2023-08-12", "2023-08-13"
+        ) ~ "adjacent",
+      .default = "inactive")
+    )
 
 sanchez_combined
 ```
@@ -259,7 +393,20 @@ sanchez_combined
 ```{r}
 segovia_combined <- segovia |> 
   left_join(KMFE) |> 
-  arrange(date)
+  arrange(date) |> 
+  mutate(
+    status = case_when(
+      date %in%
+      c(
+        seq(ymd("2023-06-13"), ymd("2023-06-29"), by = "days"),
+        seq(ymd("2023-08-08"), ymd("2023-08-17"), by = "days")
+        ) ~ "active",
+      date %in%
+      c(
+        "2023-06-11", "2023-06-12", "2023-06-30", "2023-07-01", "2023-08-06", "2023-08-07", "2023-08-18", "2023-08-19"
+        ) ~ "adjacent",
+      .default = "inactive")
+    ) 
 
 segovia_combined
 ```
@@ -267,7 +414,20 @@ segovia_combined
 ```{r}
 lopez_combined <- lopez |> 
   left_join(KMFE) |> 
-  arrange(date)
+  arrange(date) |> 
+  mutate(
+    status = case_when(
+      date %in%
+      c(
+        seq(ymd("2023-06-13"), ymd("2023-06-29"), by = "days"),
+        seq(ymd("2023-08-08"), ymd("2023-08-17"), by = "days")
+        ) ~ "active",
+      date %in%
+      c(
+        "2023-06-11", "2023-06-12", "2023-06-30", "2023-07-01", "2023-08-06", "2023-08-07", "2023-08-18", "2023-08-19"
+        ) ~ "adjacent",
+      .default = "inactive")
+    ) 
 
 lopez_combined
 ```
@@ -275,7 +435,20 @@ lopez_combined
 ```{r}
 briscoe_combined <- briscoe |> 
   left_join(KCOT) |> 
-  arrange(date)
+  arrange(date) |> 
+  mutate(
+    status = case_when(
+      date %in%
+      c(
+        seq(ymd("2023-06-13"), ymd("2023-07-03"), by = "days"),
+        seq(ymd("2023-08-08"), ymd("2023-08-17"), by = "days")
+        ) ~ "active",
+      date %in%
+      c(
+        "2023-06-11", "2023-06-12", "2023-07-04", "2023-07-05", "2023-08-06", "2023-08-07", "2023-08-18", "2023-08-19"
+        ) ~ "adjacent",
+      .default = "inactive")
+    ) 
 
 briscoe_combined
 ```
@@ -283,7 +456,10 @@ briscoe_combined
 ```{r}
 young_combined <- young |> 
   left_join(KEFD) |> 
-  arrange(date)
+  arrange(date) |> 
+  mutate(
+    status = "inactive"
+    ) 
 
 young_combined
 ```
@@ -336,7 +512,7 @@ Nice! Now we just need to switch the order of our date and unit columns.
 
 ```{r}
 ali_final_comparison <- jails_diff |> 
-  relocate(unit, .after = date)
+  relocate(unit, .after = date) 
 
 ali_final_comparison
 ```

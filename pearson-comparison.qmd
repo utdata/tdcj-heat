@@ -321,6 +321,8 @@ Hutchins_active <- Hutchins_comp |>
 Hutchins_active
 ```
 
+This code chunk joins the data frames together.
+
 ```{r}
 #|label: joining all frames
 

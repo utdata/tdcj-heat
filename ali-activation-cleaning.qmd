@@ -21,7 +21,7 @@ library(janitor)
 Let's add our activation log file in.
 
 ```{r}
-raw_activation_log <- read_csv("data-raw/unit_activation_log.csv")
+raw_activation_log <- read_csv("data-raw/unit-activation-log.csv")
 
 raw_activation_log
 ```
@@ -63,10 +63,10 @@ activation_log_dates <- clean_activation_log |>
     initial_extreme_temp = mdy(initial_extreme_temp)
   ) |> 
   mutate(
-    initiation_date = mdy(initiation_date)
+    initial_date = mdy(initiation_date)
     ) |> 
   mutate(
-    activation_date = mdy(activation_date)
+    implementation_date = mdy(activation_date)
     ) |> 
   mutate(deactivation_date = mdy(deactivation_date))
 

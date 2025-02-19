@@ -1,0 +1,89 @@
+---
+title: "Activation Analysis"
+---
+
+```{r}
+#| label: setup
+#| message: false
+
+library(tidyverse)
+library(janitor)
+library(lubridate)
+library(plotly)
+```
+
+## Importing Unit-Weather Station Data
+
+This code chunk will import the unit and weather station combined data for each person.
+
+```{r}
+#| label: importing comparisons
+
+ali_units_weather <- read_rds("data-processed/ali-final-comparison.rds")
+johan_units_weather <- read_rds("data-processed/johan-final-comparison.rds")
+karina_units_weather <- read_rds("data-processed/karina-final-comparison.rds")
+pearson_units_weather <- read_rds("data-processed/pearson-final-comparison.rds")
+```
+
+
+## Importing Activation Data
+
+This code chunk will import the cleaned activation data
+
+```{r}
+cleaned_activation_data <- read_rds("data-processed/pearson-activation-data.rds")
+```
+
+## Combining Unit-Weather Data
+
+This code chunk will combine the separate comparisons into one total comparison.
+
+```{r}
+#| label: total comparison
+
+all_units_weather <- rbind(ali_units_weather, johan_units_weather, karina_units_weather, pearson_units_weather)
+
+all_units_weather
+```
+
+## Combining Activation and Unit Data
+
+This code chunk will combine the activation and unit data based on the unit impacted.
+
+```{r}
+#| label: combining unit and activation
+
+
+activation_unit_combined <- all_units_weather |> 
+  left_join(cleaned_activation_data, by = c("unit" = "unit", "date" = "ics_implementation_date"))
+```
+
+## Charts
+
+This code chunk will create charts that visualize the difference between unit and station temperature using the code write by Johan, modified to highlight certain areas. The bold part of each line represents when the ICS is in effect.
+
+```{r}
+#| label: charts
+  
+units <- unique(activation_unit_combined$unit)
+for (unit_name in units) {
+  df <- subset(activation_unit_combined, unit == unit_name)
+  
+ac <- ggplot(df, aes(x = date)) +
+  geom_line(aes(y = unit_temp, color = "Unit Temp")) +
+  geom_line(aes(y = station_temp, color = "Station Temp")) +
+  geom_point(aes(x = ics_initiated_date, y = unit_temp)) +
+  geom_point(aes(x = ics_deactivated_date, y = unit_temp)) +
+  scale_color_manual(values = c("red", "blue")) +
+  labs(
+    title = paste("Temperature Trends for Unit:", unit_name),
+    x = "Date",
+    y = "Temperature"
+  ) +
+  ylim(0, 120) +
+  theme_minimal()
+
+print(ac)
+}
+```
+

@@ -30,7 +30,7 @@ pearson <- read_rds("data-processed/pearson-final-comparison.rds")
 
 ## Binding `final comparison's`
 
-We are flagging any temperature difference greater than or equal to 15 degrees Fahrenheit and 0 degrees Fahrenheit as notable.
+We are flagging any temperature difference greater than or equal to 15 degrees Fahrenheit and 0 degrees Fahrenheit as notable. We renamed the Mountain View unit to change to the new name to join correctly.
 
 ```{r}
 #| label: cleaning flagged data
@@ -39,6 +39,8 @@ final <- rbind(ali, johan, karina, pearson)
 unit_flagged <- final |> 
   arrange(temp_diff |> desc()) |> 
   filter(temp_diff >= 15 | temp_diff == 0)
+
+unit_flagged[40, 2] = "O'Daniel"
 
 unit_flagged
 ```
@@ -65,7 +67,7 @@ I’m changing the column names to better fit our final comparison list, and sel
 ```{r}
 #| label: cleaning
  unit_info_c <- unit_info |> 
-  rename(unit = unit_name) |> 
+  rename(unit = unit_name) |>
   select(unit, type, region, established)
 
 unit_info_c

@@ -123,15 +123,14 @@ This set of code chunks will combine each unit with the corresponding station an
 
 Middleton_comp <- left_join(Middleton, KABI_temps, by = "date") |>
   mutate(difference = abs(temperature - hourly_temp)) |> 
-  select(date, unit, temperature, station, hourly_temp, difference)
+  select(date, unit, temperature, station, hourly_temp, rh, difference)
 
 Middleton_active <- Middleton_comp |> 
   mutate(status = case_when(
     between(date, as.Date("2023-08-04"), as.Date("2023-08-14"))~"active",
     between(date, as.Date("2023-08-02"), as.Date("2023-08-03"))~"adjacent",
-    between(date, as.Date("2023-08-15"), as.Date("2023-08-16"))~"adjacent"))
-
-Middleton_active[is.na(Middleton_active)] <- "inactive"
+    between(date, as.Date("2023-08-15"), as.Date("2023-08-16"))~"adjacent",
+    TRUE ~ "inactive"))
 
 Middleton_active
 ```
@@ -141,7 +140,7 @@ Middleton_active
 
 Robertson_comp <- left_join(Robertson, KABI_temps, by = "date") |> 
   mutate(difference = abs(temperature - hourly_temp)) |> 
-  select(date, unit, temperature, station, hourly_temp, difference)
+  select(date, unit, temperature, station, hourly_temp, rh, difference)
 
 Robertson_active <- Robertson_comp |> 
   mutate(status = case_when(
@@ -149,9 +148,8 @@ Robertson_active <- Robertson_comp |>
     between(date, as.Date("2023-08-17"), as.Date("2023-08-22"))~"active",
     between(date, as.Date("2023-08-02"), as.Date("2023-08-03"))~"adjacent",
     between(date, as.Date("2023-08-15"), as.Date("2023-08-16"))~"adjacent",
-    between(date, as.Date("2023-08-23"), as.Date("2023-08-24"))~"adjacent"))
-
-Robertson_active[is.na(Robertson_active)] <- "inactive"
+    between(date, as.Date("2023-08-23"), as.Date("2023-08-24"))~"adjacent",
+    TRUE ~ "inactive"))
 
 Robertson_active
 ```
@@ -161,7 +159,7 @@ Robertson_active
 
 Clements_comp <- left_join(Clements, KAMA_temps, by = "date") |> 
     mutate(difference = abs(temperature - hourly_temp)) |> 
-  select(date, unit, temperature, station, hourly_temp, difference)
+  select(date, unit, temperature, station, hourly_temp, rh, difference)
 
 Clements_active <- Clements_comp |> 
   mutate(status = "inactive")
@@ -174,7 +172,7 @@ Clements_active
 
 Gist_comp <- left_join(Gist, KBPT_temps, by = "date") |> 
     mutate(difference = abs(temperature - hourly_temp)) |> 
-  select(date, unit, temperature, station, hourly_temp, difference)
+  select(date, unit, temperature, station, hourly_temp, rh, difference)
 
 Gist_active <- Gist_comp |> 
   mutate(status = case_when(
@@ -192,7 +190,7 @@ Gist_active
 
 Stiles_comp <- left_join(Stiles, KBPT_temps, by = "date") |> 
     mutate(difference = abs(temperature - hourly_temp)) |> 
-  select(date, unit, temperature, station, hourly_temp, difference)
+  select(date, unit, temperature, station, hourly_temp, rh, difference)
 
 Stiles_active <- Stiles_comp |> 
     mutate(status = case_when(
@@ -210,7 +208,7 @@ Stiles_active
 
 Garza_West_comp <- left_join(Garza_West, KBEA_temps, by = "date") |> 
   mutate(difference = abs(temperature - hourly_temp)) |> 
-  select(date, unit, temperature, station, hourly_temp, difference)
+  select(date, unit, temperature, station, hourly_temp, rh, difference)
 
 Garza_West_active <- Garza_West_comp |> 
   mutate(status = "inactive")
@@ -223,7 +221,7 @@ Garza_West_active
 
 McConnell_comp <- left_join(McConnell, KBEA_temps, by = "date") |> 
   mutate(difference = abs(temperature - hourly_temp)) |> 
-  select(date, unit, temperature, station, hourly_temp, difference)
+  select(date, unit, temperature, station, hourly_temp, rh, difference)
 
 McConnell_active <- McConnell_comp |> 
   mutate(status = "inactive")
@@ -236,7 +234,7 @@ McConnell_active
 
 Clemens_comp <- left_join(Clemens, KLBX_temps, by = "date") |> 
   mutate(difference = abs(temperature - hourly_temp)) |> 
-  select(date, unit, temperature, station, hourly_temp, difference)
+  select(date, unit, temperature, station, hourly_temp, rh, difference)
 
 Clemens_active <- Clemens_comp |> 
   mutate(status = "inactive")
@@ -250,7 +248,7 @@ Clemens_active
 
 Roach_comp <- left_join(Roach, KCDS_temps, by = "date") |> 
   mutate(difference = abs(temperature - hourly_temp)) |> 
-  select(date, unit, temperature, station, hourly_temp, difference)
+  select(date, unit, temperature, station, hourly_temp, rh, difference)
 
 Roach_active <- Roach_comp |> 
   mutate(status = "inactive")
@@ -263,7 +261,7 @@ Roach_active
 
 Wallace_comp <- left_join(Wallace, KSNK_temps, by = "date") |> 
   mutate(difference = abs(temperature - hourly_temp)) |> 
-  select(date, unit, temperature, station, hourly_temp, difference)
+  select(date, unit, temperature, station, hourly_temp, rh, difference)
 
 Wallace_active <- Wallace_comp |> 
   mutate(status = case_when(
@@ -281,7 +279,7 @@ Wallace_active
 
 Stevenson_comp <- left_join(Stevenson, KVCT_temps, by = "date") |> 
   mutate(difference = abs(temperature - hourly_temp)) |> 
-  select(date, unit, temperature, station, hourly_temp, difference)
+  select(date, unit, temperature, station, hourly_temp, rh, difference)
 
 Stevenson_active <- Stevenson_comp |> 
   mutate(status = "inactive")
@@ -294,7 +292,7 @@ Stevenson_active
 
 Dalhart_comp <- left_join(Dalhart, KDHT_temps, by = "date") |>
   mutate(difference = abs(temperature - hourly_temp)) |> 
-  select(date, unit, temperature, station, hourly_temp, difference)
+  select(date, unit, temperature, station, hourly_temp, rh, difference)
 
 Dalhart_active <- Dalhart_comp |> 
   mutate(status = "inactive")
@@ -307,7 +305,7 @@ Dalhart_active
 
 Hutchins_comp <- left_join(Hutchins, KRBD_temps, by = "date") |>
   mutate(difference = abs(temperature - hourly_temp)) |> 
-  select(date, unit, temperature, station, hourly_temp, difference)
+  select(date, unit, temperature, station, hourly_temp, rh, difference)
 
 Hutchins_active <- Hutchins_comp |>
   mutate(status = case_when(

@@ -79,13 +79,13 @@ jordan
 
 KPPA_JORDAN <- jordan |> 
   left_join(KPPA, by = "date") |> 
-  select(date, unit_name, indoor_temp, kppa) |> 
+  select(date, unit_name, indoor_temp, kppa, rh) |> 
   mutate(difference = abs(indoor_temp - kppa))
 
 name = toupper(colnames(KPPA_JORDAN)[4])
 KPPA_JORDAN <- KPPA_JORDAN |> mutate(station_code = name) |> 
   rename(station_temp = kppa) |> 
-  select(date, unit_name, indoor_temp, station_code, station_temp, difference) |> 
+  select(date, unit_name, indoor_temp, station_code, station_temp, rh, difference) |> 
   mutate(status = case_when(
     TRUE ~ "inactive"
   ))
@@ -115,13 +115,13 @@ formby
 
 KPVW_FORMBY <- formby  |> 
   left_join(KPVW, by = "date") |> 
-  select(date, unit_name, indoor_temp, kpvw) |> 
+  select(date, unit_name, indoor_temp, kpvw, rh) |> 
   mutate(difference = abs(indoor_temp - kpvw))
 
 name = toupper(colnames(KPVW_FORMBY)[4])
 KPVW_FORMBY <- KPVW_FORMBY |> mutate(station_code = name) |> 
   rename(station_temp = kpvw) |> 
-  select(date, unit_name, indoor_temp, station_code, station_temp, difference) |> 
+  select(date, unit_name, indoor_temp, station_code, station_temp, rh, difference) |> 
   mutate(status = case_when(
     TRUE ~ "inactive"
   ))
@@ -152,13 +152,13 @@ wheeler
 
 KPVW_WHEELER <- wheeler |> 
   left_join(KPVW, by = "date") |> 
-  select(date, unit_name, indoor_temp, kpvw) |> 
+  select(date, unit_name, indoor_temp, kpvw, rh) |> 
   mutate(difference = abs(indoor_temp - kpvw))
 
 name = toupper(colnames(KPVW_WHEELER)[4])
 KPVW_WHEELER <- KPVW_WHEELER |> mutate(station_code = name) |> 
   rename(station_temp = kpvw) |> 
-  select(date, unit_name, indoor_temp, station_code, station_temp, difference) |> 
+  select(date, unit_name, indoor_temp, station_code, station_temp, rh, difference) |> 
   mutate(status = case_when(
     TRUE ~ "inactive"
   ))
@@ -186,13 +186,13 @@ memorial
 
 KLVJ_MEMORIAL <- memorial |> 
   left_join(KLVJ, by = "date") |> 
-  select(date, unit_name, indoor_temp, klvj) |> 
+  select(date, unit_name, indoor_temp, klvj, rh) |> 
   mutate(difference = abs(indoor_temp - klvj))
 
 name = toupper(colnames(KLVJ_MEMORIAL)[4])
 KLVJ_MEMORIAL <- KLVJ_MEMORIAL |> mutate(station_code = name) |> 
   rename(station_temp = klvj) |> 
-  select(date, unit_name, indoor_temp, station_code, station_temp, difference) |> 
+  select(date, unit_name, indoor_temp, station_code, station_temp, rh, difference) |> 
   mutate(status = case_when(
     TRUE ~ "inactive"
   ))
@@ -220,13 +220,13 @@ ramsey
 
 KLVJ_RAMSEY <- ramsey |> 
   left_join(KLVJ, by = "date") |> 
-  select(date, unit_name, indoor_temp, klvj) |> 
+  select(date, unit_name, indoor_temp, klvj, rh) |> 
   mutate(difference = abs(indoor_temp - klvj))
 
 name = toupper(colnames(KLVJ_RAMSEY)[4])
 KLVJ_RAMSEY <- KLVJ_RAMSEY |> mutate(station_code = name) |> 
   rename(station_temp = klvj) |> 
-  select(date, unit_name, indoor_temp, station_code, station_temp, difference) |> 
+  select(date, unit_name, indoor_temp, station_code, station_temp, rh, difference) |> 
   mutate(status = case_when(
     TRUE ~ "inactive"
   ))
@@ -254,13 +254,13 @@ stringfellow
 
 KLVJ_STRINGFELLOW <- stringfellow |> 
   left_join(KLVJ, by = "date") |> 
-  select(date, unit_name, indoor_temp, klvj) |> 
+  select(date, unit_name, indoor_temp, klvj, rh) |> 
   mutate(difference = abs(indoor_temp - klvj))
 
 name = toupper(colnames(KLVJ_STRINGFELLOW)[4])
 KLVJ_STRINGFELLOW <- KLVJ_STRINGFELLOW |> mutate(station_code = name) |> 
   rename(station_temp = klvj) |> 
-  select(date, unit_name, indoor_temp, station_code, station_temp, difference) |>  
+  select(date, unit_name, indoor_temp, station_code, station_temp, rh, difference) |>  
   mutate(status = case_when(
     TRUE ~ "inactive"
   ))
@@ -288,13 +288,13 @@ terrell
 
 KLVJ_TERRELL <- terrell |> 
   left_join(KLVJ, by = "date") |> 
-  select(date, unit_name, indoor_temp, klvj) |> 
+  select(date, unit_name, indoor_temp, klvj, rh) |> 
   mutate(difference = abs(indoor_temp - klvj))
 
 name = toupper(colnames(KLVJ_TERRELL)[4])
 KLVJ_TERRELL <- KLVJ_TERRELL |> mutate(station_code = name) |> 
   rename(station_temp = klvj) |> 
-  select(date, unit_name, indoor_temp, station_code, station_temp, difference) |> 
+  select(date, unit_name, indoor_temp, station_code, station_temp, rh, difference) |> 
   mutate(status = case_when(
     TRUE ~ "inactive"
   ))
@@ -322,13 +322,13 @@ dominguez
 
 KSKF_DOMINGUEZ <- dominguez |> 
   left_join(KSKF, by = "date") |> 
-  select(date, unit_name, indoor_temp, kskf) |> 
+  select(date, unit_name, indoor_temp, kskf, rh) |> 
   mutate(difference = abs(indoor_temp - kskf))
 
 name = toupper(colnames(KSKF_DOMINGUEZ)[4])
 KSKF_DOMINGUEZ <- KSKF_DOMINGUEZ |> mutate(station_code = name) |> 
   rename(station_temp = kskf) |> 
-  select(date, unit_name, indoor_temp, station_code, station_temp, difference) |> 
+  select(date, unit_name, indoor_temp, station_code, station_temp, rh, difference) |> 
   mutate(status = case_when(
     date >= as.Date("2023-06-20") & date <= as.Date("2023-06-22") ~ "active",
     date >= as.Date("2023-07-13") & date <= as.Date("2023-07-15") ~ "active",
@@ -362,13 +362,13 @@ daniel
 
 KSNK_DANIEL <- daniel |> 
   left_join(KSNK, by = "date") |> 
-  select(date, unit_name, indoor_temp, ksnk) |> 
+  select(date, unit_name, indoor_temp, ksnk, rh) |> 
   mutate(difference = abs(indoor_temp - ksnk))
 
 name = toupper(colnames(KSNK_DANIEL)[4])
 KSNK_DANIEL <- KSNK_DANIEL |> mutate(station_code = name) |> 
   rename(station_temp = ksnk) |> 
-  select(date, unit_name, indoor_temp, station_code, station_temp, difference) |> 
+  select(date, unit_name, indoor_temp, station_code, station_temp, rh, difference) |> 
   mutate(status = case_when(
     TRUE ~ "inactive"
   ))
@@ -396,13 +396,13 @@ boyd
 
 KLXY_BOYD <- boyd |> 
   left_join(KLXY, by = "date") |> 
-  select(date, unit_name, indoor_temp, klxy) |> 
+  select(date, unit_name, indoor_temp, klxy, rh) |> 
   mutate(difference = abs(indoor_temp - klxy))
 
 name = toupper(colnames(KLXY_BOYD)[4])
 KLXY_BOYD <- KLXY_BOYD |> mutate(station_code = name) |> 
   rename(station_temp = klxy) |> 
-  select(date, unit_name, indoor_temp, station_code, station_temp, difference) |> 
+  select(date, unit_name, indoor_temp, station_code, station_temp, rh, difference) |> 
   mutate(status = case_when(
     TRUE ~ "inactive"
   ))
@@ -430,13 +430,13 @@ beto
 
 KPSN_BETO <- beto |> 
   left_join(KPSN, by = "date") |> 
-  select(date, unit_name, indoor_temp, kpsn) |> 
+  select(date, unit_name, indoor_temp, kpsn, rh) |> 
   mutate(difference = abs(indoor_temp - kpsn))
 
 name = toupper(colnames(KPSN_BETO)[4])
 KPSN_BETO <- KPSN_BETO |> mutate(station_code = name) |> 
   rename(station_temp = kpsn) |> 
-  select(date, unit_name, indoor_temp, station_code, station_temp, difference) |> 
+  select(date, unit_name, indoor_temp, station_code, station_temp, rh, difference) |> 
   mutate(status = case_when(
     TRUE ~ "inactive"
   ))
@@ -464,13 +464,13 @@ coffield
 
 KPSN_COFFIELD <- coffield |> 
   left_join(KPSN, by = "date") |> 
-  select(date, unit_name, indoor_temp, kpsn) |> 
+  select(date, unit_name, indoor_temp, kpsn, rh) |> 
   mutate(difference = abs(indoor_temp - kpsn))
 
 name = toupper(colnames(KPSN_COFFIELD)[4])
 KPSN_COFFIELD <- KPSN_COFFIELD |> mutate(station_code = name) |> 
   rename(station_temp = kpsn) |> 
-  select(date, unit_name, indoor_temp, station_code, station_temp, difference) |> 
+  select(date, unit_name, indoor_temp, station_code, station_temp, rh, difference) |> 
   mutate(status = case_when(
     TRUE ~ "inactive"
   ))
@@ -498,13 +498,13 @@ michael
 
 KPSN_MICHAEL <- coffield |> 
   left_join(KPSN, by = "date") |> 
-  select(date, unit_name, indoor_temp, kpsn) |> 
+  select(date, unit_name, indoor_temp, kpsn, rh) |> 
   mutate(difference = abs(indoor_temp - kpsn))
 
 name = toupper(colnames(KPSN_MICHAEL)[4])
 KPSN_MICHAEL <- KPSN_MICHAEL |> mutate(station_code = name) |> 
   rename(station_temp = kpsn) |> 
-  select(date, unit_name, indoor_temp, station_code, station_temp, difference) |> 
+  select(date, unit_name, indoor_temp, station_code, station_temp, rh, difference) |> 
   mutate(status = case_when(
     TRUE ~ "inactive"
   ))
@@ -532,13 +532,13 @@ johnston
 
 KJDD_JOHNSTON <- johnston |> 
   left_join(KJDD, by = "date") |> 
-  select(date, unit_name, indoor_temp, kjdd) |> 
+  select(date, unit_name, indoor_temp, kjdd, rh) |> 
   mutate(difference = abs(indoor_temp - kjdd))
 
 name = toupper(colnames(KJDD_JOHNSTON)[4])
 KJDD_JOHNSTON <- KJDD_JOHNSTON |> mutate(station_code = name) |> 
   rename(station_temp = kjdd) |> 
-  select(date, unit_name, indoor_temp, station_code, station_temp, difference) |> 
+  select(date, unit_name, indoor_temp, station_code, station_temp, rh, difference) |> 
   mutate(status = case_when( 
     TRUE ~ "inactive")) # creating inactive status
 
@@ -565,13 +565,13 @@ lewis
 
 KJAS_LEWIS <- lewis |> 
   left_join(KJAS, by = "date") |> 
-  select(date, unit_name, indoor_temp, kjas) |> 
+  select(date, unit_name, indoor_temp, kjas, rh) |> 
   mutate(difference = abs(indoor_temp - kjas))
 
 name = toupper(colnames(KJAS_LEWIS)[4])
 KJAS_LEWIS <- KJAS_LEWIS |> mutate(station_code = name) |> 
   rename(station_temp = kjas) |> 
-  select(date, unit_name, indoor_temp, station_code, station_temp, difference) |> 
+  select(date, unit_name, indoor_temp, station_code, station_temp, rh, difference) |> 
   mutate(status = case_when(
     date >= as.Date("2023-08-02") & date <= as.Date("2023-08-28") ~ "active", 
     (date >= as.Date("2023-07-31") & date <= as.Date("2023-08-01")) |

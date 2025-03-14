@@ -23,7 +23,7 @@ stations_list
 
 ```{r}
 single_station <- function(path) {
-  df <- all_stations |> filter(name == path) |> as.data.frame() |> rename(station_id = station, date_time = date, station_name = name, station_temp = hourly_dry_bulb_temperature, date = date_date) |> mutate(station_code = case_when(
+  df <- all_stations |> filter(name == path) |> as.data.frame() |> rename(station_id = station, date_time = date, station_name = name, station_temp = hourly_dry_bulb_temperature, date = date_date, rh = hourly_relative_humidity) |> mutate(station_code = case_when(
     station_name == "BRIDGEPORT MUNICIPAL AIRPORT, TX US" ~ "KXBP",
     station_name == "JASPER CO BELL FIELD AIRPORT, TX US" ~ "KJAS",
     station_name == "PERRY LEFORS FIELD AIRPORT, TX US" ~ "KPPA",
@@ -37,7 +37,7 @@ single_station <- function(path) {
     station_name == "TEXARKANA WEBB FIELD, AR US" ~ "KTXK",
     station_name == "CROCKETT HOUSTON CO AIRPORT, TX US" ~ "KDKR"
     )) |> select(
-      station_code, station_temp, date
+      station_code, station_temp, date, rh
     ) |> as.data.frame()
   
 }
@@ -98,7 +98,7 @@ Baten<- all_units |> filter(unit == "Baten") # no data
 ```
 
 ```{r}
-ellis_merge <- left_join(Ellis, KUTS, by = "date") |> select(date, unit, unit_temp, station_code, station_temp) |> 
+ellis_merge <- left_join(Ellis, KUTS, by = "date") |> select(date, unit, unit_temp, station_code, station_temp, rh) |> 
   mutate(
     status = case_when(
       date %in%
@@ -117,7 +117,7 @@ ellis_merge
 
 
 ```{r}
-estelle_merge <- left_join(Estelle, KUTS, by = "date") |> select(date, unit, unit_temp, station_code, station_temp) |> 
+estelle_merge <- left_join(Estelle, KUTS, by = "date") |> select(date, unit, unit_temp, station_code, station_temp, rh) |> 
   mutate(
     status = case_when(
       date %in%
@@ -135,7 +135,7 @@ estelle_merge
 ```
 
 ```{r}
-goree_merge <- left_join(Goree, KUTS, by = "date") |> select(date, unit, unit_temp, station_code, station_temp) |> 
+goree_merge <- left_join(Goree, KUTS, by = "date") |> select(date, unit, unit_temp, station_code, station_temp, rh) |> 
   mutate(
     status = case_when(
       date %in%
@@ -155,7 +155,7 @@ goree_merge
 
 
 ```{r}
-holliday_merge <- left_join(Holliday, KUTS, by = "date") |> select(date, unit, unit_temp, station_code, station_temp) |> 
+holliday_merge <- left_join(Holliday, KUTS, by = "date") |> select(date, unit, unit_temp, station_code, station_temp, rh) |> 
   mutate(
     status = case_when(
       date %in%
@@ -175,7 +175,7 @@ holliday_merge
 
 ```{r}
 
-huntsville_merge <- left_join(Huntsville, KUTS, by = "date") |> select(date, unit, unit_temp, station_code, station_temp) |> 
+huntsville_merge <- left_join(Huntsville, KUTS, by = "date") |> select(date, unit, unit_temp, station_code, station_temp, rh) |> 
   mutate(
     status = "inactive"
     ) 
@@ -184,7 +184,7 @@ huntsville_merge
 ```
 
 ```{r}
-wynne_merge <- left_join(Wynne, KUTS, by = "date") |> select(date, unit, unit_temp, station_code, station_temp) |> 
+wynne_merge <- left_join(Wynne, KUTS, by = "date") |> select(date, unit, unit_temp, station_code, station_temp, rh) |> 
   mutate(
     status = case_when(
       date %in%
@@ -203,7 +203,7 @@ wynne_merge
 ```
 
 ```{r}
-ferguson_merge <- left_join(Ferguson, KUTS, by = "date") |> select(date, unit, unit_temp, station_code, station_temp) |> 
+ferguson_merge <- left_join(Ferguson, KUTS, by = "date") |> select(date, unit, unit_temp, station_code, station_temp, rh) |> 
   mutate(
     status = case_when(
       date %in%
@@ -224,7 +224,7 @@ ferguson_merge
 ```
 
 ```{r}
-goodman_merge <- left_join(Goodman, KJAS, by = "date") |> select(date, unit, unit_temp, station_code, station_temp) |> 
+goodman_merge <- left_join(Goodman, KJAS, by = "date") |> select(date, unit, unit_temp, station_code, station_temp, rh) |> 
   mutate(
     status = case_when(
       date %in%
@@ -242,7 +242,7 @@ goodman_merge
 ```
 
 ```{r}
-polunksy_merge <- left_join(Polunsky, KCXO, by = "date") |> select(date, unit, unit_temp, station_code, station_temp) |> 
+polunksy_merge <- left_join(Polunsky, KCXO, by = "date") |> select(date, unit, unit_temp, station_code, station_temp, rh) |> 
   mutate(
     status = case_when(
       date %in%
@@ -260,7 +260,7 @@ polunksy_merge
 ```
 
 ```{r}
-montford_merge <- left_join(Montford, KLBB, by = "date") |> select(date, unit, unit_temp, station_code, station_temp) |> 
+montford_merge <- left_join(Montford, KLBB, by = "date") |> select(date, unit, unit_temp, station_code, station_temp, rh) |> 
   mutate(
     status = case_when(
       date %in%
@@ -278,7 +278,7 @@ montford_merge
 ```
 
 ```{r}
-hobby_merge <- left_join(Hobby, KPWG, by = "date") |> select(date, unit, unit_temp, station_code, station_temp)  |> 
+hobby_merge <- left_join(Hobby, KPWG, by = "date") |> select(date, unit, unit_temp, station_code, station_temp, rh)  |> 
   mutate(
     status = case_when(
       date %in%
@@ -297,7 +297,7 @@ hobby_merge
 ```
 
 ```{r}
-telford_merge <- left_join(Telford, KTXK, by = "date") |> select(date, unit, unit_temp, station_code, station_temp) |> 
+telford_merge <- left_join(Telford, KTXK, by = "date") |> select(date, unit, unit_temp, station_code, station_temp, rh) |> 
   mutate(
     status = "inactive"
     ) 
@@ -306,7 +306,7 @@ telford_merge
 ```
 
 ```{r}
-powledge_merge <- left_join(Powledge, KPSN, by = "date") |> select(date, unit, unit_temp, station_code, station_temp) |> 
+powledge_merge <- left_join(Powledge, KPSN, by = "date") |> select(date, unit, unit_temp, station_code, station_temp, rh) |> 
   mutate(
     status = "inactive"
     ) 

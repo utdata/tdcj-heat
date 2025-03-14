@@ -45,7 +45,6 @@ unit_flagged[40, 2] = "O'Daniel"
 unit_flagged
 ```
 
-After looking at the original csv, there is a comma where it seems Sanchez on Sept. 9th, 2023 should be 88.7, not 887. So, the `temp_diff` should be 9.8.
 
 ## Importing `unit_info`
 

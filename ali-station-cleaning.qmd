@@ -49,7 +49,7 @@ stations <- files |>
   set_names(basename) |> 
 map(
     read_csv,
-    col_select = c(STATION, DATE, HourlyDryBulbTemperature)
+    col_select = c(STATION, DATE, HourlyDryBulbTemperature, HourlyRelativeHumidity)
   ) |> 
   list_rbind() |> 
   clean_names() |> 
@@ -111,8 +111,9 @@ filtered_stations
 stations_clean <- filtered_stations |> 
   mutate(station_temp = hourly_dry_bulb_temperature) |> 
   mutate(date = station_date) |> 
+  mutate(rh = hourly_relative_humidity) |> 
   group_by(date, station_code) |> 
-  select(!c(hourly_dry_bulb_temperature, station_date))
+  select(!c(hourly_dry_bulb_temperature, station_date, hourly_relative_humidity))
 
 stations_clean
 ```

@@ -33,7 +33,8 @@ We only need name, date and temperature from the NWS csv's
 col_list <- c(
   "NAME",
   "DATE",
-  "HourlyDryBulbTemperature"
+  "HourlyDryBulbTemperature",
+  "HourlyRelativeHumidity"
   )
 ```
 
@@ -67,7 +68,7 @@ process_file <- function(path, station_name) {
     slice_max(minute(DATE)) |> 
     rename(!!station_name := HourlyDryBulbTemperature) |> # Rename the temperature column to station name
     clean_names() |> 
-    rename(date = date_date, datetime = date, station_location = name) |> 
+    rename(date = date_date, datetime = date, station_location = name, rh = hourly_relative_humidity) |> 
     filter(month(date) %in% 4:9) |> 
     mutate(hour_temp_taken = format(datetime, "%H:%M:%S")) |> 
     select(-datetime)

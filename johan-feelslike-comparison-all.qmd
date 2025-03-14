@@ -1,0 +1,102 @@
+---
+title: "final-comparison-all"
+---
+
+## Setup
+
+Loading in our libraries!
+
+```{r}
+#| message: false
+#| label: setup
+library(ggplot2)
+library(tidyverse)
+library(plotly)
+```
+
+## Importing our data
+
+Importing the data with the new relative humidity column.
+
+```{r}
+#| label: joining data
+ali <- read_rds("data-processed/ali-final-comparison.rds")
+johan <- read_rds("data-processed/johan-final-comparison.rds")
+karina <- read_rds("data-processed/karina-final-comparison.rds")
+pearson <- read_rds("data-processed/pearson-final-comparison.rds")
+```
+
+## Combining the data together
+
+We are `rbind`ing all of our data tables together to create one large list to work on.
+
+```{r}
+#| label: binding
+final <- rbind(ali, johan, karina, pearson)
+
+final
+```
+
+## Creating `feels like` column
+
+Using the equation from the National Weather Service to create a `feels like` column.
+
+```{r}
+all_combined <- final |> 
+  mutate(
+    feels_like = 
+      - 42.379 + (2.04901523 * station_temp) + (10.14333127 * rh) 
+      - (0.22475541 * station_temp * rh) - (6.83783 * 10^(-3) * station_temp^2) 
+      - (5.481717 * 10^(-2) * rh^2) + (1.22874 * 10^(-3) * station_temp^2 * rh) 
+      + (8.5282 * 10^(-4) * station_temp * rh^2) - (1.99 * 10^(-6) * station_temp^2 * rh^2)
+  )
+
+all_combined |> 
+  mutate(category = case_when
+         (station_temp >= 80 & station_temp <= 88 & feels_like >= 80 & feels_like <= 90 ~"CAT 1",
+          station_temp >= 89 & station_temp <= 96 & feels_like >= 91 & feels_like <= 103 ~"CAT 2",
+          station_temp >= 97 & station_temp <= 106 & feels_like >= 103 & feels_like <= 124 ~"CAT 3",
+          station_temp >= 107 & station_temp <= 110 & feels_like >= 125 & feels_like <= 137 ~"CAT 4",
+          TRUE ~ "Nornal")) |> 
+  filter(unit == "Lewis")
+```
+
+## Graphs w/ indoor, outdoor & feels like
+
+Now that we have all of our data, we can create the graphs to have the `feels like` column and add points to showcase when extreme heat protocols days were active. Also, makes it interactive so that we can see each date.
+
+```{r}
+units <- unique(all_combined$unit)
+for (unit_name in units) {
+  df <- subset(all_combined, unit == unit_name)
+  
+p <- ggplot(df, aes(x = date)) +
+  geom_line(aes(y = unit_temp, color = "Unit Temp")) +
+  geom_line(aes(y = station_temp, color = "Station Temp")) +
+  geom_line(aes(y = feels_like, color = "Feels Like Temp")) +
+  geom_point(data = subset(df, status == "active"), # only rows with an active status are plotted as points
+             aes(y = unit_temp, color = "Unit Temp"), size = 2) +
+  geom_point(data = subset(df, status == "active"), # if we want to include `adjacent` we can follow the same structure.
+             aes(y = station_temp, color = "Station Temp"), size = 2) +
+  geom_point(data = subset(df, status == "active"), 
+             aes(y = feels_like, color = "Feels Like Temp"), size = 2) +
+  labs(
+    title = paste("Temperature Trends for Unit:", unit_name),
+    x = "Date",
+    y = "Temperature"
+  ) +
+  ylim(0, 120) +
+  theme_minimal()
+
+p_interactive <- ggplotly(p)
+  print(p_interactive)
+}
+```
+
+## Export data
+
+```{r}
+#final |> 
+ # write_rds("data-processed/final-comparison-all.rds")
+```
+
